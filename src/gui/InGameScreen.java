@@ -1,26 +1,31 @@
 package gui;
 
 import content.Screen;
-import content.Style;
-import content.Styles;
+import gui.inGameScreen.Board;
+import gui.inGameScreen.PlayersGUI;
+import gui.inGameScreen.StateGUI;
 
-import java.awt.*;
-
-/** Main screen for playing the chess game, displays the board and pieces */
+/**
+ * Main screen for playing the chess game, displays the board and pieces
+ */
 public abstract class InGameScreen extends Screen {
 
-    /** Construct the screen */
-    public InGameScreen(){
-        super(new Style(Styles.MEADOW));
-    }
+    private Board board = new Board();
+    private PlayersGUI playersGUI = new PlayersGUI();
+    private StateGUI stateGUI = new StateGUI();
 
-    // Root for painting the gui
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    /**
+     * Construct the screen
+     */
+    public InGameScreen() {
+        board.setBounds(0, 0, 800, 800);
 
-        Graphics2D g2d = (Graphics2D) g;
+        playersGUI.setBounds(800, 0, 1120, 800);
 
-        // Here write code to draw the board image
+        stateGUI.setBounds(0, 800, 1920, 280);
+
+        add(board);
+        add(playersGUI);
+        add(stateGUI);
     }
 }
