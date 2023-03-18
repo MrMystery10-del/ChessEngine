@@ -3,6 +3,7 @@ package core;
 import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
+import gui.MainMenu;
 
 import java.util.function.Supplier;
 
@@ -12,7 +13,7 @@ public class Core {
 
     // Application start
     public static void main(String[] args) {
-        selectCurrentScreen(SCREENS.IN_GAME_SCREEN);
+        selectCurrentScreen(SCREENS.MAIN_MENU);
     }
 
     // Select current screen which will be displayed on the frame
@@ -24,6 +25,18 @@ public class Core {
     private enum SCREENS {
         IN_GAME_SCREEN(() -> new InGameScreen() {
 
+        }),
+        MAIN_MENU(() -> new MainMenu() {
+
+            @Override
+            public void startedMultiplayer() {
+                selectCurrentScreen(SCREENS.IN_GAME_SCREEN); // Switch to InGameScreen as placeholder
+            }
+
+            @Override
+            public void startedAI() {
+                selectCurrentScreen(SCREENS.IN_GAME_SCREEN); // Switch to InGameScreen as placeholder
+            }
         });
 
         final Supplier<Screen> content;
