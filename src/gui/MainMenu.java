@@ -7,12 +7,12 @@ public abstract class MainMenu extends Screen {
 
     /** Set up a new Screen with buttons */
     public MainMenu() {
-            Button multiplayer = new Button("Multiplayer");
-            multiplayer.setBounds(460, 200, 1000, 200);
-            multiplayer.addActionListener(event -> startedMultiplayer());
-            add(multiplayer);
+        Button multiplayer = new Button("Multiplayer");
+        multiplayer.setBounds(460, 200, 1000, 200);
+        multiplayer.addActionListener(event -> startedMultiplayer());
+        add(multiplayer);
 
-            Button ai = new Button("Against AI");
+        Button ai = new Button("Against AI");
         ai.setBounds(460, 600, 1000, 200);
         ai.addActionListener(event -> startedAI());
         add(ai);
