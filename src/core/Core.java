@@ -12,7 +12,8 @@ public class Core {
     private final static Frame frame = new Frame("ChessEngine");
 
     // Application start
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         selectCurrentScreen(SCREENS.MAIN_MENU);
     }
 
