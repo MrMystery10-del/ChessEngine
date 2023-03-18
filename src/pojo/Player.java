@@ -34,6 +34,7 @@ public class Player {
         this.eloScore=eloScore;
         this.imageIdentifier=imageIdentifier;
         this.description=description;
+        this.difficulty=difficulty;
 
     }
 
