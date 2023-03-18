@@ -27,7 +27,7 @@ public class Player {
      * @param imageIdentifier image identifier
      * @param description
      *
-     * Changes the player to ai state, setting diffuculty level
+     * Changes the player to AI state, setting difficulty level
      */
     public void setBot(Difficulty difficulty,int eloScore, String imageIdentifier, String description) {
         this.bot=true;
