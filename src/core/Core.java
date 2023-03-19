@@ -7,6 +7,7 @@ import gui.MainMenu;
 
 import java.util.function.Supplier;
 
+// Main core of the application
 public class Core {
 
     private final static Frame frame = new Frame("ChessEngine");

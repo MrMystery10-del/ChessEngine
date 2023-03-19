@@ -3,43 +3,50 @@ package manage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * This class manages images of chess pieces
+ */
 public class ImageManager {
 
-    private static BufferedImage pawn, bishop, knight, rook, queen, king;
-    private static BufferedImage pawnB, bishopB, knightB, rookB, queenB, kingB;
+    // Map that associates each chess piece with its image representation
+    private static Map<Pieces, BufferedImage> pieceImages;
 
-    @SuppressWarnings("ConstantConditions")
+    // Method to load all the images of chess pieces
     public static void loadImages() throws IOException {
-        pawn = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/pawn.png"));
-        bishop = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/bishop.png"));
-        knight = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/knight.png"));
-        rook = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/rook.png"));
-        queen = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/queen.png"));
-        king = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/king.png"));
+        // Initialize the map to an empty HashMap
+        pieceImages = new HashMap<>();
 
-        pawnB = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/pawn_BLACK.png"));
-        bishopB = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/bishop_BLACK.png"));
-        knightB = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/knight_BLACK.png"));
-        rookB = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/rook_BLACK.png"));
-        queenB = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/queen_BLACK.png"));
-        kingB = ImageIO.read(ImageManager.class.getResourceAsStream("/images/pieces/king_BLACK.png"));
+        // Load the image for each chess piece and put it in the map with the corresponding key
+        pieceImages.put(Pieces.PAWN, loadImage("/images/pieces/pawn.png"));
+        pieceImages.put(Pieces.BISHOP, loadImage("/images/pieces/bishop.png"));
+        pieceImages.put(Pieces.KNIGHT, loadImage("/images/pieces/knight.png"));
+        pieceImages.put(Pieces.ROOK, loadImage("/images/pieces/rook.png"));
+        pieceImages.put(Pieces.QUEEN, loadImage("/images/pieces/queen.png"));
+        pieceImages.put(Pieces.KING, loadImage("/images/pieces/king.png"));
+        pieceImages.put(Pieces.PAWN_BLACK, loadImage("/images/pieces/pawn_BLACK.png"));
+        pieceImages.put(Pieces.BISHOP_BLACK, loadImage("/images/pieces/bishop_BLACK.png"));
+        pieceImages.put(Pieces.KNIGHT_BLACK, loadImage("/images/pieces/knight_BLACK.png"));
+        pieceImages.put(Pieces.ROOK_BLACK, loadImage("/images/pieces/rook_BLACK.png"));
+        pieceImages.put(Pieces.QUEEN_BLACK, loadImage("/images/pieces/queen_BLACK.png"));
+        pieceImages.put(Pieces.KING_BLACK, loadImage("/images/pieces/king_BLACK.png"));
     }
 
+    // Method to load a single image given its file path
+    private static BufferedImage loadImage(String path) throws IOException {
+        // Use the ImageIO class to read the image from the file path
+        // The getResourceAsStream method finds the resource with a given name relative to this class file
+        return ImageIO.read(ImageManager.class.getResourceAsStream(path));
+    }
+
+    /**
+     * Method to get the image for a specific chess piece
+     *
+     * @return returns the image of the given chess piece
+     */
     public static BufferedImage getPiece(Pieces piece) {
-        return switch (piece) {
-            case PAWN -> pawn;
-            case BISHOP -> bishop;
-            case KNIGHT -> knight;
-            case ROOK -> rook;
-            case QUEEN -> queen;
-            case KING -> king;
-            case PAWN_BLACK -> pawnB;
-            case BISHOP_BLACK -> bishopB;
-            case KNIGHT_BLACK -> knightB;
-            case ROOK_BLACK -> rookB;
-            case QUEEN_BLACK -> queenB;
-            case KING_BLACK -> kingB;
-        };
+        return pieceImages.get(piece);
     }
 }
