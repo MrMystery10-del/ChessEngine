@@ -4,7 +4,9 @@ import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
 import gui.MainMenu;
+import manage.ImageManager;
 
+import java.io.IOException;
 import java.util.function.Supplier;
 
 // Main core of the application
@@ -13,7 +15,8 @@ public class Core {
     private final static Frame frame = new Frame("ChessEngine");
 
     // Application start
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
     }
 
