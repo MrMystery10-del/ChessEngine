@@ -1,4 +1,4 @@
-package bots.Average;
+package bots.average;
 
 public class Average {
 }

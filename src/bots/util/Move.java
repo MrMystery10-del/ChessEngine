@@ -1,4 +1,4 @@
-package bots.Util;
+package bots.util;
 
 public class Move {
     private int fromRow;

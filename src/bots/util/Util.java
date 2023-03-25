@@ -1,6 +1,4 @@
-package bots.Util;
-
-import bots.nooby.Nooby;
+package bots.util;
 
 import java.util.ArrayList;
 import java.util.List;
