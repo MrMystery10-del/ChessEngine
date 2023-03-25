@@ -16,7 +16,7 @@ public class Core {
 
     private final static Frame frame = new Frame("ChessEngine");
 
-    // Application start
+    // Application start 
     public static void main(String[] args) throws IOException {
         //testing();
         ImageManager.loadImages();
