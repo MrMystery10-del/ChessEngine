@@ -18,7 +18,7 @@ public class Core {
 
     // Application start
     public static void main(String[] args) throws IOException {
-
+        //testing();
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
     }
