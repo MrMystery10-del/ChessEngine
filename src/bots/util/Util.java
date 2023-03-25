@@ -21,10 +21,10 @@ public class Util
 
     public static byte[][] applyMove(byte[][] board, Move move) {
         byte[][] newBoard = Util.deepCopy(board);
-        int startRow = move.getFromRow();
-        int startCol = move.getFromCol();
-        int endRow = move.getToRow();
-        int endCol = move.getToCol();
+        int startRow = move.fromRow();
+        int startCol = move.fromCol();
+        int endRow = move.toRow();
+        int endCol = move.toCol();
         newBoard[endRow][endCol] = newBoard[startRow][startCol];
         newBoard[startRow][startCol] = 0;
         return newBoard;

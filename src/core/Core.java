@@ -1,6 +1,6 @@
 package core;
 
-import bots.nooby.Nooby;
+import bots.low_bots0_500.Bob;
 import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
@@ -34,7 +34,7 @@ public class Core {
                 {-1, -1, -1, -1, -1, -1, -1, -1},
                 {-4, -2, -3, -5, -6, -3, -2, -4}
         };
-        Arrays.stream(Nooby.playNewMove(board, false))
+        Arrays.stream(Bob.playNewMove(board, false))
                 .forEach(arr -> {
                     for (byte b : arr) {
                         System.out.print(b + " ");
