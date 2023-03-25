@@ -1,5 +1,6 @@
 package core;
 
+import bots.nooby.Nooby;
 import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
@@ -7,6 +8,7 @@ import gui.MainMenu;
 import manage.ImageManager;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.function.Supplier;
 
 // Main core of the application
@@ -16,8 +18,29 @@ public class Core {
 
     // Application start
     public static void main(String[] args) throws IOException {
+
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
+    }
+
+    private static void testing() {
+        final byte[][] board = {
+                {4, 2, 3, 5, 6, 3, 2, 4},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {-1, -1, -1, -1, -1, -1, -1, -1},
+                {-4, -2, -3, -5, -6, -3, -2, -4}
+        };
+        Arrays.stream(Nooby.playNewMove(board, false))
+                .forEach(arr -> {
+                    for (byte b : arr) {
+                        System.out.print(b + " ");
+                    }
+                    System.out.println(); // print a new line after each array
+                });
     }
 
     // Select current screen which will be displayed on the frame
