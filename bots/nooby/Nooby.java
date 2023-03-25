@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Nooby {
+    static int index = 0;//index for pawn position
+    static String[] piecename = new String[32];//stores peice name
+    static String[] peices = new String[32];//K,Q,R,B,N,P//store peice position uses column and row
     // pieces: pawn 1, knight 2, bishop 3, rook 4, queen 5, king 6. For black pieces same number just negative
     public byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
         // Initialize a list of possible moves
@@ -24,6 +27,82 @@ public class Nooby {
         // If there are no possible moves, we've either checkmated or stalemated the opponent
         if (possibleMoves.isEmpty()) {
             return board;
+        }
+
+        public static void set()
+        {
+            for(int i =0;i<8;i++)
+            {
+                for(int j =0;j<8;j++)
+                {
+                    if(board[i][j]!=0)
+                    {
+                        switch(board[i][j])
+                        {
+                            case(6):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Wk";
+                                index++;
+                                break;
+                            case(5):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Wq";
+                                index++;
+                                break;
+                            case(4):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Wr";
+                                index++;
+                                break;
+                            case(3):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Wb";
+                                index++;
+                                break;
+                            case(2):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Wn";
+                                index++;
+                                break;
+                            case(1):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Wp";
+                                index++;
+                                break;
+                            case(-6):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Bk";
+                                index++;
+                                break;
+                            case(-5):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Bq";
+                                index++;
+                                break;
+                            case(-4):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Br";
+                                index++;
+                                break;
+                            case(-3):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Bb";
+                                index++;
+                                break;
+                            case(-2):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Bn";
+                                index++;
+                                break;
+                            case(-1):
+                                peices[index]=i+" "+j;
+                                piecename[index]="Bp";
+                                index++;
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         // Sort the list of possible moves in descending order of the value of the captured piece (if any)
