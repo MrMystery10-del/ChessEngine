@@ -23,6 +23,7 @@ public class Core {
         selectCurrentScreen(SCREENS.MAIN_MENU);
     }
 
+    @SuppressWarnings("unused")
     private static void testing() {
         final byte[][] board = {
                 {4, 2, 3, 5, 6, 3, 2, 4},

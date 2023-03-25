@@ -11,11 +11,8 @@ public class Util
 
     public static byte[][] deepCopy(byte[][] board) {
         byte[][] newBoard = new byte[8][8];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                newBoard[i][j] = board[i][j];
-            }
-        }
+        for (int i = 0; i < 8; i++)
+            System.arraycopy(board[i], 0, newBoard[i], 0, 8);
         return newBoard;
     }
 
@@ -37,7 +34,7 @@ public class Util
 
         // Check all possible moves for the piece, based on its type
         switch (Math.abs(piece)) {
-            case 1: // Pawn
+            case 1 -> { // Pawn
                 int direction = (sign > 0) ? -1 : 1;
                 // Check if pawn can move one square forward
                 if (isValidPosition(row + direction, col) && board[row + direction][col] == 0) {
@@ -57,8 +54,8 @@ public class Util
                     // Pawn can capture diagonally to the left
                     moves.add(new Move(row, col, row + direction, col - 1, board[row + direction][col - 1]));
                 }
-                break;
-            case 2: // Knight
+            }
+            case 2 -> { // Knight
                 int[][] knightMoves = {{-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}, {2, -1}, {2, 1}};
                 for (int[] move : knightMoves) {
                     int newRow = row + move[0];
@@ -71,8 +68,8 @@ public class Util
                         }
                     }
                 }
-                break;
-            case 3: // Bishop
+            }
+            case 3 -> { // Bishop
                 // Check all diagonal directions
                 int[][] bishopDirections = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
                 for (int[] dir : bishopDirections) {
@@ -89,14 +86,11 @@ public class Util
                             // Opponent's piece, add move and stop in this direction
                             moves.add(new Move(row, col, newRow, newCol, capturedPiece));
                             break;
-                        } else {
-                            // Our own piece, stop in this direction
-                            break;
-                        }
+                        } else break; // Our own piece, stop in this direction
                     }
                 }
-                break;
-            case 4: // Rook
+            }
+            case 4 -> { // Rook
                 // Check all horizontal and vertical directions
                 int[][] rookDirections = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
                 for (int[] dir : rookDirections) {
@@ -113,14 +107,11 @@ public class Util
                             // Opponent's piece, add move and stop in this direction
                             moves.add(new Move(row, col, newRow, newCol, capturedPiece));
                             break;
-                        } else {
-                            // Our own piece, stop in this direction
-                            break;
-                        }
+                        } else break; // Our own piece, stop in this direction
                     }
                 }
-                break;
-            case 5: // Queen
+            }
+            case 5 -> { // Queen
                 // Check all diagonal, horizontal, and vertical directions
                 int[][] queenDirections = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
                 for (int[] dir : queenDirections) {
@@ -137,14 +128,11 @@ public class Util
                             // Opponent's piece, add move and stop in this direction
                             moves.add(new Move(row, col, newRow, newCol, capturedPiece));
                             break;
-                        } else {
-                            // Our own piece, stop in this direction
-                            break;
-                        }
+                        } else break; // Our own piece, stop in this direction
                     }
                 }
-                break;
-            case 6: // King
+            }
+            case 6 -> { // King
                 // Check all adjacent squares
                 int[][] kingMoves = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
                 for (int[] move : kingMoves) {
@@ -158,7 +146,7 @@ public class Util
                         }
                     }
                 }
-                break;
+            }
         }
         return moves;
     }

@@ -1,12 +1,12 @@
-package bots.intermediate_bots500_1000;
+package bots.high_bots1000_2000;
 
 import bots.Bot;
 
 @SuppressWarnings("unused")
-public class Ava implements Bot {
+public class James implements Bot {
 
-    private static final int elo = 500;
-    private static final String name = "Ava";
+    private static final int elo = 1500;
+    private static final String name = "James";
     private static final String description = "No description currently";
     private static final String algorithm = null;
 
