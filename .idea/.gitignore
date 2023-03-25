@@ -3,3 +3,4 @@
 /workspace.xml
 vcs.xml
 runner.java
+*.class
