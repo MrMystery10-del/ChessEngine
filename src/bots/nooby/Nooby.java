@@ -2,11 +2,11 @@ package bots.nooby;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Nooby {
     private static final byte EMPTY = 0;
+    public record Move(int fromRow, int fromCol, int toRow, int toCol, byte capturedPiece) {}
 
     public static byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
         // Initialize a list of possible moves
@@ -29,8 +29,9 @@ public class Nooby {
             return board;
         }
 
+
         // Sort the list of possible moves in descending order of the value of the captured piece (if any)
-        Collections.sort(possibleMoves, (m1, m2) -> Integer.compare(Math.abs(m2.getCapturedPiece()), Math.abs(m1.getCapturedPiece())));
+        Collections.sort(possibleMoves, (m1, m2) -> Integer.compare(m2.capturedPiece(), Math.abs(m1.capturedPiece())));
 
         // Select the move with the highest value capture (if any), or else just the first move in the list
         Move selectedMove = possibleMoves.get(0);
@@ -182,10 +183,12 @@ public class Nooby {
     // Applies the specified move to the specified board and returns the resulting state
     private static byte[][] applyMove(byte[][] board, Move move) {
         byte[][] newBoard = deepCopy(board);
-        int startRow = move.getFromRow();
-        int startCol = move.getFromCol();
-        int endRow = move.getToRow();
-        int endCol = move.getToCol();
+        int startRow = move.fromRow();
+        int startCol = move.fromCol();
+        int endRow = move.toRow();
+        int endCol = move.toCol();
+
+
         newBoard[endRow][endCol] = newBoard[startRow][startCol];
         newBoard[startRow][startCol] = EMPTY;
         return newBoard;
@@ -203,39 +206,41 @@ public class Nooby {
     }
 
     // Represents a move on the chess board
-    private static class Move {
-        private int fromRow;
-        private int fromCol;
-        private int toRow;
-        private int toCol;
-        private byte capturedPiece;
 
-        public Move(int fromRow, int fromCol, int toRow, int toCol, byte capturedPiece) {
-            this.fromRow = fromRow;
-            this.fromCol = fromCol;
-            this.toRow = toRow;
-            this.toCol = toCol;
-            this.capturedPiece = capturedPiece;
-        }
 
-        public int getFromRow() {
-            return fromRow;
-        }
+//    private static class Move {
+//        private int fromRow;
+//        private int fromCol;
+//        private int toRow;
+//        private int toCol;
+//        private byte capturedPiece;
+//
+//        public Move(int fromRow, int fromCol, int toRow, int toCol, byte capturedPiece) {
+//            this.fromRow = fromRow;
+//            this.fromCol = fromCol;
+//            this.toRow = toRow;
+//            this.toCol = toCol;
+//            this.capturedPiece = capturedPiece;
+//        }
+//
+//        public int getFromRow() {
+//            return fromRow;
+//        }
+//
+//        public int getFromCol() {
+//            return fromCol;
+//        }
+//
+//        public int getToRow() {
+//            return toRow;
+//        }
+//
+//        public int getToCol() {
+//            return toCol;
+//        }
+//
+//        public byte getCapturedPiece() {
+//            return capturedPiece;
+//        }
 
-        public int getFromCol() {
-            return fromCol;
-        }
-
-        public int getToRow() {
-            return toRow;
-        }
-
-        public int getToCol() {
-            return toCol;
-        }
-
-        public byte getCapturedPiece() {
-            return capturedPiece;
-        }
-    }
 }

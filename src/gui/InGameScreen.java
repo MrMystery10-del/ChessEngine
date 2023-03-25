@@ -2,7 +2,7 @@ package gui;
 
 import content.Screen;
 import core.pojo.Player;
-import gui.inGameScreen.Board;
+import gui.inGameScreen.BoardGui;
 import gui.inGameScreen.GameStateGui;
 import gui.inGameScreen.PlayersGUI;
 import gui.inGameScreen.StateGUI;
@@ -20,7 +20,7 @@ public abstract class InGameScreen extends Screen {
     //load current local language - english if not available (yet)
     ResourceBundle resourceBundle = ResourceBundle.getBundle("gui.translations.bundle", Locale.getDefault());
 
-    private Board board = new Board();
+    private BoardGui board = new BoardGui(0, 0, 800, 800);
     private PlayersGUI playersGUI;
     private StateGUI stateGUI = new StateGUI();
     private Player player1 = new Player("some User", ImageManager.getPiece(Pieces.KING)); // Placeholder
@@ -33,8 +33,6 @@ public abstract class InGameScreen extends Screen {
      */
     public InGameScreen() {
         playersGUI = new PlayersGUI(player1, player2);
-
-        board.setBounds(0, 0, 800, 800);
 
         playersGUI.setBounds(800, 0, 1120, 800);
 
