@@ -1,14 +1,18 @@
-package bots.nooby;
+package bots.low_bots0_500;
 
+import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Nooby {
-    private static final byte EMPTY = 0;
+public class Bob implements Bot {
+
+    private static final int elo = 50;
+    private static final String name = "Bob";
+    private static final String description = "No description currently";
+    private static final String algorithm = "Value Capture Algorithm";
 
     public static byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
         // Initialize a list of possible moves
@@ -32,13 +36,32 @@ public class Nooby {
         }
 
         // Sort the list of possible moves in descending order of the value of the captured piece (if any)
-        Collections.sort(possibleMoves, (m1, m2) -> Integer.compare(Math.abs(m2.getCapturedPiece()), Math.abs(m1.getCapturedPiece())));
+        possibleMoves.sort((m1, m2) -> Integer.compare(Math.abs(m2.capturedPiece()), Math.abs(m1.capturedPiece())));
 
         // Select the move with the highest value capture (if any), or else just the first move in the list
         Move selectedMove = possibleMoves.get(0);
 
         // Apply the selected move to the board and return the resulting state
-        byte[][] newBoard = Util.applyMove(board, selectedMove);
-        return newBoard;
+        return Util.applyMove(board, selectedMove);
+    }
+
+    @Override
+    public int getElo() {
+        return elo;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String getUsedAlgorithm() {
+        return algorithm;
     }
 }

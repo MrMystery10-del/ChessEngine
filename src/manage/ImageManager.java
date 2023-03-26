@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * This class manages images of chess pieces
@@ -38,7 +39,7 @@ public class ImageManager {
     private static BufferedImage loadImage(String path) throws IOException {
         // Use the ImageIO class to read the image from the file path
         // The getResourceAsStream method finds the resource with a given name relative to this class file
-        return ImageIO.read(ImageManager.class.getResourceAsStream(path));
+        return ImageIO.read(Objects.requireNonNull(ImageManager.class.getResourceAsStream(path)));
     }
 
     /**

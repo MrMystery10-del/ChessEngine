@@ -1,6 +1,6 @@
 package core;
 
-import bots.nooby.Nooby;
+import bots.low_bots0_500.Bob;
 import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
@@ -18,18 +18,12 @@ public class Core {
 
     // Application start
     public static void main(String[] args) throws IOException {
-
+        //testing();
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
-
-
-
-
     }
 
-
-
-
+    @SuppressWarnings("unused")
     private static void testing() {
         final byte[][] board = {
                 {4, 2, 3, 5, 6, 3, 2, 4},
@@ -41,7 +35,7 @@ public class Core {
                 {-1, -1, -1, -1, -1, -1, -1, -1},
                 {-4, -2, -3, -5, -6, -3, -2, -4}
         };
-        Arrays.stream(Nooby.playNewMove(board, false))
+        Arrays.stream(Bob.playNewMove(board, false))
                 .forEach(arr -> {
                     for (byte b : arr) {
                         System.out.print(b + " ");
