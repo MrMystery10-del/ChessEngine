@@ -59,26 +59,13 @@ public class BoardGuiController {
     {
         for(int i = 1;i < White.length+1;i++)
         {
-            switch (i)
-            {
-                case 1:
-                    White[i-1]=getResized(Address[0]);
-                    break;
-                case 2:
-                    White[i-1]=getResized(Address[1]);
-                    break;
-                case 3:
-                    White[i-1]=getResized(Address[2]);
-                    break;
-                case 4:
-                    White[i-1]=getResized(Address[3]);
-                    break;
-                case 5:
-                    White[i-1]=getResized(Address[4]);
-                    break;
-                case 6:
-                    White[i-1]=getResized(Address[5]);
-                    break;
+            switch (i) {
+                case 1 -> White[i - 1] = getResized(Address[0]);
+                case 2 -> White[i - 1] = getResized(Address[1]);
+                case 3 -> White[i - 1] = getResized(Address[2]);
+                case 4 -> White[i - 1] = getResized(Address[3]);
+                case 5 -> White[i - 1] = getResized(Address[4]);
+                case 6 -> White[i - 1] = getResized(Address[5]);
             }
         }
     }
@@ -87,26 +74,13 @@ public class BoardGuiController {
     {
         for(int i = 1;i < Black.length+1;i++)
         {
-            switch (i)
-            {
-                case 1:
-                    Black[i-1]=getResized(Address[6]);
-                    break;
-                case 2:
-                    Black[i-1]=getResized(Address[7]);
-                    break;
-                case 3:
-                    Black[i-1]=getResized(Address[8]);
-                    break;
-                case 4:
-                    Black[i-1]=getResized(Address[9]);
-                    break;
-                case 5:
-                    Black[i-1]=getResized(Address[10]);
-                    break;
-                case 6:
-                    Black[i-1]=getResized(Address[11]);
-                    break;
+            switch (i) {
+                case 1 -> Black[i - 1] = getResized(Address[6]);
+                case 2 -> Black[i - 1] = getResized(Address[7]);
+                case 3 -> Black[i - 1] = getResized(Address[8]);
+                case 4 -> Black[i - 1] = getResized(Address[9]);
+                case 5 -> Black[i - 1] = getResized(Address[10]);
+                case 6 -> Black[i - 1] = getResized(Address[11]);
             }
         }
     }
@@ -131,51 +105,25 @@ public class BoardGuiController {
                 {
                     if(Board[i][j]>0)
                     {
-                        switch (Board[i][j])
-                        {
-                            case(1):
-                                buttons[j][i].setIcon(White[0]);
-                                break;
-                            case(2):
-                                buttons[j][i].setIcon(White[1]);
-                                break;
-                            case(3):
-                                buttons[j][i].setIcon(White[2]);
-                                break;
-                            case(4):
-                                buttons[j][i].setIcon(White[3]);
-                                break;
-                            case(5):
-                                buttons[j][i].setIcon(White[4]);
-                                break;
-                            case(6):
-                                buttons[j][i].setIcon(White[5]);
-                                break;
+                        switch (Board[i][j]) {
+                            case (1) -> buttons[j][i].setIcon(White[0]);
+                            case (2) -> buttons[j][i].setIcon(White[1]);
+                            case (3) -> buttons[j][i].setIcon(White[2]);
+                            case (4) -> buttons[j][i].setIcon(White[3]);
+                            case (5) -> buttons[j][i].setIcon(White[4]);
+                            case (6) -> buttons[j][i].setIcon(White[5]);
                         }
                     }
                     else
                     {
-                        switch (Board[i][j])
-                        {
-                            case(-1):
-                                buttons[j][i].setIcon(Black[0]);
-                                break;
-                            case(-2):
-                                buttons[j][i].setIcon(Black[1]);
-                                break;
-                            case(-3):
-                                buttons[j][i].setIcon(Black[2]);
-                                break;
-                            case(-4):
-                                buttons[j][i].setIcon(Black[3]);
-                                break;
-                            case(-5):
-                                buttons[j][i].setIcon(Black[4]);
-                                break;
-                            case(-6):
-                                buttons[j][i].setIcon(Black[5]);
-                                break;
-                            }
+                        switch (Board[i][j]) {
+                            case (-1) -> buttons[j][i].setIcon(Black[0]);
+                            case (-2) -> buttons[j][i].setIcon(Black[1]);
+                            case (-3) -> buttons[j][i].setIcon(Black[2]);
+                            case (-4) -> buttons[j][i].setIcon(Black[3]);
+                            case (-5) -> buttons[j][i].setIcon(Black[4]);
+                            case (-6) -> buttons[j][i].setIcon(Black[5]);
+                        }
                         }
                     }
                 }
