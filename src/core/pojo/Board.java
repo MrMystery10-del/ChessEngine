@@ -1,7 +1,5 @@
 package core.pojo;
 
-import bots.Bot;
-import bots.nooby.Nooby;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +13,7 @@ public class Board {
 
     Player playerOne;
     Player playerTwo;
-    Bot bot;
+
 
 
     public Board() {
@@ -29,7 +27,6 @@ public class Board {
 
         if (playerTwo.isBot()){
             logger.log(Level.INFO,"Player 2 set as bot");
-            bot = new Nooby();
         }
     }
 

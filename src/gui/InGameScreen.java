@@ -38,7 +38,7 @@ public abstract class InGameScreen extends Screen {
         //placeholders + inserts for testing
         Player player1 = new Player("some User", ImageManager.getPiece(Pieces.KING)); // Placeholder
         Player player2 = new Player("some AI", ImageManager.getPiece(Pieces.KING_BLACK));; // Placeholder
-        player2.asBot(Difficulty.EASY,200,"Ipsum Lorem");
+        player2.asBot(200,"Ipsum Lorem");
 
 
 

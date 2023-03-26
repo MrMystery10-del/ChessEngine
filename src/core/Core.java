@@ -1,6 +1,6 @@
 package core;
 
-import bots.low_bots0_500.Bob;
+import bots.low_bots_0_500.Bob;
 import content.Frame;
 import content.Screen;
 import gui.InGameScreen;

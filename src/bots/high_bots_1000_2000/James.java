@@ -1,4 +1,4 @@
-package bots.high_bots1000_2000;
+package bots.high_bots_1000_2000;
 
 import bots.Bot;
 
