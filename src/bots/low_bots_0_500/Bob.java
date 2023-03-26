@@ -1,4 +1,4 @@
-package bots.low_bots0_500;
+package bots.low_bots_0_500;
 
 import bots.Bot;
 import bots.util.Move;

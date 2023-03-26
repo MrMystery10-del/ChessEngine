@@ -1,4 +1,4 @@
-package bots.insane_bots2000_9999;
+package bots.insane_bots_2000_9999;
 
 import bots.Bot;
 

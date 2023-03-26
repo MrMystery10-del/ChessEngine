@@ -32,7 +32,7 @@ public class Nooby {
         }
 
         // Sort the list of possible moves in descending order of the value of the captured piece (if any)
-        Collections.sort(possibleMoves, (m1, m2) -> Integer.compare(Math.abs(m2.getCapturedPiece()), Math.abs(m1.getCapturedPiece())));
+        Collections.sort(possibleMoves, (m1, m2) -> Integer.compare(Math.abs( m2.capturedPiece()), Math.abs(m1.capturedPiece())));
 
         // Select the move with the highest value capture (if any), or else just the first move in the list
         Move selectedMove = possibleMoves.get(0);

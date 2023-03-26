@@ -1,4 +1,4 @@
-package bots.intermediate_bots500_1000;
+package bots.intermediate_bots_500_1000;
 
 import bots.Bot;
 
