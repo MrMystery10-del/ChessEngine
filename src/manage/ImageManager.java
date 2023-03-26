@@ -13,12 +13,12 @@ import java.util.Objects;
 public class ImageManager {
 
     // Map that associates each chess piece with its image representation
-    private static Map<Pieces, BufferedImage> pieceImages;
+    private final static Map<Pieces, BufferedImage> pieceImages = new HashMap<>();
+    ;
+    private static BufferedImage default_profile_picture;
 
     // Method to load all the images of chess pieces
     public static void loadImages() throws IOException {
-        // Initialize the map to an empty HashMap
-        pieceImages = new HashMap<>();
 
         // Load the image for each chess piece and put it in the map with the corresponding key
         pieceImages.put(Pieces.PAWN, loadImage("/images/pieces/pawn.png"));
@@ -33,6 +33,8 @@ public class ImageManager {
         pieceImages.put(Pieces.ROOK_BLACK, loadImage("/images/pieces/rook_BLACK.png"));
         pieceImages.put(Pieces.QUEEN_BLACK, loadImage("/images/pieces/queen_BLACK.png"));
         pieceImages.put(Pieces.KING_BLACK, loadImage("/images/pieces/king_BLACK.png"));
+
+        default_profile_picture = loadImage("/images/menu/default_profile_picture.png");
     }
 
     // Method to load a single image given its file path
@@ -49,5 +51,12 @@ public class ImageManager {
      */
     public static BufferedImage getPiece(Pieces piece) {
         return pieceImages.get(piece);
+    }
+
+    /**
+     * @return the default profile picture for the profile label
+     */
+    public static BufferedImage getDefaultPP() {
+        return default_profile_picture;
     }
 }

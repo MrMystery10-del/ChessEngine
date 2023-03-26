@@ -5,6 +5,7 @@ import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
 import gui.MainMenu;
+import gui.ProfileMenu;
 import manage.ImageManager;
 
 import java.io.IOException;
@@ -57,14 +58,21 @@ public class Core {
         MAIN_MENU(() -> new MainMenu() {
 
             @Override
+            public void viewProfile() {
+                selectCurrentScreen(SCREENS.PROFILE_MENU);
+            }
+
+            @Override
             public void startedMultiplayer() {
-                selectCurrentScreen(SCREENS.IN_GAME_SCREEN); // Switch to InGameScreen as placeholder
+                selectCurrentScreen(SCREENS.IN_GAME_SCREEN);
             }
 
             @Override
             public void startedAI() {
-                selectCurrentScreen(SCREENS.IN_GAME_SCREEN); // Switch to InGameScreen as placeholder
+                selectCurrentScreen(SCREENS.IN_GAME_SCREEN);
             }
+        }), PROFILE_MENU(() -> new ProfileMenu() {
+
         });
 
         final Supplier<Screen> content;
