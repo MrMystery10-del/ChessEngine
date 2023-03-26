@@ -18,7 +18,7 @@ public class Board {
     public void setPlayers(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-        //todo -> bots
+        //todo > bots
 
         if (playerTwo.isBot())
             logger.log(Level.INFO, "Player 2 set as bot");
@@ -29,21 +29,21 @@ public class Board {
      */
     public void startNewBoard() {
         byte[][] newBoard = {
-                {4, 2, 3, 5, 6, 3, 2, 4},
-                {1, 1, 1, 1, 1, 1, 1, 1},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0},
+                {-4, -2, -3, -5, -6, -3, -2, -4},
                 {-1, -1, -1, -1, -1, -1, -1, -1},
-                {-4, -2, -3, -5, -6, -3, -2, -4}
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {4, 2, 3, 5, 6, 3, 2, 4}
         };
         this.gameBoard = newBoard;
     }
 
 
     /**
-     * backdoor access for testing -- TODO erase it
+     * backdoor access for testing  TODO erase it
      */
     public void setBoardForTesting(byte[][] testSource) {
         this.gameBoard = testSource;
