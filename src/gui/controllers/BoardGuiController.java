@@ -124,9 +124,9 @@ public class BoardGuiController {
                             case (-5) -> buttons[j][i].setIcon(Black[4]);
                             case (-6) -> buttons[j][i].setIcon(Black[5]);
                         }
-                        }
                     }
                 }
             }
         }
     }
+}
