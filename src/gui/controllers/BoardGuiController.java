@@ -14,11 +14,11 @@ public class BoardGuiController {
     byte[][] Board;
     JButton[][] buttons;
 
-    String[] Address = new String[12];
-    ImageIcon[] White = new ImageIcon[6];
-    ImageIcon[] Black = new ImageIcon[6];
+    String[] Address = new String[12];//array for storing addresses of pieces
+    ImageIcon[] White = new ImageIcon[6];//Stores resized images of white
+    ImageIcon[] Black = new ImageIcon[6];//Stores resized images of black
 
-    private void setAddress()
+    private void setAddress()//easier way to get location of all images
     {
         String base = "/images/pieces/";
         String extension = ".png";
@@ -35,12 +35,15 @@ public class BoardGuiController {
             }
         }
     }
+
+    //converts to Image , resizes it and returns btw 25 is customizable ,but 25 gives best result
     private static ImageIcon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
         Image img = icon.getImage();
         Image resizedImage = img.getScaledInstance(resizedWidth-25, resizedHeight-25,  java.awt.Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);
     }
 
+    /*gets the file converts to bufferedImage resizes it and then returns ad Image Icon*/
     public ImageIcon getResized(String address)
     {
         ImageIcon icon= null;
@@ -55,6 +58,8 @@ public class BoardGuiController {
 
         return icon;
     }
+
+    //set resized images to the white array
     private void setWhite()
     {
         for(int i = 1;i < White.length+1;i++)
@@ -70,6 +75,7 @@ public class BoardGuiController {
         }
     }
 
+    //set resized images to the black array
     private void setBlack()
     {
         for(int i = 1;i < Black.length+1;i++)
@@ -89,13 +95,16 @@ public class BoardGuiController {
         this.gui = gui;
         buttons = gui.squares;
         Board = board.getGameBoard();
+        //initiates call of functions
         setAddress();
         setBlack();
         setWhite();
-        Draw();
+        SetPieces();
     }
 
-    public void Draw()
+
+    //Just sets Buttons Icon images
+    public void SetPieces()
     {
         for(int i = 0;i<8;i++)
         {
