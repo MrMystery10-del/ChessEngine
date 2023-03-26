@@ -21,7 +21,14 @@ public class Core {
 
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
+
+
+
+
     }
+
+
+
 
     private static void testing() {
         final byte[][] board = {

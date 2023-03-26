@@ -1,10 +1,12 @@
 package bots.nooby;
 
+import bots.Bot;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Nooby {
+public class Nooby extends Bot {
     private static final byte EMPTY = 0;
     public record Move(int fromRow, int fromCol, int toRow, int toCol, byte capturedPiece) {}
 
