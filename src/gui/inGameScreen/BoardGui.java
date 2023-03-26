@@ -20,9 +20,8 @@ public class BoardGui extends Screen {
     //private Graphics2D g2d;
     //private final BufferedImage boardImage;
 
-
     JPanel boardPanel;
-    JButton[][] squares = new JButton[gridSize][gridSize];
+    public JButton[][] squares = new JButton[gridSize][gridSize];
 
     public BoardGui(int x, int y, int width, int height) {
         setBounds(x, y, width, height);
