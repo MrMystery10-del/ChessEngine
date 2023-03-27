@@ -48,6 +48,20 @@ public class Board {
         this.gameBoard=newBoard;
     }
 
+    public void startTestBoard(){
+        byte[][] newBoard = {
+                {4, 2, 3, 5, 6, 3, 2, 4},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 3, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {-1, -1, -1, -1, -1, -1, -1, -1},
+                {-4, -2, -3, -5, -6, -3, -2, -4}
+        };
+        this.gameBoard=newBoard;
+    }
+
 
     /**
      * backdoor access for testing -- TODO erase it

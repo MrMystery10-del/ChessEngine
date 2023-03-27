@@ -46,17 +46,15 @@ public abstract class InGameScreen extends Screen {
 
         Board board = new Board();
         board.setPlayers(player1,player2);
-        board.startNewBoard();
-
-
+        //board.startNewBoard();
+        board.startTestBoard();
 
 
 
         //main board section
         boardGui = new BoardGui(0, 0, 800, 800);
-        new BoardGuiController(board,boardGui);
 
-
+        new BoardGuiController(board,boardGui,gameStateGui);
 
 
         playersGUI = new PlayersGUI(player1, player2);

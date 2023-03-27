@@ -70,6 +70,15 @@ public class GameStateGui extends Screen {
     }
 
 
+    public Button getPlayButton() {
+        return playButton;
+    }
 
+    public Button getLoadButton() {
+        return loadButton;
+    }
 
+    public Button getSaveButton() {
+        return saveButton;
+    }
 }
