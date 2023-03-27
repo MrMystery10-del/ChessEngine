@@ -6,30 +6,23 @@ import java.util.logging.Logger;
 
 public class Board {
 
-    private static Logger logger = Logger.getLogger(Board.class.getName());
-
-
+    private static final Logger logger = Logger.getLogger(Board.class.getName());
     private byte[][] gameBoard;
-
-    Player playerOne;
-    Player playerTwo;
-
-
+    private Player playerOne;
+    private Player playerTwo;
 
     public Board() {
         startNewBoard();
     }
 
-    public void setPlayers(Player playerOne, Player playerTwo){
-        this.playerOne=playerOne;
-        this.playerTwo=playerTwo;
+    public void setPlayers(Player playerOne, Player playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         //todo -> bots
 
-        if (playerTwo.isBot()){
-            logger.log(Level.INFO,"Player 2 set as bot");
-        }
+        if (playerTwo.isBot())
+            logger.log(Level.INFO, "Player 2 set as bot");
     }
-
 
     /**
      * init a new board with pieces
@@ -45,7 +38,7 @@ public class Board {
                 {-1, -1, -1, -1, -1, -1, -1, -1},
                 {-4, -2, -3, -5, -6, -3, -2, -4}
         };
-        this.gameBoard=newBoard;
+        this.gameBoard = newBoard;
     }
 
     public void startTestBoard(){
@@ -65,17 +58,13 @@ public class Board {
 
     /**
      * backdoor access for testing -- TODO erase it
-     * @param testSource
      */
-
-    public void setBoardForTesting(byte[][] testSource){
-        this.gameBoard=testSource;
+    public void setBoardForTesting(byte[][] testSource) {
+        this.gameBoard = testSource;
     }
 
-
-    public byte[][]getGameBoard(){
+    public byte[][] getGameBoard() {
         //sorry, not getting the original for reading
         return gameBoard.clone();
     }
-
 }

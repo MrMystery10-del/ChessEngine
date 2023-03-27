@@ -1,7 +1,6 @@
 package gui;
 
 import content.Screen;
-import core.constants.Difficulty;
 import core.pojo.Board;
 import core.pojo.Player;
 import gui.controllers.BoardGuiController;
@@ -21,15 +20,12 @@ import java.util.ResourceBundle;
 public abstract class InGameScreen extends Screen {
 
     //load current local language - english if not available (yet)
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("gui.translations.bundle", Locale.getDefault());
+    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("gui.translations.bundle", Locale.getDefault());
 
-    private BoardGui boardGui;
-    private PlayersGUI playersGUI;
-    private StateGUI stateGUI = new StateGUI();
-
-
-
-    private GameStateGui gameStateGui = new GameStateGui(resourceBundle);
+    private final BoardGui boardGui;
+    private final PlayersGUI playersGUI;
+    private final StateGUI stateGUI = new StateGUI();
+    private final GameStateGui gameStateGui = new GameStateGui(resourceBundle);
 
     /**
      * Construct the screen
@@ -37,38 +33,25 @@ public abstract class InGameScreen extends Screen {
     public InGameScreen() {
         //placeholders + inserts for testing
         Player player1 = new Player("some User", ImageManager.getPiece(Pieces.KING)); // Placeholder
-        Player player2 = new Player("some AI", ImageManager.getPiece(Pieces.KING_BLACK));; // Placeholder
+        Player player2 = new Player("some AI", ImageManager.getPiece(Pieces.KING_BLACK)); // Placeholder
         player2.asBot(200,"Ipsum Lorem");
-
-
-
-
 
         Board board = new Board();
         board.setPlayers(player1,player2);
-        //board.startNewBoard();
-        board.startTestBoard();
-
-
+        board.startNewBoard();
 
         //main board section
         boardGui = new BoardGui(0, 0, 800, 800);
-
-        new BoardGuiController(board,boardGui,gameStateGui);
-
+        new BoardGuiController(board,boardGui);
 
         playersGUI = new PlayersGUI(player1, player2);
         playersGUI.setBounds(800, 0, 1120, 800);
         stateGUI.setBounds(0, 800, 1920, 280);
         gameStateGui.setBounds(800,800,1120,100);
 
-
-
         add(boardGui);
         add(playersGUI);
         add(gameStateGui);
         add(stateGUI);
-
-
     }
 }

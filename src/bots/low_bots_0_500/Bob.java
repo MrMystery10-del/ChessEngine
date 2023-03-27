@@ -19,7 +19,7 @@ public class Bob implements Bot {
         List<Move> possibleMoves = new ArrayList<>();
 
         // Loop through all the pieces on the board
-        for (int i = 0; i < board.length; i++) {
+        for (int i = 0; i < board.length; i++)
             for (int j = 0; j < board[i].length; j++) {
                 byte piece = board[i][j];
                 if ((piece > 0 && isWhiteTurn) || (piece < 0 && !isWhiteTurn)) {
@@ -28,12 +28,10 @@ public class Bob implements Bot {
                     possibleMoves.addAll(moves);
                 }
             }
-        }
 
         // If there are no possible moves, we've either checkmated or stalemated the opponent
-        if (possibleMoves.isEmpty()) {
+        if (possibleMoves.isEmpty())
             return board;
-        }
 
         // Sort the list of possible moves in descending order of the value of the captured piece (if any)
         possibleMoves.sort((m1, m2) -> Integer.compare(Math.abs(m2.capturedPiece()), Math.abs(m1.capturedPiece())));
