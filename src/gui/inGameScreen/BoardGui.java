@@ -17,12 +17,11 @@ public class BoardGui extends Screen {
 
     int gridSize = 8;
 
-    //private Graphics2D g2d;
-    //private final BufferedImage boardImage;
-
 
     JPanel boardPanel;
     JButton[][] squares = new JButton[gridSize][gridSize];
+
+
 
     public BoardGui(int x, int y, int width, int height) {
         setBounds(x, y, width, height);
@@ -93,7 +92,7 @@ public class BoardGui extends Screen {
         JPanel counterLeft = new JPanel(new GridLayout(0, 1));
 
 
-        for (int i = 1; i < 9; i++) {
+        for (int i = 8; i >=1 ; i--) {
             counterLeft.add(new Label("   " + i + "   "));
         }
 
@@ -106,11 +105,11 @@ public class BoardGui extends Screen {
             for (int i = 0; i < gridSize; i++) {
                 JButton button = new JButton();
                 button.setBackground(
-                        needsBlack ? Color.WHITE : (Color.BLACK));
+                        needsBlack ? Color.LIGHT_GRAY : (Color.darkGray));
 
                 button.setSize(80, 80);
                 centralSection.add(button);
-                squares[i][j] = button;
+                squares[j][i] = button;
                 //flip color field
                 needsBlack = !needsBlack;
 
@@ -125,6 +124,11 @@ public class BoardGui extends Screen {
         boardPanel.add(centralSection, BorderLayout.CENTER);
 
 
+    }
+
+
+    public JButton[][] getSquares() {
+        return squares;
     }
 }
 
