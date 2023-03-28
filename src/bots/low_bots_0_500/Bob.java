@@ -11,7 +11,16 @@ public class Bob implements Bot {
 
     private static final int elo = 50;
     private static final String name = "Bob";
-    private static final String description = "No description currently";
+    private static final String description = """
+            Ahoy there, me mateys!
+            I be Bob, the newest member of the ChessAI school crew.
+            Arrr, me algorithm be a bit scuffed, so don't expect me to be hoisting any championship trophies just yet.
+            Ye see, when it comes to takin' out me opponents,
+            I be a bit of a ruthless scallywag - I'll take down any piece that me beady eyes deem valuable,
+            even if it means sacrificin' one of me own. But fear not, me hearties,
+            for me blunders be just as likely to work in yer favor as they be to sink me ship.
+            With a bit of hard work and some grog, I'll be ready to take on any scallywag who dares cross me path!
+            """;
     private static final String algorithm = "Value Capture Algorithm";
 
     public static byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
