@@ -103,13 +103,21 @@ public class BoardGui extends Screen {
         for (int j = 0; j < gridSize; j++) {
 
             for (int i = 0; i < gridSize; i++) {
-                JButton button = new JButton();
+                JButton button;
+                if(squares[j][i]==null){
+                        button = new JButton();}
+                else{
+                    button=squares[j][i];
+                }
+
                 button.setBackground(
                         needsBlack ? Color.LIGHT_GRAY : (Color.darkGray));
 
                 button.setSize(80, 80);
                 centralSection.add(button);
+
                 squares[j][i] = button;
+
                 //flip color field
                 needsBlack = !needsBlack;
 

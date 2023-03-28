@@ -1,7 +1,7 @@
 package gui.controllers;
 
 import core.pojo.Board;
-import core.pojo.Pieces.Knight;
+import core.pojo.Pieces.Bishop;
 import core.pojo.Position;
 import gui.inGameScreen.BoardGui;
 import gui.inGameScreen.GameStateGui;
@@ -9,6 +9,8 @@ import manage.ImageManager;
 import manage.Pieces;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,37 +77,60 @@ public class BoardGuiController {
     private void addGameStateControls() {
 
         gameStateGui.getPlayButton().addActionListener(e -> {
-                    updateBoard();
-                    logger.log(Level.INFO, "Play button pushed");
-                }
-        );
+            updateBoard();
+            logger.log(Level.INFO, "Play button pushed");
+        });
     }
 
     private void addMouseOverToBoard() {
-        //todo implement on whole grid
-        //todo change level of logging on mouse actions
+        //todo implement on grid that has a piece
 
+        Map<Position, Color> colors = new HashMap<>();
         Position boardGrid = new Position(3, 3);
         var button = gui.getSquares()[boardGrid.x()][boardGrid.y()];
-        var originalColor = gui.getSquares()[boardGrid.x()][boardGrid.y()].getBackground();
-        var piece = new Knight(boardGrid, Color.BLACK);
 
+        button.setRolloverEnabled(true);
+
+        //ok -> knight / queen / king / rook / pawn,  bishop
+
+        var piece = new Bishop(boardGrid, Color.WHITE);
 
         button.setBackground(Color.BLUE);
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logger.log(Level.INFO, "mouse over on " + piece.getClass().getSimpleName());
-                for (Position position : piece.getValidMoves()) {
-                    gui.getSquares()[position.x()][position.y()].setBackground(Color.CYAN);
+
+        button.getModel().addChangeListener(new ChangeListener() {
+            boolean needsRead = true;
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+                if (needsRead) {
+                    for (Position position : piece.getValidMoves()) {
+                        //read and store old color
+                        colors.put(position, gui.getSquares()[position.x()][position.y()].getBackground());
+
+                    }
                 }
 
-            }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logger.log(Level.INFO, "mouse left on "+ piece.getClass().getSimpleName());
-                for (Position position : piece.getValidMoves()) {
-                    gui.getSquares()[position.x()][position.y()].setBackground(originalColor);
+                ButtonModel model = (ButtonModel) e.getSource();
+                if (!model.isRollover()) {
+                    logger.log(Level.INFO, "removing visual movement indication");
+                    for (Position position : piece.getValidMoves()) {
+                        //replace highlight with normal color
+                        gui.getSquares()[position.x()][position.y()].setBackground(colors.get(position));
+                    }
                 }
+
+                if (model.isRollover()) {
+                    needsRead = false;
+                    logger.log(Level.INFO, "processing visual movement indication");
+                    for (Position position : piece.getValidMoves()) {
+                        gui.getSquares()[position.x()][position.y()].setBackground(Color.CYAN);
+
+                    }
+                }
+
+
             }
         });
 
