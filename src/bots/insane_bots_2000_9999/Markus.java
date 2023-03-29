@@ -2,6 +2,8 @@ package bots.insane_bots_2000_9999;
 
 import bots.Bot;
 
+import java.awt.image.BufferedImage;
+
 @SuppressWarnings("unused")
 public class Markus implements Bot {
 
@@ -9,6 +11,12 @@ public class Markus implements Bot {
     private static final String name = "Markus";
     private static final String description = "No description currently";
     private static final String algorithm = null;
+    private static final BufferedImage image = null;
+
+    @Override
+    public byte[][] playNewMove(byte[][] board, boolean turn) {
+        return new byte[0][0];
+    }
 
     @Override
     public int getElo() {
@@ -28,5 +36,10 @@ public class Markus implements Bot {
     @Override
     public String getUsedAlgorithm() {
         return algorithm;
+    }
+
+    @Override
+    public BufferedImage getPicture() {
+        return image;
     }
 }
