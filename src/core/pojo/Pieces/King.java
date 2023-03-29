@@ -28,10 +28,7 @@ public class King extends Piece {
                 new Position(position.x() + 1, position.y() - 1),
                 new Position(position.x() - 1, position.y() + 1),
                 new Position(position.x() - 1, position.y() - 1)
-
         );
-
-
         processMoves(possibleMoves);
 
         return validMoves;
@@ -41,9 +38,7 @@ public class King extends Piece {
     @Override
     protected void setPiece() {
         piece = Pieces.KING_BLACK;
-        if (color == Color.white || color == Color.WHITE) {
-            this.piece = Pieces.KING;
-        }
-
+        if (color == Color.white || color == Color.WHITE)
+            piece = Pieces.KING;
     }
 }

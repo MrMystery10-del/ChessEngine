@@ -18,7 +18,7 @@ public class Bishop extends Piece {
     @Override
     public List<Position> getValidMoves() {
 
-        java.util.List<Position> possibleMoves = new ArrayList<>();
+        List<Position> possibleMoves = new ArrayList<>();
 
         for (int i = 1; i < 8; i++) {
             possibleMoves.add(new Position((position.x() + i), (position.y()) + i));
@@ -26,8 +26,8 @@ public class Bishop extends Piece {
             possibleMoves.add(new Position((position.x() - i), (position.y()) + i));
             possibleMoves.add(new Position((position.x() - i), (position.y()) - i));
         }
-
         processMoves(possibleMoves);
+
         return validMoves;
     }
 
@@ -35,9 +35,7 @@ public class Bishop extends Piece {
     @Override
     protected void setPiece() {
         piece = Pieces.BISHOP_BLACK;
-        if (color == Color.white || color == Color.WHITE) {
+        if (color == Color.white || color == Color.WHITE)
             this.piece = Pieces.BISHOP;
-        }
-
     }
 }

@@ -1,6 +1,10 @@
 package bots;
 
+import java.awt.image.BufferedImage;
+
 public interface Bot {
+
+    byte[][] playNewMove(byte[][] board, boolean turn);
 
     /**
      * @return the elo of the bot
@@ -21,4 +25,9 @@ public interface Bot {
      * @return name of the used algorithm for the bot
      */
     String getUsedAlgorithm();
+
+    /**
+     * @return name of the picture of the bot
+     */
+    BufferedImage getPicture();
 }

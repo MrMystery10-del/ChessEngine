@@ -28,7 +28,6 @@ public class Knight extends Piece {
                 new Position(position.x() + 2, position.y() - 1),
                 new Position(position.x() + 2, position.y() + 1)
         );
-
         processMoves(possibleMoves);
 
         return validMoves;
@@ -38,9 +37,7 @@ public class Knight extends Piece {
     @Override
     protected void setPiece() {
         piece = Pieces.KNIGHT_BLACK;
-        if (color == Color.white || color == Color.WHITE) {
-            this.piece = Pieces.KNIGHT;
-        }
-
+        if (color == Color.white || color == Color.WHITE)
+            piece = Pieces.KNIGHT;
     }
 }

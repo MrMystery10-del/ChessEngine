@@ -13,31 +13,24 @@ public class Queen extends Piece {
         super(position, color);
     }
 
-
     @Override
     public List<Position> getValidMoves() {
 
         for (int i = 0; i < 8; i++) {
-            if (i != position.x()) {
+            if (i != position.x())
                 validMoves.add(new Position(i, position.y()));
-            }
-            if (i != position.y()) {
+            if (i != position.y())
                 validMoves.add(new Position(position.x(), i));
-            }
         }
         for (int i = 1; i < 8; i++) {
-            if (position.x() - i >= 0 && position.y() - i >= 0) {
+            if (position.x() - i >= 0 && position.y() - i >= 0)
                 validMoves.add(new Position(position.x() - i, position.y() - i));
-            }
-            if (position.x() - i >= 0 && position.y() + i < 8) {
+            if (position.x() - i >= 0 && position.y() + i < 8)
                 validMoves.add(new Position(position.x() - i, position.y() + i));
-            }
-            if (position.x() + i < 8 && position.y() - i >= 0) {
+            if (position.x() + i < 8 && position.y() - i >= 0)
                 validMoves.add(new Position(position.x() + i, position.y() - i));
-            }
-            if (position.x() + i < 8 && position.y() + i < 8) {
+            if (position.x() + i < 8 && position.y() + i < 8)
                 validMoves.add(new Position(position.x() + i, position.y() + i));
-            }
         }
         return validMoves;
     }
@@ -45,8 +38,7 @@ public class Queen extends Piece {
     @Override
     protected void setPiece() {
         piece = Pieces.QUEEN_BLACK;
-        if (color == Color.white || color == Color.WHITE) {
-            this.piece = Pieces.QUEEN;
-        }
+        if (color == Color.white || color == Color.WHITE)
+            piece = Pieces.QUEEN;
     }
 }

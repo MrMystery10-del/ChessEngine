@@ -3,7 +3,10 @@ package bots.low_bots_0_500;
 import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
+import manage.ImageManager;
+import manage.Pieces;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +25,10 @@ public class Bob implements Bot {
             With a bit of hard work and some grog, I'll be ready to take on any scallywag who dares cross me path!
             """;
     private static final String algorithm = "Value Capture Algorithm";
+    private static final BufferedImage image = ImageManager.getPiece(Pieces.KING_BLACK);
 
-    public static byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
+    @Override
+    public byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
         // Initialize a list of possible moves
         List<Move> possibleMoves = new ArrayList<>();
 
@@ -70,5 +75,10 @@ public class Bob implements Bot {
     @Override
     public String getUsedAlgorithm() {
         return algorithm;
+    }
+
+    @Override
+    public BufferedImage getPicture() {
+        return image;
     }
 }
