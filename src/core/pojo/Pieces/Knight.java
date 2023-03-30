@@ -8,12 +8,12 @@ import manage.Pieces;
 import java.awt.*;
 import java.util.List;
 
-//todo  temp code , needs cleanup and better
-@SuppressWarnings("unused")
+
 public class Knight extends Piece {
 
     public Knight(Position position, Color color) {
         super(position, color);
+        setPiece();
     }
 
     @Override

@@ -25,11 +25,7 @@ public class BoardGui extends Screen {
 
     public BoardGui(int x, int y, int width, int height) {
         setBounds(x, y, width, height);
-//        try {
-//            boardImage = ImageIO.read(getClass().getResourceAsStream("/images/board.png"));
-//        } catch (IOException exception) {
-//            throw new RuntimeException(" background image not found " + exception);
-//        }
+
 
 
         boardPanel = new JPanel();
@@ -38,7 +34,7 @@ public class BoardGui extends Screen {
         boardPanel.setLayout(new BorderLayout(10, 10));
         boardPanel.setBounds(50, 50, 1800, 1000);
         boardPanel.setVisible(true);
-        //boardPanel.setOpaque(false);
+
 
         designBoard();
 
@@ -49,10 +45,7 @@ public class BoardGui extends Screen {
 
     @Override
     protected void paintComponent(Graphics g) {
-        //todo background image that's better then the provided one
         super.paintComponent(g);
-        //g2d = (Graphics2D) g;
-        //g2d.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
 
     }
 

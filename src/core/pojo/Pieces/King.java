@@ -7,11 +7,12 @@ import manage.Pieces;
 import java.awt.*;
 import java.util.List;
 
-@SuppressWarnings("unused")
+
 public class King extends Piece {
 
     public King(Position position, Color color) {
         super(position, color);
+        setPiece();
     }
 
     @Override
