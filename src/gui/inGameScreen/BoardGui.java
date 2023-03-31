@@ -2,6 +2,10 @@ package gui.inGameScreen;
 
 import content.Label;
 import content.Screen;
+import core.pojo.Board;
+import gui.Components.Block_Button;
+import gui.Constants.Piece_info;
+import gui.controllers.PieceController;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,18 +18,23 @@ import java.awt.*;
  */
 public class BoardGui extends Screen {
 
-
+    Piece_info info= new Piece_info();
     int gridSize = 8;
 
 
     JPanel boardPanel;
-    JButton[][] squares = new JButton[gridSize][gridSize];
+    public Block_Button[][] squares = new Block_Button[gridSize][gridSize];
 
+    Board board;
 
-
-    public BoardGui(int x, int y, int width, int height) {
+    public BoardGui(int x, int y, int width, int height,Board board) {
+        this.board=board;
         setBounds(x, y, width, height);
-
+//        try {
+//            boardImage = ImageIO.read(getClass().getResourceAsStream("/images/board.png"));
+//        } catch (IOException exception) {
+//            throw new RuntimeException(" background image not found " + exception);
+//        }
 
 
         boardPanel = new JPanel();
@@ -34,7 +43,7 @@ public class BoardGui extends Screen {
         boardPanel.setLayout(new BorderLayout(10, 10));
         boardPanel.setBounds(50, 50, 1800, 1000);
         boardPanel.setVisible(true);
-
+        //boardPanel.setOpaque(false);
 
         designBoard();
 
@@ -45,7 +54,10 @@ public class BoardGui extends Screen {
 
     @Override
     protected void paintComponent(Graphics g) {
+        //todo background image that's better then the provided one
         super.paintComponent(g);
+        //g2d = (Graphics2D) g;
+        //g2d.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
 
     }
 
@@ -96,19 +108,20 @@ public class BoardGui extends Screen {
         for (int j = 0; j < gridSize; j++) {
 
             for (int i = 0; i < gridSize; i++) {
-                JButton button;
+                Block_Button button;
                 if(squares[j][i]==null){
-                        button = new JButton();}
+                    button = new Block_Button(i,j);}
                 else{
                     button=squares[j][i];
                 }
-
                 button.setBackground(
                         needsBlack ? Color.LIGHT_GRAY : (Color.darkGray));
 
                 button.setSize(80, 80);
                 centralSection.add(button);
 
+                PieceController event = new PieceController(button,info, board,this);
+                button.addActionListener(event);
                 squares[j][i] = button;
 
                 //flip color field
