@@ -8,11 +8,12 @@ import manage.Pieces;
 import java.awt.*;
 import java.util.List;
 
-@SuppressWarnings("unused")
+
 public class Rook extends Piece {
 
     public Rook(Position position, Color color) {
         super(position, color);
+        setPiece();
     }
 
     @Override

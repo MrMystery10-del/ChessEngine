@@ -6,7 +6,6 @@ import core.pojo.Position;
 import gui.inGameScreen.BoardGui;
 import gui.inGameScreen.GameStateGui;
 import manage.ImageManager;
-import manage.Pieces;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -25,49 +24,30 @@ public class BoardGuiController {
 
     private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
 
-    Map<Byte, Pieces> imageMap;
 
     public BoardGuiController(Board board, BoardGui gui, GameStateGui gameStateGui) {
         this.board = board;
         this.gui = gui;
         this.gameStateGui = gameStateGui;
-        initMap();
         addGameStateControls();
         addMouseOverToBoard();
     }
 
-    private void initMap() {
-
-        imageMap = new HashMap<>();
-        imageMap.put((byte) -6, Pieces.KING_BLACK);
-        imageMap.put((byte) -5, Pieces.QUEEN_BLACK);
-        imageMap.put((byte) -4, Pieces.ROOK_BLACK);
-        imageMap.put((byte) -3, Pieces.KNIGHT_BLACK);
-        imageMap.put((byte) -2, Pieces.BISHOP_BLACK);
-        imageMap.put((byte) -1, Pieces.PAWN_BLACK);
-        imageMap.put((byte) 0, Pieces.EMPTY);
-        imageMap.put((byte) 6, Pieces.KING);
-        imageMap.put((byte) 5, Pieces.QUEEN);
-        imageMap.put((byte) 4, Pieces.ROOK);
-        imageMap.put((byte) 3, Pieces.KNIGHT);
-        imageMap.put((byte) 2, Pieces.BISHOP);
-        imageMap.put((byte) 1, Pieces.PAWN);
-    }
-
+    /**
+     * update the chessboard gui with the details from the Piece board
+     */
     public void updateBoard() {
-
         for (int j = 0; j < 8; j++) {
             for (int i = 0; i < 8; i++) {
-                var piece = (board.getGameBoard()[i][j]);
+
+                var piece = board.getPieceBoard()[i][j];
                 var update = gui.getSquares()[i][j];
-                if (piece != 0) {
-                    logger.log(Level.FINEST, "board  " + i + "/" + j + " set to " + imageMap.get(piece));
-                    update.setIcon(new ImageIcon(ImageManager.getPiece(imageMap.get(piece)).getScaledInstance(60, 60, Image.SCALE_DEFAULT)));
+                if (piece != null) {
+                    logger.log(Level.FINEST, "board  " + i + "/" + j + " set to " + piece.getPiece());
+                    update.setIcon(new ImageIcon(ImageManager.getPiece(piece.getPiece())));
                 }
             }
-
         }
-
     }
 
 
@@ -80,22 +60,30 @@ public class BoardGuiController {
             updateBoard();
             logger.log(Level.INFO, "Play button pushed");
         });
+
+        gameStateGui.getLoadButton().setText("Force backend move");
+        gameStateGui.getLoadButton().addActionListener(e-> {
+            board.getNpcMove();
+            logger.log(Level.INFO, "Asking the backend for a move TODO : REMOVE/ALTER");
+        });
+
+
     }
+
+
 
     private void addMouseOverToBoard() {
         //todo implement on grid that has a piece
 
         Map<Position, Color> colors = new HashMap<>();
         Position boardGrid = new Position(3, 3);
+
+
         var button = gui.getSquares()[boardGrid.x()][boardGrid.y()];
-
         button.setRolloverEnabled(true);
-
-        //ok -> knight / queen / king / rook / pawn,  bishop
 
         var piece = new Bishop(boardGrid, Color.WHITE);
 
-        button.setBackground(Color.BLUE);
 
         button.getModel().addChangeListener(new ChangeListener() {
             boolean needsRead = true;

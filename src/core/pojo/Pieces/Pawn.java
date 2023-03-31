@@ -8,11 +8,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
+
 public class Pawn extends Piece {
 
     public Pawn(Position position, Color color) {
         super(position, color);
+        setPiece();
     }
 
     @Override
