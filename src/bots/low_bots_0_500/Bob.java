@@ -8,6 +8,7 @@ import manage.Pieces;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Bob implements Bot {
@@ -46,6 +47,8 @@ public class Bob implements Bot {
         // If there are no possible moves, we've either checkmated or stalemated the opponent
         if (possibleMoves.isEmpty())
             return board;
+
+        Collections.shuffle(possibleMoves);
 
         // Sort the list of possible moves in descending order of the value of the captured piece (if any)
         possibleMoves.sort((m1, m2) -> Integer.compare(Math.abs(m2.capturedPiece()), Math.abs(m1.capturedPiece())));
