@@ -51,7 +51,7 @@ public class Board {
     }
 
     //TODO -> backend insertion point ?
-    public boolean getNpcMove(){
+    public boolean getNpcMove() {
         return false;
     }
 
@@ -66,8 +66,8 @@ public class Board {
      */
     public void convertToPiece() {
 
-        if (pieceBoard==null){
-            pieceBoard= new Piece[8][8];
+        if (pieceBoard == null) {
+            pieceBoard = new Piece[8][8];
             logger.log(Level.INFO, "initializing pieceBoard");
         }
         logger.log(Level.FINEST, "converting byte array to actual pieces");

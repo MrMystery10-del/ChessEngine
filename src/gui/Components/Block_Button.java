@@ -1,4 +1,4 @@
-package gui.Components;
+package gui.components;
 
 import javax.swing.*;
 

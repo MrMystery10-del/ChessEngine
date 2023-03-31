@@ -3,43 +3,41 @@ package gui.controllers;
 import bots.util.Move;
 import bots.util.Util;
 import core.pojo.Board;
-import gui.Components.Block_Button;
-import gui.Constants.Piece_info;
+import gui.components.Block_Button;
+import gui.constants.Piece_info;
 import gui.inGameScreen.BoardGui;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class PieceController implements ActionListener
-{
+public class PieceController implements ActionListener {
 
-    Block_Button button;
+    private static final Logger logger = Logger.getLogger(Board.class.getName());
 
-    Piece_info info;
+    private Block_Button button;
+    private Piece_info info;
+    private Board board;
+    private BoardGui boardGui;
 
-    Board board;
-
-    BoardGui boardGui;
-    public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui)
-    {
-        this.boardGui=boardgui;
+    public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui) {
+        this.boardGui = boardgui;
         this.button = button;
-        this.info=info;
+        this.info = info;
         this.board = board;
     }
-    public void actionPerformed(ActionEvent e)
-    {
-        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(),button.col, button.row);
-        System.out.println(legal);
-        for(int i =0;i<legal.size();i++)
-        {
-            int row  = legal.get(i).toRow();
-            int column = legal.get(i).toCol();
-            boardGui.squares[column][row].setBackground(Color.BLUE);
+
+    public void actionPerformed(ActionEvent event) {
+        logger.log(Level.INFO, "Clicked on a field");
+
+        List<Move> legalMoves = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
+        for (int i = 0; i < legalMoves.size(); i++) {
+            int row = legalMoves.get(i).toRow();
+            int col = legalMoves.get(i).toCol();
+            boardGui.squares[col][row].setBackground(Color.BLUE);
         }
     }
 }

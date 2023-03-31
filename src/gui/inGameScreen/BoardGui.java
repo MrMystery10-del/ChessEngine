@@ -3,8 +3,8 @@ package gui.inGameScreen;
 import content.Label;
 import content.Screen;
 import core.pojo.Board;
-import gui.Components.Block_Button;
-import gui.Constants.Piece_info;
+import gui.components.Block_Button;
+import gui.constants.Piece_info;
 import gui.controllers.PieceController;
 
 import javax.swing.*;
