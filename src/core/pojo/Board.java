@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class Board {
 
     private static final Logger logger = Logger.getLogger(Board.class.getName());
-    private byte[][] gameBoard;
+    public byte[][] gameBoard;
     private Piece[][] pieceBoard;
     private Player playerOne;
     private Player playerTwo;

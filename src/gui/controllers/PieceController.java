@@ -7,37 +7,74 @@ import gui.components.Block_Button;
 import gui.constants.Piece_info;
 import gui.inGameScreen.BoardGui;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class PieceController implements ActionListener {
+public class PieceController implements ActionListener
+{
 
-    private static final Logger logger = Logger.getLogger(Board.class.getName());
+    Block_Button button;
 
-    private Block_Button button;
-    private Piece_info info;
-    private Board board;
-    private BoardGui boardGui;
+    Piece_info info;
 
-    public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui) {
-        this.boardGui = boardgui;
+    Board board;
+
+    BoardGui boardGui;
+    public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui)
+    {
+        this.boardGui=boardgui;
         this.button = button;
-        this.info = info;
+        this.info=info;
         this.board = board;
     }
+    public void actionPerformed(ActionEvent e)
+    {
+        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(),button.col, button.row);
 
-    public void actionPerformed(ActionEvent event) {
-        logger.log(Level.INFO, "Clicked on a field");
-
-        List<Move> legalMoves = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
-        for (int i = 0; i < legalMoves.size(); i++) {
-            int row = legalMoves.get(i).toRow();
-            int col = legalMoves.get(i).toCol();
-            boardGui.squares[col][row].setBackground(Color.BLUE);
+        if(info.selected_button == null)
+        {
+            info.selected_button = button;
+            for(int i =0;i<legal.size();i++)
+            {
+                int row  = legal.get(i).toRow();
+                int column = legal.get(i).toCol();
+                info.highlighted_button.add(boardGui.squares[column][row]);
+                info.button_colors.add(boardGui.squares[column][row].getBackground());
+                boardGui.squares[column][row].setBackground(Color.BLUE);
+            }
+        }
+        else if(info.highlighted_button.contains(button))
+        {
+            int col = button.col;
+            int row = button.row;
+            int previous_value = board.gameBoard[col][row];
+            int selectcol = info.selected_button.col;
+            int selectrow = info.selected_button.row;
+            board.gameBoard[col][row] = board.getGameBoard()[selectcol][selectrow];
+            board.gameBoard[selectcol][selectrow] = (byte) previous_value;
+            Icon icon = info.selected_button.getIcon();
+            info.selected_button.setIcon(null);
+            button.setIcon(icon);
+            for(int i =0;i<info.highlighted_button.size();i++)
+            {
+                info.highlighted_button.get(i).setBackground(info.button_colors.get(i));
+            }
+            info.selected_button = null;
+            info.highlighted_button = new ArrayList<>();
+            info.button_colors=new ArrayList<>();
+        }
+        else if((!info.highlighted_button.contains(button))||board.getGameBoard()[button.col][button.row]==0){
+            for(int i =0;i<info.highlighted_button.size();i++)
+            {
+                info.highlighted_button.get(i).setBackground(info.button_colors.get(i));
+            }
+            info.selected_button = null;
+            info.highlighted_button = new ArrayList<>();
+            info.button_colors=new ArrayList<>();
         }
     }
 }

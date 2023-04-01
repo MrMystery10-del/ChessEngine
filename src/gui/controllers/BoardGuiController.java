@@ -75,7 +75,7 @@ public class BoardGuiController {
     private void addMouseOverToBoard() {
         //todo implement on grid that has a piece
 
-        Map<Position, Color> colors = new HashMap<>();
+        /*Map<Position, Color> colors = new HashMap<>();
         Position boardGrid = new Position(3, 3);
 
 
@@ -120,7 +120,7 @@ public class BoardGuiController {
 
 
             }
-        });
+        });*/
 
 
     }
