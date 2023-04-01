@@ -8,7 +8,7 @@ public class Util {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
 
-    public static List<Move> CommonLoop(int piece, int row, int col, byte[][] board, int sign) {
+    public static List<Move> commonLoop(int piece, int row, int col, byte[][] board, int sign) {
         List<Move> moves = new ArrayList<>();
         int[][] Moves = null;
         switch (piece) {
@@ -105,13 +105,13 @@ public class Util {
                 }
             }
             case 3 -> { // Bishop
-                moves = CommonLoop(1, row, col, board, sign);
+                moves = commonLoop(1, row, col, board, sign);
             }
             case 4 -> {
-                moves = CommonLoop(2, row, col, board, sign);
+                moves = commonLoop(2, row, col, board, sign);
             }
             case 5 -> {
-                moves = CommonLoop(3, row, col, board, sign);
+                moves = commonLoop(3, row, col, board, sign);
             }
             case 6 -> { // King
                 // Check all adjacent squares
