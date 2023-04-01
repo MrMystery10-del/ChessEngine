@@ -25,7 +25,7 @@ public class Util {
                 newCol += Moves[i][0] * sign;
                 if (board[newCol][newRow] == 0) {
                     moves.add(new Move(row, col, newRow, newCol, (byte) 0));
-                } else if (board[newCol][newRow] < 0 && sign > 0||board[newCol][newRow] > 0 && sign < 0) {
+                } else if (board[newCol][newRow] < 0 && sign > 0 || board[newCol][newRow] > 0 && sign < 0) {
                     moves.add(new Move(row, col, newRow, newCol, (byte) 1));
                     break;
                 } else break;
