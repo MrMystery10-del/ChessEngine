@@ -16,22 +16,22 @@ public class Util {
             case 2 -> Moves = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
             case 3 -> Moves = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         }
-        int newrow = row;
-        int newcol = col;
+        int newRow = row;
+        int newCol = col;
 
         for (int i = 0; i < Moves.length; i++) {
-            while (isValidPosition(newrow + Moves[i][1] * sign, newcol + Moves[i][0] * sign)) {
-                newrow += Moves[i][1] * sign;
-                newcol += Moves[i][0] * sign;
-                if (board[newcol][newrow] == 0) {
-                    moves.add(new Move(row, col, newrow, newcol, (byte) 0));
-                } else if (board[newcol][newrow] < 0 && sign > 0||board[newcol][newrow] > 0 && sign < 0) {
-                    moves.add(new Move(row, col, newrow, newcol, (byte) 1));
+            while (isValidPosition(newRow + Moves[i][1] * sign, newCol + Moves[i][0] * sign)) {
+                newRow += Moves[i][1] * sign;
+                newCol += Moves[i][0] * sign;
+                if (board[newCol][newRow] == 0) {
+                    moves.add(new Move(row, col, newRow, newCol, (byte) 0));
+                } else if (board[newCol][newRow] < 0 && sign > 0||board[newCol][newRow] > 0 && sign < 0) {
+                    moves.add(new Move(row, col, newRow, newCol, (byte) 1));
                     break;
                 } else break;
             }
-            newcol = col;
-            newrow = row;
+            newCol = col;
+            newRow = row;
         }
         return moves;
     }
