@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class Board {
 
     private static final Logger logger = Logger.getLogger(Board.class.getName());
-    public byte[][] gameBoard;
+    private byte[][] gameBoard;
     private Piece[][] pieceBoard;
     private Player playerOne;
     private Player playerTwo;
@@ -95,5 +95,8 @@ public class Board {
         }
     }
 
-
+    public  void setGameBoardPiece(int row,int col,byte value)
+    {
+        this.gameBoard[col][row]=value;
+    }
 }

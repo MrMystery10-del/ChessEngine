@@ -34,39 +34,39 @@ public class PieceController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         List<Move> legal = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
 
-        if (info.selected_button == null) {
-            info.selected_button = button;
+        if (info.getSelected_button() == null) {
+            info.setSelected_button(button);
             for (int i = 0; i < legal.size(); i++) {
                 int row = legal.get(i).toRow();
                 int column = legal.get(i).toCol();
-                info.highlighted_button.add(boardGui.squares[column][row]);
-                info.button_colors.add(boardGui.squares[column][row].getBackground());
+                info.getHighlighted_button().add(boardGui.squares[column][row]);
+                info.getButton_colors().add(boardGui.squares[column][row].getBackground());
                 boardGui.squares[column][row].setBackground(Color.BLUE);
             }
-        } else if (info.highlighted_button.contains(button)) {
+        } else if (info.getHighlighted_button().contains(button)) {
             int col = button.col;
             int row = button.row;
-            int previous_value = board.gameBoard[col][row];
-            int selectcol = info.selected_button.col;
-            int selectrow = info.selected_button.row;
-            board.gameBoard[col][row] = board.getGameBoard()[selectcol][selectrow];
-            board.gameBoard[selectcol][selectrow] = (byte) previous_value;
-            Icon icon = info.selected_button.getIcon();
-            info.selected_button.setIcon(null);
+            int previousValue = board.getGameBoard()[col][row];
+            int selectCol = info.getSelected_button().col;
+            int selectRow = info.getSelected_button().row;
+            board.setGameBoardPiece(row,col,board.getGameBoard()[selectCol][selectRow]);
+            board.setGameBoardPiece(selectRow,selectCol,(byte) previousValue);
+            Icon icon = info.getSelected_button().getIcon();
+            info.getSelected_button().setIcon(null);
             button.setIcon(icon);
-            for (int i = 0; i < info.highlighted_button.size(); i++) {
-                info.highlighted_button.get(i).setBackground(info.button_colors.get(i));
+            for (int i = 0; i < info.getHighlighted_button().size(); i++) {
+                info.getHighlighted_button().get(i).setBackground(info.getButton_colors().get(i));
             }
-            info.selected_button = null;
-            info.highlighted_button = new ArrayList<>();
-            info.button_colors = new ArrayList<>();
-        } else if ((!info.highlighted_button.contains(button)) || board.getGameBoard()[button.col][button.row] == 0) {
-            for (int i = 0; i < info.highlighted_button.size(); i++) {
-                info.highlighted_button.get(i).setBackground(info.button_colors.get(i));
+            info.setSelected_button(null);
+            info.setHighlighted_button(new ArrayList<>());
+            info.setButton_colors(new ArrayList<>());
+        } else if ((!info.getHighlighted_button().contains(button)) || board.getGameBoard()[button.col][button.row] == 0) {
+            for (int i = 0; i < info.getHighlighted_button().size(); i++) {
+                info.getHighlighted_button().get(i).setBackground(info.getButton_colors().get(i));
             }
-            info.selected_button = null;
-            info.highlighted_button = new ArrayList<>();
-            info.button_colors = new ArrayList<>();
+            info.setSelected_button(null);
+            info.setHighlighted_button(new ArrayList<>());
+            info.setButton_colors(new ArrayList<>());
         }
     }
 }
