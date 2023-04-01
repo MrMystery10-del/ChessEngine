@@ -3,6 +3,7 @@ package core;
 import bots.low_bots_0_500.Bob;
 import content.Frame;
 import content.Screen;
+import gui.AIProfilePopup;
 import gui.InGameScreen;
 import gui.MainMenu;
 import gui.ProfileMenu;
@@ -14,7 +15,7 @@ import java.util.function.Supplier;
 // Main core of the application
 public class Core {
 
-    private final static Frame frame = new Frame("ChessEngine");
+    public final static Frame frame = new Frame("ChessEngine");
 
     // Application start
     public static void main(String[] args) throws IOException {
