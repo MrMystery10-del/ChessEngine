@@ -1,7 +1,5 @@
 package bots.util;
 
-import core.pojo.Board;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +8,13 @@ public class Util {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
 
-    public static List<Move> CommonLoop(int piece,int row,int col,byte[][] board,int sign)
-    {
+    public static List<Move> CommonLoop(int piece, int row, int col, byte[][] board, int sign) {
         List<Move> moves = new ArrayList<>();
-        int[][] Moves=null;
-        switch (piece)
-        {
+        int[][] Moves = null;
+        switch (piece) {
             case 1 -> Moves = new int[][]{{1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
             case 2 -> Moves = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-            case 3 -> Moves = new  int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+            case 3 -> Moves = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         }
         int newrow = row;
         int newcol = col;
@@ -74,7 +70,7 @@ public class Util {
                 if (isValidPosition(row, col + (-1 * sign)) && board[col + (-1 * sign)][row] == 0) {
                     moves.add(new Move(row, col, row, col + (-1 * sign), (byte) 0));
                 }
-                if (isValidPosition(row, col + (-2 * sign)) && board[col + (-2 * sign)][row] == 0&&board[col + (-1 * sign)][row] == 0) {
+                if (isValidPosition(row, col + (-2 * sign)) && board[col + (-2 * sign)][row] == 0 && board[col + (-1 * sign)][row] == 0) {
                     if (sign < 0 && col == start_location_black) {
                         moves.add(new Move(row, col, row, col + (-2 * sign), (byte) 0));
                     } else {
@@ -83,15 +79,14 @@ public class Util {
                         }
                     }
                 }
-                if(isValidPosition(row + (-1*sign), col + (-1*sign)))
-                {
-                    if (sign < 0 && board[col+ (-1*sign)][row+ (-1*sign)]>0||sign > 0 && board[col+ (-1*sign)][row+ (-1*sign)]<0) {
-                        moves.add(new Move(row, col, row+ (-1*sign), col + (-1*sign), (byte) 1));
+                if (isValidPosition(row + (-1 * sign), col + (-1 * sign))) {
+                    if (sign < 0 && board[col + (-1 * sign)][row + (-1 * sign)] > 0 || sign > 0 && board[col + (-1 * sign)][row + (-1 * sign)] < 0) {
+                        moves.add(new Move(row, col, row + (-1 * sign), col + (-1 * sign), (byte) 1));
                     }
                 }
-                if(isValidPosition(row + (1*sign), col + (-1*sign))) {
-                    if (sign < 0 && board[col+ (-1*sign)][row+ (1*sign)]>0||sign > 0 && board[col+ (-1*sign)][row+ (1*sign)]<0) {
-                        moves.add(new Move(row, col, row+ (1*sign), col + (-1*sign), (byte) 1));
+                if (isValidPosition(row + (sign), col + (-1 * sign))) {
+                    if (sign < 0 && board[col + (-1 * sign)][row + (sign)] > 0 || sign > 0 && board[col + (-1 * sign)][row + (sign)] < 0) {
+                        moves.add(new Move(row, col, row + (sign), col + (-1 * sign), (byte) 1));
                     }
                 }
             }
@@ -113,30 +108,26 @@ public class Util {
                 }
             }
             case 3 -> { // Bishop
-                moves = CommonLoop(1,row,col,board,sign);
+                moves = CommonLoop(1, row, col, board, sign);
             }
             case 4 -> {
-                moves = CommonLoop(2,row,col,board,sign);
+                moves = CommonLoop(2, row, col, board, sign);
             }
             case 5 -> {
-                moves = CommonLoop(3,row,col,board,sign);
+                moves = CommonLoop(3, row, col, board, sign);
             }
             case 6 -> { // King
                 // Check all adjacent squares
                 int[][] kingMoves = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-                for(int i =0;i<kingMoves.length;i++)
-                {
-                    if(isValidPosition(row+kingMoves[i][1]*sign,col+kingMoves[i][0]*sign)&&board[col+kingMoves[i][0]*sign][row+kingMoves[i][1]*sign]==0)
-                    {
+                for (int i = 0; i < kingMoves.length; i++) {
+                    if (isValidPosition(row + kingMoves[i][1] * sign, col + kingMoves[i][0] * sign) && board[col + kingMoves[i][0] * sign][row + kingMoves[i][1] * sign] == 0) {
                         moves.add(new Move(row, col, row + (kingMoves[i][1] * sign), col + (kingMoves[i][0] * sign), (byte) 0));
                     }
-                    if(sign<0&&board[col+kingMoves[i][0]*sign][row+kingMoves[i][1]*sign]>0)
-                    {
+                    if (sign < 0 && board[col + kingMoves[i][0] * sign][row + kingMoves[i][1] * sign] > 0) {
                         //can capture pieces being protected too lol
                         moves.add(new Move(row, col, row + (kingMoves[i][1] * sign), col + (kingMoves[i][0] * sign), (byte) 1));
                     }
-                    if(sign<0&&board[col+kingMoves[i][1]*sign][row+kingMoves[i][1]*sign]>0)
-                    {
+                    if (sign < 0 && board[col + kingMoves[i][1] * sign][row + kingMoves[i][1] * sign] > 0) {
                         moves.add(new Move(row, col, row + (kingMoves[i][1] * sign), col + (kingMoves[i][0] * sign), (byte) 1));
                     }
                 }

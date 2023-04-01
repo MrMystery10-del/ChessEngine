@@ -14,8 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PieceController implements ActionListener
-{
+public class PieceController implements ActionListener {
 
     Block_Button button;
 
@@ -24,31 +23,27 @@ public class PieceController implements ActionListener
     Board board;
 
     BoardGui boardGui;
-    public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui)
-    {
-        this.boardGui=boardgui;
+
+    public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui) {
+        this.boardGui = boardgui;
         this.button = button;
-        this.info=info;
+        this.info = info;
         this.board = board;
     }
-    public void actionPerformed(ActionEvent e)
-    {
-        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(),button.col, button.row);
 
-        if(info.selected_button == null)
-        {
+    public void actionPerformed(ActionEvent e) {
+        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
+
+        if (info.selected_button == null) {
             info.selected_button = button;
-            for(int i =0;i<legal.size();i++)
-            {
-                int row  = legal.get(i).toRow();
+            for (int i = 0; i < legal.size(); i++) {
+                int row = legal.get(i).toRow();
                 int column = legal.get(i).toCol();
                 info.highlighted_button.add(boardGui.squares[column][row]);
                 info.button_colors.add(boardGui.squares[column][row].getBackground());
                 boardGui.squares[column][row].setBackground(Color.BLUE);
             }
-        }
-        else if(info.highlighted_button.contains(button))
-        {
+        } else if (info.highlighted_button.contains(button)) {
             int col = button.col;
             int row = button.row;
             int previous_value = board.gameBoard[col][row];
@@ -59,22 +54,19 @@ public class PieceController implements ActionListener
             Icon icon = info.selected_button.getIcon();
             info.selected_button.setIcon(null);
             button.setIcon(icon);
-            for(int i =0;i<info.highlighted_button.size();i++)
-            {
+            for (int i = 0; i < info.highlighted_button.size(); i++) {
                 info.highlighted_button.get(i).setBackground(info.button_colors.get(i));
             }
             info.selected_button = null;
             info.highlighted_button = new ArrayList<>();
-            info.button_colors=new ArrayList<>();
-        }
-        else if((!info.highlighted_button.contains(button))||board.getGameBoard()[button.col][button.row]==0){
-            for(int i =0;i<info.highlighted_button.size();i++)
-            {
+            info.button_colors = new ArrayList<>();
+        } else if ((!info.highlighted_button.contains(button)) || board.getGameBoard()[button.col][button.row] == 0) {
+            for (int i = 0; i < info.highlighted_button.size(); i++) {
                 info.highlighted_button.get(i).setBackground(info.button_colors.get(i));
             }
             info.selected_button = null;
             info.highlighted_button = new ArrayList<>();
-            info.button_colors=new ArrayList<>();
+            info.button_colors = new ArrayList<>();
         }
     }
 }

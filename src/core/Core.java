@@ -31,8 +31,7 @@ public class Core {
     private enum SCREENS {
         IN_GAME_SCREEN(() -> new InGameScreen(new Bob()) {
 
-        }),
-        MAIN_MENU(() -> new MainMenu() {
+        }), MAIN_MENU(() -> new MainMenu() {
 
             @Override
             public void viewProfile() {
@@ -54,12 +53,12 @@ public class Core {
 
         final Supplier<Screen> content;
 
-        public Supplier<Screen> getContent() {
-            return content;
-        }
-
         SCREENS(Supplier<Screen> content) {
             this.content = content;
+        }
+
+        public Supplier<Screen> getContent() {
+            return content;
         }
     }
 }
