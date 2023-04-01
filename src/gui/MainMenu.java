@@ -1,9 +1,12 @@
 package gui;
 
 import content.*;
+import content.Button;
+import content.Label;
 import manage.ImageManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -31,12 +34,15 @@ public abstract class MainMenu extends Screen {
         profilePicture.setIcon(new ImageIcon(ImageManager.getDefaultPP()));
         add(profilePicture, 2);
 
+        Font bigFont = new Font("Arial", Font.BOLD, 90);
         Button multiplayer = new Button(resourceBundle.getString("multiplayer"));
+        multiplayer.setFont(bigFont);
         multiplayer.setBounds(460, 200, 1000, 200);
         multiplayer.addActionListener(event -> startedMultiplayer());
         add(multiplayer, 1);
 
         Button ai = new Button(resourceBundle.getString("vsAi"));
+        ai.setFont(bigFont);
         ai.setBounds(460, 600, 1000, 200);
         ai.addActionListener(event -> startedAI());
         add(ai, 1);
