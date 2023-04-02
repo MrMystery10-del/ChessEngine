@@ -8,30 +8,31 @@ public class Util {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
 
-    public static List<Move> commonLoop(int piece, int row, int col, byte[][] board, int sign) {
+    /**
+     * Helper method to check all possible moves for the Bishop, Rook, and Queen pieces
+     */
+    public static List<Move> commonLoop(int direction, int row, int col, byte[][] board, int sign) {
         List<Move> moves = new ArrayList<>();
-        int[][] Moves = null;
-        switch (piece) {
-            case 1 -> Moves = new int[][]{{1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
-            case 2 -> Moves = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-            case 3 -> Moves = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-        }
-        int newRow = row;
-        int newCol = col;
-
-        for (int i = 0; i < Moves.length; i++) {
-            while (isValidPosition(newRow + Moves[i][1] * sign, newCol + Moves[i][0] * sign)) {
-                newRow += Moves[i][1] * sign;
-                newCol += Moves[i][0] * sign;
-                if (board[newCol][newRow] == 0) {
-                    moves.add(new Move(row, col, newRow, newCol, (byte) 0));
-                } else if (board[newCol][newRow] < 0 && sign > 0 || board[newCol][newRow] > 0 && sign < 0) {
-                    moves.add(new Move(row, col, newRow, newCol, (byte) 1));
+        int[] x_move = {1, 1, -1, -1};
+        int[] y_move = {1, -1, 1, -1};
+        for (int i = 0; i < x_move.length; i++) {
+            int x = x_move[i];
+            int y = y_move[i];
+            int new_col = col + (x * direction * sign);
+            int new_row = row + (y * direction * sign);
+            while (isValidPosition(new_col, new_row)) {
+                byte target_piece = board[new_col][new_row];
+                if (target_piece == 0) {
+                    moves.add(new Move(row, col, new_row, new_col, (byte) 0));
+                } else {
+                    if ((sign < 0 && target_piece > 0) || (sign > 0 && target_piece < 0)) {
+                        moves.add(new Move(row, col, new_row, new_col, (byte) 1));
+                    }
                     break;
-                } else break;
+                }
+                new_col += (x * direction * sign);
+                new_row += (y * direction * sign);
             }
-            newCol = col;
-            newRow = row;
         }
         return moves;
     }
@@ -54,80 +55,135 @@ public class Util {
         return newBoard;
     }
 
-    public static List<Move> getPossibleMoves(byte[][] board, int col, int row) {
+    public static List<Move> getPossibleMoves(byte[][] board, int row, int col) {
         List<Move> moves = new ArrayList<>();
-        byte piece = board[col][row];
+        byte piece = board[row][col];
         int sign = (piece > 0) ? 1 : -1;
-        System.out.println(piece);
+
         // Check all possible moves for the piece, based on its type
         switch (Math.abs(piece)) {
-            case 1 -> { // Pawn
-                int start_location_black = 1;
-                int start_location_white = 6;
-                if (isValidPosition(row, col + (-1 * sign)) && board[col + (-1 * sign)][row] == 0) {
-                    moves.add(new Move(row, col, row, col + (-1 * sign), (byte) 0));
-                }
-                if (isValidPosition(row, col + (-2 * sign)) && board[col + (-2 * sign)][row] == 0 && board[col + (-1 * sign)][row] == 0) {
-                    if (sign < 0 && col == start_location_black) {
-                        moves.add(new Move(row, col, row, col + (-2 * sign), (byte) 0));
-                    } else {
-                        if (sign > 0 && col == start_location_white) {
-                            moves.add(new Move(row, col, row, col + (-2 * sign), (byte) 0));
-                        }
-                    }
-                }
-                if (isValidPosition(row + (-1 * sign), col + (-1 * sign))) {
-                    if (sign < 0 && board[col + (-1 * sign)][row + (-1 * sign)] > 0 || sign > 0 && board[col + (-1 * sign)][row + (-1 * sign)] < 0) {
-                        moves.add(new Move(row, col, row + (-1 * sign), col + (-1 * sign), (byte) 1));
-                    }
-                }
-                if (isValidPosition(row + (sign), col + (-1 * sign))) {
-                    if (sign < 0 && board[col + (-1 * sign)][row + (sign)] > 0 || sign > 0 && board[col + (-1 * sign)][row + (sign)] < 0) {
-                        moves.add(new Move(row, col, row + (sign), col + (-1 * sign), (byte) 1));
-                    }
-                }
-            }
-            case 2 -> { // Knight
-                int[][] Moves = {{2, -1}, {2, 1}, {1, 2}, {1, -2}, {-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}};
-                for (int i = 0; i < Moves.length; i++) {
-                    if (isValidPosition(row + (Moves[i][1] * sign), col + (Moves[i][0] * sign)) && board[col + (Moves[i][0] * sign)][row + (Moves[i][1] * sign)] == 0) {
-                        moves.add(new Move(row, col, row + (Moves[i][1] * sign), col + (Moves[i][0] * sign), (byte) 0));
-                    }
-                    if (isValidPosition(row + (Moves[i][1] * sign), col + (Moves[i][0] * sign))) {
-                        if (sign < 0 && board[col + (Moves[i][0] * sign)][row + (Moves[i][1] * sign)] > 0) {
-                            moves.add(new Move(row, col, row + (Moves[i][1] * sign), col + (Moves[i][0] * sign), (byte) 1));
-                        }
-                        if (sign > 0 && board[col + (Moves[i][0] * sign)][row + (Moves[i][1] * sign)] < 0) {
-                            moves.add(new Move(row, col, row + (Moves[i][1] * sign), col + (Moves[i][0] * sign), (byte) 1));
-                        }
-                    }
+            case 1 -> moves.addAll(getPawnMoves(board, row, col, sign));
+            case 2 -> moves.addAll(getKnightMoves(board, row, col, sign));
+            case 3 -> moves.addAll(getBishopMoves(board, row, col, sign));
+            case 4 -> moves.addAll(getRockMoves(board, row, col, sign));
+            case 5 -> moves.addAll(getQueenMoves(board, row, col, sign));
+            case 6 -> moves.addAll(getKingMoves(board, row, col, sign));
+        }
+        return moves;
+    }
 
-                }
+    private static List<Move> getPawnMoves(byte[][] board, int row, int col, int sign) {
+        List<Move> moves = new ArrayList<>();
+
+        int start_location_black = 1;
+        int start_location_white = 6;
+
+        // Check one square forward
+        int newRow = row + (-1 * sign);
+        if (isValidPosition(newRow, col) && board[newRow][col] == 0)
+            moves.add(new Move(row, col, newRow, col, (byte) 0));
+
+        // Check two squares forward
+        newRow = row + (-2 * sign);
+        if (isValidPosition(newRow, col) && board[newRow][col] == 0 && board[newRow + sign][row] == 0) {
+            if (sign == -1 && row == start_location_black)
+                moves.add(new Move(row, col, newRow, col, (byte) 0));
+            else if (sign == 1 && col == start_location_white)
+                moves.add(new Move(row, col, newRow, col, (byte) 0));
+        }
+
+        // Check for capturing to the left
+        int newCol = col + (-1 * sign);
+        newRow = row + (-1 * sign);
+        if (isValidPosition(newRow, newCol)) {
+            byte target_piece = board[newRow][newCol];
+            if (target_piece != 0 && ((sign < 0 && target_piece > 0) || (sign > 0 && target_piece < 0)))
+                moves.add(new Move(row, col, newRow, newCol, (byte) Math.abs(target_piece)));
+        }
+
+        // Check for capturing to the right
+        newCol = col + (-1 * sign);
+        newRow = row + sign;
+        if (isValidPosition(newRow, newCol)) {
+            byte target_piece = board[newRow][newCol];
+            if (target_piece != 0 && ((sign < 0 && target_piece > 0) || (sign > 0 && target_piece < 0)))
+                moves.add(new Move(row, col, newRow, newCol, (byte) Math.abs(target_piece)));
+        }
+        return moves;
+    }
+
+    private static List<Move> getKnightMoves(byte[][] board, int row, int col, int sign) {
+        List<Move> moves = new ArrayList<>();
+
+        int[][] Moves = {{2, -1}, {2, 1}, {1, 2}, {1, -2}, {-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}};
+        for (int i = 0; i < Moves.length; i++) {
+            int newRow = row + (Moves[i][1] * sign);
+            int newCol = col + (Moves[i][0] * sign);
+
+            if (!isValidPosition(newRow, newCol)) continue;
+
+            int signOfEnemy = board[newRow][newCol] > 0 ? 1 : -1;
+            if (signOfEnemy != sign)
+                moves.add(new Move(row, col, newRow, newCol, board[newRow][newCol]));
+        }
+        return moves;
+    }
+
+    private static List<Move> getBishopMoves(byte[][] board, int row, int col, int sign) {
+        int[][] moves = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
+
+        return getLongMoves(board, row, col, sign, moves);
+    }
+
+    private static List<Move> getRockMoves(byte[][] board, int row, int col, int sign) {
+        int[][] moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+        return getLongMoves(board, row, col, sign, moves);
+    }
+
+    private static List<Move> getQueenMoves(byte[][] board, int row, int col, int sign) {
+        int[][] moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
+
+        return getLongMoves(board, row, col, sign, moves);
+    }
+
+    private static List<Move> getKingMoves(byte[][] board, int row, int col, int sign) {
+        List<Move> moves = new ArrayList<>();
+
+        int[][] Moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
+        for (int i = 0; i < Moves.length; i++) {
+
+            int newRow = row + Moves[i][0];
+            int newCol = col + Moves[i][1];
+
+            if (isValidPosition(newRow, newCol)) {
+                if (board[newRow][newCol] == 0)
+                    moves.add(new Move(row, col, newRow, newCol, (byte) 0));
+                else if ((sign < 0 && board[newRow][newCol] > 0) || (sign > 0 && board[newRow][newCol] < 0))
+                    moves.add(new Move(row, col, newRow, newCol, board[newRow][newCol]));
             }
-            case 3 -> { // Bishop
-                moves = commonLoop(1, row, col, board, sign);
-            }
-            case 4 -> {
-                moves = commonLoop(2, row, col, board, sign);
-            }
-            case 5 -> {
-                moves = commonLoop(3, row, col, board, sign);
-            }
-            case 6 -> { // King
-                // Check all adjacent squares
-                int[][] kingMoves = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-                for (int i = 0; i < kingMoves.length; i++) {
-                    if (isValidPosition(row + kingMoves[i][1] * sign, col + kingMoves[i][0] * sign) && board[col + kingMoves[i][0] * sign][row + kingMoves[i][1] * sign] == 0) {
-                        moves.add(new Move(row, col, row + (kingMoves[i][1] * sign), col + (kingMoves[i][0] * sign), (byte) 0));
-                    }
-                    if (sign < 0 && board[col + kingMoves[i][0] * sign][row + kingMoves[i][1] * sign] > 0) {
-                        //can capture pieces being protected too lol
-                        moves.add(new Move(row, col, row + (kingMoves[i][1] * sign), col + (kingMoves[i][0] * sign), (byte) 1));
-                    }
-                    if (sign < 0 && board[col + kingMoves[i][1] * sign][row + kingMoves[i][1] * sign] > 0) {
-                        moves.add(new Move(row, col, row + (kingMoves[i][1] * sign), col + (kingMoves[i][0] * sign), (byte) 1));
-                    }
-                }
+        }
+
+        return moves;
+    }
+
+    private static List<Move> getLongMoves(byte[][] board, int row, int col, int sign, int[][] lines) {
+        List<Move> moves = new ArrayList<>();
+
+        for (int i = 0; i < lines.length; i++) {
+
+            int newRow = row + (lines[i][1] * sign);
+            int newCol = col + (lines[i][0] * sign);
+
+            while (isValidPosition(newRow, newCol)) {
+                if (board[newRow][newCol] == 0)
+                    moves.add(new Move(row, col, newRow, newCol, (byte) 0));
+                else if ((sign < 0 && board[newRow][newCol] > 0) || (sign > 0 && board[newRow][newCol] < 0)) {
+                    moves.add(new Move(row, col, newRow, newCol, (byte) 1));
+                    break;
+                } else break;
+                newRow += (lines[i][1] * sign);
+                newCol += (lines[i][0] * sign);
             }
         }
         return moves;

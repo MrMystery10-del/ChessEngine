@@ -24,11 +24,11 @@ public class BoardGuiController {
 
     private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
 
-
     public BoardGuiController(Board board, BoardGui gui, GameStateGui gameStateGui) {
         this.board = board;
         this.gui = gui;
         this.gameStateGui = gameStateGui;
+
         addGameStateControls();
         addMouseOverToBoard();
     }
@@ -37,17 +37,17 @@ public class BoardGuiController {
      * update the chessboard gui with the details from the Piece board
      */
     public void updateBoard() {
-        for (int j = 0; j < 8; j++) {
+        for (int j = 0; j < 8; j++)
             for (int i = 0; i < 8; i++) {
 
                 var piece = board.getPieceBoard()[i][j];
                 var update = gui.getSquares()[i][j];
+
                 if (piece != null) {
                     logger.log(Level.FINEST, "board  " + i + "/" + j + " set to " + piece.getPiece());
                     update.setIcon(new ImageIcon(ImageManager.getPiece(piece.getPiece())));
                 }
             }
-        }
     }
 
 
