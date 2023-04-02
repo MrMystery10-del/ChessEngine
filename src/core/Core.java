@@ -4,21 +4,39 @@ import bots.Bot;
 import bots.low_bots_0_500.Bob;
 import content.Frame;
 import content.Screen;
+import core.constants.Configuration;
 import gui.InGameScreen;
 import gui.MainMenu;
-import gui.ProfileMenu;
+import gui.profileScreen.ProfileMenu;
 import manage.ImageManager;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
+
+import static java.lang.System.exit;
 
 // Main core of the application
 public class Core {
 
+    private static final Logger logger = Logger.getLogger(Core.class.getName());
     public final static Frame frame = new Frame("ChessEngine");
+
 
     // Application start
     public static void main(String[] args) throws IOException {
+        try {
+            Configuration.parseCommandLine(args);
+        }
+        catch (IndexOutOfBoundsException e){
+            cliError();
+        }
+
+
+
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
 
@@ -82,5 +100,15 @@ public class Core {
         public Supplier<Screen> getContent() {
             return content;
         }
+    }
+
+    private static void cliError() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("gui.translations.bundle", Locale.getDefault());
+        JOptionPane.showMessageDialog(new JFrame(), resourceBundle.getString("cliError"), "Error",
+                JOptionPane.ERROR_MESSAGE);
+        logger.log(java.util.logging.Level.SEVERE, "Command line error has happened");
+        exit(-1);
+
+
     }
 }

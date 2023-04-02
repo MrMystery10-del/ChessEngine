@@ -32,13 +32,13 @@ public class PieceController implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(), button.row, button.col);
+        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
 
         if (info.getSelected_button() == null) {
             info.setSelected_button(button);
-            for (int i = 0; i < legal.size(); i++) {
-                int row = legal.get(i).toRow();
-                int col = legal.get(i).toCol();
+            for (Move move : legal) {
+                int row = move.toRow();
+                int col = move.toCol();
                 info.getHighlighted_button().add(boardGui.squares[row][col]);
                 info.getButton_colors().add(boardGui.squares[row][col].getBackground());
                 boardGui.squares[row][col].setBackground(Color.BLUE);

@@ -1,7 +1,7 @@
 package gui.controllers;
 
 import core.pojo.Board;
-import core.pojo.Pieces.Bishop;
+import core.pojo.pieces.Bishop;
 import core.pojo.Position;
 import gui.inGameScreen.BoardGui;
 import gui.inGameScreen.GameStateGui;
@@ -68,6 +68,8 @@ public class BoardGuiController {
         });
 
 
+
+
     }
 
 
@@ -83,6 +85,8 @@ public class BoardGuiController {
         button.setRolloverEnabled(true);
 
         var piece = new Bishop(boardGrid, Color.WHITE);
+
+
 
 
         button.getModel().addChangeListener(new ChangeListener() {

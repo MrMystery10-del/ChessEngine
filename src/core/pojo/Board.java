@@ -1,7 +1,7 @@
 package core.pojo;
 
 
-import core.pojo.Pieces.*;
+import core.pojo.pieces.*;
 
 import java.awt.*;
 import java.util.logging.Level;
