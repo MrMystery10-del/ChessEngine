@@ -8,35 +8,6 @@ public class Util {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
 
-    /**
-     * Helper method to check all possible moves for the Bishop, Rook, and Queen pieces
-     */
-    public static List<Move> commonLoop(int direction, int row, int col, byte[][] board, int sign) {
-        List<Move> moves = new ArrayList<>();
-        int[] x_move = {1, 1, -1, -1};
-        int[] y_move = {1, -1, 1, -1};
-        for (int i = 0; i < x_move.length; i++) {
-            int x = x_move[i];
-            int y = y_move[i];
-            int new_col = col + (x * direction * sign);
-            int new_row = row + (y * direction * sign);
-            while (isValidPosition(new_col, new_row)) {
-                byte target_piece = board[new_col][new_row];
-                if (target_piece == 0) {
-                    moves.add(new Move(row, col, new_row, new_col, (byte) 0));
-                } else {
-                    if ((sign < 0 && target_piece > 0) || (sign > 0 && target_piece < 0)) {
-                        moves.add(new Move(row, col, new_row, new_col, (byte) 1));
-                    }
-                    break;
-                }
-                new_col += (x * direction * sign);
-                new_row += (y * direction * sign);
-            }
-        }
-        return moves;
-    }
-
     public static byte[][] deepCopy(byte[][] board) {
         byte[][] newBoard = new byte[8][8];
         for (int i = 0; i < 8; i++)
