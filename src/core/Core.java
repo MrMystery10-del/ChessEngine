@@ -30,12 +30,9 @@ public class Core {
     public static void main(String[] args) throws IOException {
         try {
             Configuration.parseCommandLine(args);
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             cliError();
         }
-
-
 
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
@@ -108,7 +105,5 @@ public class Core {
                 JOptionPane.ERROR_MESSAGE);
         logger.log(java.util.logging.Level.SEVERE, "Command line error has happened");
         exit(-1);
-
-
     }
 }

@@ -3,6 +3,7 @@ package bots.low_bots_0_500;
 import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
+import manage.Bots;
 import manage.ImageManager;
 import manage.Pieces;
 
@@ -26,7 +27,7 @@ public class Bob implements Bot {
             With a bit of hard work and some grog, I'll be ready to take on any scallywag who dares cross me path!
             """;
     private static final String algorithm = "Value Capture Algorithm";
-    private static final BufferedImage image = ImageManager.getPiece(Pieces.KING_BLACK);
+    private static final BufferedImage image = ImageManager.getBotPicture(Bots.BOB);
 
     @Override
     public byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {

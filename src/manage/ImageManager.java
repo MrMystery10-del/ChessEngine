@@ -14,7 +14,7 @@ public class ImageManager {
 
     // Map that associates each chess piece with its image representation
     private final static Map<Pieces, BufferedImage> pieceImages = new HashMap<>();
-    ;
+    private final static Map<Bots, BufferedImage> botPictures = new HashMap<>();
     private static BufferedImage default_profile_picture;
 
     // Method to load all the images of chess pieces
@@ -34,6 +34,8 @@ public class ImageManager {
         pieceImages.put(Pieces.QUEEN_BLACK, loadImage("/images/pieces/queen_BLACK.png"));
         pieceImages.put(Pieces.KING_BLACK, loadImage("/images/pieces/king_BLACK.png"));
 
+        botPictures.put(Bots.BOB, loadImage("/images/bots/bob_picture.png"));
+
         default_profile_picture = loadImage("/images/menu/default_profile_picture.png");
     }
 
@@ -51,6 +53,15 @@ public class ImageManager {
      */
     public static BufferedImage getPiece(Pieces piece) {
         return pieceImages.get(piece);
+    }
+
+    /**
+     * Method to get the picture for a specific bot
+     *
+     * @return returns the picture of the given bot
+     */
+    public static BufferedImage getBotPicture(Bots bot) {
+        return botPictures.get(bot);
     }
 
     /**
