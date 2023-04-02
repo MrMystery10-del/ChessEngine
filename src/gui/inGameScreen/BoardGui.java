@@ -30,12 +30,7 @@ public class BoardGui extends Screen {
     public BoardGui(int x, int y, int width, int height,Board board) {
         this.board=board;
         setBounds(x, y, width, height);
-//        try {
-//            boardImage = ImageIO.read(getClass().getResourceAsStream("/images/board.png"));
-//        } catch (IOException exception) {
-//            throw new RuntimeException(" background image not found " + exception);
-//        }
-
+//
 
         boardPanel = new JPanel();
 
@@ -43,7 +38,6 @@ public class BoardGui extends Screen {
         boardPanel.setLayout(new BorderLayout(10, 10));
         boardPanel.setBounds(50, 50, 1800, 1000);
         boardPanel.setVisible(true);
-        //boardPanel.setOpaque(false);
 
         designBoard();
 
@@ -103,7 +97,7 @@ public class BoardGui extends Screen {
 
         JPanel centralSection = new JPanel(new GridLayout(8, 8));
 
-        boolean needsBlack = false;
+        boolean needsBlack = true;
 
         for (int j = 0; j < gridSize; j++) {
 

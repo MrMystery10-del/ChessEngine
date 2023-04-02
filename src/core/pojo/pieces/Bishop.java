@@ -1,4 +1,4 @@
-package core.pojo.Pieces;
+package core.pojo.pieces;
 
 import core.pojo.Piece;
 import core.pojo.Position;

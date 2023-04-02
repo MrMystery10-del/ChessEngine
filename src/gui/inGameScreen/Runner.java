@@ -1,11 +1,9 @@
 package gui.inGameScreen;
 
-import core.pojo.Pieces.King;
+import core.pojo.pieces.King;
 import core.pojo.Position;
 
 import java.awt.*;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class Runner {
 

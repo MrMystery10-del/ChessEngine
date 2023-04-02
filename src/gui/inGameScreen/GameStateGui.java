@@ -2,13 +2,15 @@ package gui.inGameScreen;
 
 import content.Screen;
 import content.Button;
+import gui.arrangement.GuiConfiguration;
+
 import java.awt.*;
 import java.util.ResourceBundle;
 
 public class GameStateGui extends Screen {
 
     int BUTTONMARGINHOR=50;
-    Font font = new Font("Comic Sans MS", Font.BOLD, 40);
+
     Button playButton;
     Button loadButton;
     Button saveButton;
@@ -19,11 +21,11 @@ public class GameStateGui extends Screen {
         loadButton = new Button(resourceBundle.getString("load"));
         saveButton = new Button(resourceBundle.getString("save"));
 
-        playButton.setFont(font);
+        playButton.setFont(GuiConfiguration.regularTitleFont);
         playButton.setToolTipText(resourceBundle.getString("startToolTip"));
-        loadButton.setFont(font);
+        loadButton.setFont(GuiConfiguration.regularTitleFont);
         loadButton.setToolTipText(resourceBundle.getString("loadToolTip"));
-        saveButton.setFont(font);
+        saveButton.setFont(GuiConfiguration.regularTitleFont);
         saveButton.setToolTipText(resourceBundle.getString("saveToolTip"));
 
 
@@ -54,7 +56,7 @@ public class GameStateGui extends Screen {
      * the width the text contained in the button
      */
     private int getButtonWidth(Button button){
-        FontMetrics metrics = getFontMetrics( font );
+        FontMetrics metrics = getFontMetrics( GuiConfiguration.regularTitleFont );
         return metrics.stringWidth( button.getText()) + (BUTTONMARGINHOR*2);
     }
 
