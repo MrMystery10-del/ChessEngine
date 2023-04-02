@@ -95,5 +95,8 @@ public class Board {
         }
     }
 
-
+    public  void setGameBoardPiece(int row,int col,byte value)
+    {
+        this.gameBoard[col][row]=value;
+    }
 }

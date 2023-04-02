@@ -7,21 +7,22 @@ import gui.components.Block_Button;
 import gui.constants.Piece_info;
 import gui.inGameScreen.BoardGui;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PieceController implements ActionListener {
 
-    private static final Logger logger = Logger.getLogger(Board.class.getName());
+    Block_Button button;
 
-    private Block_Button button;
-    private Piece_info info;
-    private Board board;
-    private BoardGui boardGui;
+    Piece_info info;
+
+    Board board;
+
+    BoardGui boardGui;
 
     public PieceController(Block_Button button, Piece_info info, Board board, BoardGui boardgui) {
         this.boardGui = boardgui;
@@ -30,14 +31,42 @@ public class PieceController implements ActionListener {
         this.board = board;
     }
 
-    public void actionPerformed(ActionEvent event) {
-        logger.log(Level.INFO, "Clicked on a field");
+    public void actionPerformed(ActionEvent e) {
+        List<Move> legal = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
 
-        List<Move> legalMoves = Util.getPossibleMoves(board.getGameBoard(), button.col, button.row);
-        for (int i = 0; i < legalMoves.size(); i++) {
-            int row = legalMoves.get(i).toRow();
-            int col = legalMoves.get(i).toCol();
-            boardGui.squares[col][row].setBackground(Color.BLUE);
+        if (info.getSelected_button() == null) {
+            info.setSelected_button(button);
+            for (int i = 0; i < legal.size(); i++) {
+                int row = legal.get(i).toRow();
+                int column = legal.get(i).toCol();
+                info.getHighlighted_button().add(boardGui.squares[column][row]);
+                info.getButton_colors().add(boardGui.squares[column][row].getBackground());
+                boardGui.squares[column][row].setBackground(Color.BLUE);
+            }
+        } else if (info.getHighlighted_button().contains(button)) {
+            int col = button.col;
+            int row = button.row;
+            int previousValue = board.getGameBoard()[col][row];
+            int selectCol = info.getSelected_button().col;
+            int selectRow = info.getSelected_button().row;
+            board.setGameBoardPiece(row,col,board.getGameBoard()[selectCol][selectRow]);
+            board.setGameBoardPiece(selectRow,selectCol,(byte) previousValue);
+            Icon icon = info.getSelected_button().getIcon();
+            info.getSelected_button().setIcon(null);
+            button.setIcon(icon);
+            for (int i = 0; i < info.getHighlighted_button().size(); i++) {
+                info.getHighlighted_button().get(i).setBackground(info.getButton_colors().get(i));
+            }
+            info.setSelected_button(null);
+            info.setHighlighted_button(new ArrayList<>());
+            info.setButton_colors(new ArrayList<>());
+        } else if ((!info.getHighlighted_button().contains(button)) || board.getGameBoard()[button.col][button.row] == 0) {
+            for (int i = 0; i < info.getHighlighted_button().size(); i++) {
+                info.getHighlighted_button().get(i).setBackground(info.getButton_colors().get(i));
+            }
+            info.setSelected_button(null);
+            info.setHighlighted_button(new ArrayList<>());
+            info.setButton_colors(new ArrayList<>());
         }
     }
 }
