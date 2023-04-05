@@ -53,7 +53,7 @@ public class BoardGui extends Screen {
             if (possiblePositions != null)
                 for (int x = 0; x < possiblePositions.length; x++) {
                     squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].setBackground(squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].getColor());
-                    if (possiblePositions[x] == moves[x]) {
+                    if (possiblePositions[x].toRow() == clicked.x && possiblePositions[x].toCol() == clicked.y) {
                         // TODO apply move and update gui
                     }
                 }
