@@ -30,33 +30,12 @@ public class Core {
     public static void main(String[] args) throws IOException {
         try {
             Configuration.parseCommandLine(args);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException exception) {
             cliError();
         }
 
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
-
-        Bot bot = new Bob();
-        byte[][] gameBoard = new byte[][]{
-                {-4, -2, -3, -5, -6, -3, -2, -4},
-                {-1, -1, -1, -1, -1, -1, -1, -1},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0},
-                {+1, +1, +1, +1, +1, +1, +1, +1},
-                {+4, +2, +3, +5, +6, +3, +2, +4}
-        };
-        for (int x = 0; x < 6; x++) {
-            gameBoard = bot.playNewMove(gameBoard, true);
-            for (byte[] line : gameBoard) {
-                for (byte i : line)
-                    System.out.print(i < 0 ? " " + i : " +" + i);
-                System.out.println();
-            }
-            System.out.println();
-        }
     }
 
     // Select current screen which will be displayed on the frame

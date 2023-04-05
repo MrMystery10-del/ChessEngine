@@ -1,11 +1,13 @@
 package gui.inGameScreen;
 
+import bots.util.Move;
 import content.Label;
 import content.Screen;
 import core.pojo.Board;
 import gui.components.Block_Button;
-import gui.constants.Piece_info;
 import gui.controllers.PieceController;
+import manage.ImageManager;
+import manage.Pieces;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,22 +20,15 @@ import java.awt.*;
  */
 public class BoardGui extends Screen {
 
-    Piece_info info= new Piece_info();
-    int gridSize = 8;
+    private final JPanel boardPanel = new JPanel();
+    public Block_Button[][] squares = new Block_Button[8][8];
 
+    private final Board board;
 
-    JPanel boardPanel;
-    public Block_Button[][] squares = new Block_Button[gridSize][gridSize];
+    public BoardGui(int x, int y, int width, int height, Board board) {
+        this.board = board;
 
-    Board board;
-
-    public BoardGui(int x, int y, int width, int height,Board board) {
-        this.board=board;
         setBounds(x, y, width, height);
-//
-
-        boardPanel = new JPanel();
-
 
         boardPanel.setLayout(new BorderLayout(10, 10));
         boardPanel.setBounds(50, 50, 1800, 1000);
@@ -42,26 +37,44 @@ public class BoardGui extends Screen {
         designBoard();
 
         add(boardPanel);
-
     }
 
+    private Point selected;
+    private Move[] possiblePositions;
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        //todo background image that's better then the provided one
-        super.paintComponent(g);
-        //g2d = (Graphics2D) g;
-        //g2d.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
+    public void setSelected(int row, int col, Move[] moves) {
+        Point clicked = new Point(row, col);
 
+        if (clicked.equals(selected)) {
+            return;
+        } else {
+            if (selected != null)
+                squares[selected.x][selected.y].setBackground(squares[selected.x][selected.y].getColor());
+            if (possiblePositions != null)
+                for (int x = 0; x < possiblePositions.length; x++) {
+                    squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].setBackground(squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].getColor());
+                    if (possiblePositions[x] == moves[x]) {
+                        // TODO apply move and update gui
+                    }
+                }
+            selected = clicked;
+            possiblePositions = moves;
+        }
+
+        squares[selected.x][selected.y].setBackground(Color.RED);
+        for (int x = 0; x < possiblePositions.length; x++)
+            squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].setBackground(Color.BLUE);
     }
-
 
     /**
      * drawing of the chessboard
      */
     private void designBoard() {
+        drawBoardBorder();
+        drawBoardFields();
+    }
 
-
+    private void drawBoardBorder() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
 
         JPanel chessBoard = new JPanel(new GridLayout(0, 9));
@@ -87,53 +100,70 @@ public class BoardGui extends Screen {
         }
         notationsTop.add(top, BorderLayout.CENTER);
 
-        //1-8
         JPanel counterLeft = new JPanel(new GridLayout(0, 1));
 
 
-        for (int i = 8; i >=1 ; i--) {
+        for (int i = 8; i >= 1; i--) {
             counterLeft.add(new Label("   " + i + "   "));
         }
 
+        boardPanel.add(notationsTop, BorderLayout.PAGE_START);
+        boardPanel.add(counterLeft, BorderLayout.LINE_START);
+    }
+
+    private void drawBoardFields() {
         JPanel centralSection = new JPanel(new GridLayout(8, 8));
+        Pieces[][] pieces = convertToPiece(board.getGameBoard());
 
         boolean needsBlack = true;
 
-        for (int j = 0; j < gridSize; j++) {
+        for (int i = 0; i < 8; i++) {
 
-            for (int i = 0; i < gridSize; i++) {
-                Block_Button button;
-                if(squares[j][i]==null){
-                    button = new Block_Button(i,j);}
-                else{
-                    button=squares[j][i];
-                }
-                button.setBackground(
-                        needsBlack ? Color.LIGHT_GRAY : (Color.darkGray));
+            for (int j = 0; j < 8; j++) {
+                Block_Button button = new Block_Button(j, i);
 
+                if (ImageManager.getPiece(pieces[i][j]) != null)
+                    button.setIcon(new ImageIcon(ImageManager.getPiece(pieces[i][j])));
+
+                button.setColor(needsBlack ? Color.LIGHT_GRAY : Color.darkGray);
+                button.setBackground(needsBlack ? Color.LIGHT_GRAY : Color.darkGray);
+                button.addActionListener(new PieceController(button, board, this));
                 button.setSize(80, 80);
+
                 centralSection.add(button);
 
-                PieceController event = new PieceController(button,info, board,this);
-                button.addActionListener(event);
                 squares[j][i] = button;
 
-                //flip color field
                 needsBlack = !needsBlack;
-
             }
-            //flip on new line
             needsBlack = !needsBlack;
         }
-
-
-        boardPanel.add(notationsTop, BorderLayout.PAGE_START);
-        boardPanel.add(counterLeft, BorderLayout.LINE_START);
         boardPanel.add(centralSection, BorderLayout.CENTER);
-
-
     }
 
+    private Pieces[][] convertToPiece(byte[][] board) {
+        Pieces[][] convertedBoard = new Pieces[8][8];
+
+        for (int x = 0; x < 8; x++)
+            for (int y = 0; y < 8; y++)
+                convertedBoard[x][y] = switch (board[x][y]) {
+                    case 0 -> null;
+                    case 1 -> Pieces.PAWN;
+                    case 2 -> Pieces.KNIGHT;
+                    case 3 -> Pieces.BISHOP;
+                    case 4 -> Pieces.ROOK;
+                    case 5 -> Pieces.QUEEN;
+                    case 6 -> Pieces.KING;
+                    case -1 -> Pieces.PAWN_BLACK;
+                    case -2 -> Pieces.KNIGHT_BLACK;
+                    case -3 -> Pieces.BISHOP_BLACK;
+                    case -4 -> Pieces.ROOK_BLACK;
+                    case -5 -> Pieces.QUEEN_BLACK;
+                    case -6 -> Pieces.KING_BLACK;
+                    default -> throw new IllegalStateException("Unexpected value: " + board[x][y]);
+                };
+        return convertedBoard;
+    }
 
     public JButton[][] getSquares() {
         return squares;

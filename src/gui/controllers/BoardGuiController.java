@@ -6,6 +6,7 @@ import core.pojo.Position;
 import gui.inGameScreen.BoardGui;
 import gui.inGameScreen.GameStateGui;
 import manage.ImageManager;
+import manage.Pieces;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -30,7 +31,6 @@ public class BoardGuiController {
         this.gameStateGui = gameStateGui;
 
         addGameStateControls();
-        addMouseOverToBoard();
     }
 
     /**
@@ -39,14 +39,10 @@ public class BoardGuiController {
     public void updateBoard() {
         for (int j = 0; j < 8; j++)
             for (int i = 0; i < 8; i++) {
-
-                var piece = board.getPieceBoard()[i][j];
+                var image = convertToPiece(board.getGameBoard())[i][j];
                 var update = gui.getSquares()[i][j];
-
-                if (piece != null) {
-                    logger.log(Level.FINEST, "board  " + i + "/" + j + " set to " + piece.getPiece());
-                    update.setIcon(new ImageIcon(ImageManager.getPiece(piece.getPiece())));
-                }
+                if (image != null)
+                    update.setIcon(new ImageIcon(ImageManager.getPiece(image)));
             }
     }
 
@@ -66,68 +62,29 @@ public class BoardGuiController {
             board.getNpcMove();
             logger.log(Level.INFO, "Asking the backend for a move TODO : REMOVE/ALTER");
         });
-
-
-
-
     }
 
+    private Pieces[][] convertToPiece(byte[][] board) {
+        Pieces[][] convertedBoard = new Pieces[8][8];
 
-
-    private void addMouseOverToBoard() {
-        //todo implement on grid that has a piece
-
-        /*Map<Position, Color> colors = new HashMap<>();
-        Position boardGrid = new Position(3, 3);
-
-
-        var button = gui.getSquares()[boardGrid.x()][boardGrid.y()];
-        button.setRolloverEnabled(true);
-
-        var piece = new Bishop(boardGrid, Color.WHITE);
-
-
-
-
-        button.getModel().addChangeListener(new ChangeListener() {
-            boolean needsRead = true;
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-                if (needsRead) {
-                    for (Position position : piece.getValidMoves()) {
-                        //read and store old color
-                        colors.put(position, gui.getSquares()[position.x()][position.y()].getBackground());
-
-                    }
-                }
-
-
-                ButtonModel model = (ButtonModel) e.getSource();
-                if (!model.isRollover()) {
-                    logger.log(Level.INFO, "removing visual movement indication");
-                    for (Position position : piece.getValidMoves()) {
-                        //replace highlight with normal color
-                        gui.getSquares()[position.x()][position.y()].setBackground(colors.get(position));
-                    }
-                }
-
-                if (model.isRollover()) {
-                    needsRead = false;
-                    logger.log(Level.INFO, "processing visual movement indication");
-                    for (Position position : piece.getValidMoves()) {
-                        gui.getSquares()[position.x()][position.y()].setBackground(Color.CYAN);
-
-                    }
-                }
-
-
-            }
-        });*/
-
-
+        for (int x = 0; x < 8; x++)
+            for (int y = 0; y < 8; y++)
+                convertedBoard[x][y] = switch (board[x][y]) {
+                    case 0 -> null;
+                    case 1 -> Pieces.PAWN;
+                    case 2 -> Pieces.KNIGHT;
+                    case 3 -> Pieces.BISHOP;
+                    case 4 -> Pieces.ROOK;
+                    case 5 -> Pieces.QUEEN;
+                    case 6 -> Pieces.KING;
+                    case -1 -> Pieces.PAWN_BLACK;
+                    case -2 -> Pieces.KNIGHT_BLACK;
+                    case -3 -> Pieces.BISHOP_BLACK;
+                    case -4 -> Pieces.ROOK_BLACK;
+                    case -5 -> Pieces.QUEEN_BLACK;
+                    case -6 -> Pieces.KING_BLACK;
+                    default -> throw new IllegalStateException("Unexpected value: " + board[x][y]);
+                };
+        return convertedBoard;
     }
-
-
 }

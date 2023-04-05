@@ -59,7 +59,7 @@ public class Util {
         if (isValidPosition(newRow, col) && board[newRow][col] == 0 && board[newRow + sign][row] == 0) {
             if (sign == -1 && row == start_location_black)
                 moves.add(new Move(row, col, newRow, col, (byte) 0));
-            else if (sign == 1 && col == start_location_white)
+            else if (sign == 1 && row == start_location_white)
                 moves.add(new Move(row, col, newRow, col, (byte) 0));
         }
 
