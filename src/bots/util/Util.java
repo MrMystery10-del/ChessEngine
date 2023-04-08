@@ -73,8 +73,8 @@ public class Util {
         }
 
         // Check for capturing to the right
-        newCol = col + (-1 * sign);
-        newRow = row + sign;
+        newCol = col + (1 * sign);
+        newRow = row + (-1 * sign);
         if (isValidPosition(newRow, newCol)) {
             byte target_piece = board[newRow][newCol];
             if (target_piece != 0 && ((sign < 0 && target_piece > 0) || (sign > 0 && target_piece < 0)))
