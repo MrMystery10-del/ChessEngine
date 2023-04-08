@@ -4,6 +4,7 @@ import bots.util.Move;
 import bots.util.Util;
 import core.pojo.Board;
 import gui.components.Block_Button;
+import gui.constants.MoveCounter;
 import gui.constants.PieceInfo;
 import gui.inGameScreen.BoardGui;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public record PieceController(Block_Button button, Board board, BoardGui boardGui,
                               PieceInfo info) implements ActionListener {
 
+    //true = black false = white
     public void actionPerformed(ActionEvent event) {
         if (info.getSelectedButton() == null) {
             //if selected button is null then it sets constant to the pressed button
