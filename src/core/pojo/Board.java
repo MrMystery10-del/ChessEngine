@@ -51,4 +51,8 @@ public class Board {
     public void updateBoard(byte[][] newBoard){
         gameBoard = newBoard;
     }
+
+    public void setValue(int row,int col,byte value){
+        gameBoard[col][row]=value;
+    }
 }

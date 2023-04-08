@@ -5,6 +5,7 @@ import content.Label;
 import content.Screen;
 import core.pojo.Board;
 import gui.components.Block_Button;
+import gui.constants.PieceInfo;
 import gui.controllers.PieceController;
 import manage.ImageManager;
 import manage.Pieces;
@@ -20,6 +21,7 @@ import java.awt.*;
  */
 public class BoardGui extends Screen {
 
+    private PieceInfo info = new PieceInfo();
     private final JPanel boardPanel = new JPanel();
     public Block_Button[][] squares = new Block_Button[8][8];
 
@@ -127,7 +129,7 @@ public class BoardGui extends Screen {
 
                 button.setColor(needsBlack ? Color.LIGHT_GRAY : Color.darkGray);
                 button.setBackground(needsBlack ? Color.LIGHT_GRAY : Color.darkGray);
-                button.addActionListener(new PieceController(button, board, this));
+                button.addActionListener(new PieceController(button, board, this,info));
                 button.setSize(80, 80);
 
                 centralSection.add(button);
@@ -165,7 +167,7 @@ public class BoardGui extends Screen {
         return convertedBoard;
     }
 
-    public JButton[][] getSquares() {
+    public Block_Button[][] getSquares() {
         return squares;
     }
 }
