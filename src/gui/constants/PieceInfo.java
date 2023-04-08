@@ -3,7 +3,6 @@ package gui.constants;
 import gui.components.Block_Button;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
 
 public class PieceInfo
