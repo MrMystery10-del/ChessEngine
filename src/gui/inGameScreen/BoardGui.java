@@ -3,8 +3,10 @@ package gui.inGameScreen;
 import bots.util.Move;
 import content.Label;
 import content.Screen;
+import core.Configuration;
 import core.pojo.Board;
 import gui.components.Block_Button;
+
 import gui.constants.PieceInfo;
 import gui.controllers.PieceController;
 import manage.ImageManager;
@@ -127,8 +129,8 @@ public class BoardGui extends Screen {
                 if (ImageManager.getPiece(pieces[i][j]) != null)
                     button.setIcon(new ImageIcon(ImageManager.getPiece(pieces[i][j])));
 
-                button.setColor(needsBlack ? Color.LIGHT_GRAY : Color.darkGray);
-                button.setBackground(needsBlack ? Color.LIGHT_GRAY : Color.darkGray);
+                button.setColor(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
+                button.setBackground(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
                 button.addActionListener(new PieceController(button, board, this,info));
                 button.setSize(80, 80);
 
