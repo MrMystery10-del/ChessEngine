@@ -22,5 +22,4 @@ public interface ProfileInterface {
      * @return true / false on IO
      */
     boolean writeToProfile(ProfileDto dto);
-
 }

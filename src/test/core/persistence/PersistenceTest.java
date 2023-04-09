@@ -13,18 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class PersistenceTest {
 
-
     private ProfileRepo profileRepo;
     private FileRepo filerepo;
-
 
     @BeforeEach
     void setup() {
         profileRepo = ProfileRepo.getInstance();
         filerepo = FileRepo.getInstance();
-
     }
-
 
     @Test
     void doesExist() {
@@ -38,8 +34,4 @@ public class PersistenceTest {
         Assertions.assertEquals("", Configuration.userConfigLocation);
         assertNotEquals(toCompare, Configuration.userConfigLocation);
     }
-
-
 }
-
-

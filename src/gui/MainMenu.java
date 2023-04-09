@@ -7,7 +7,6 @@ import gui.arrangement.GuiConfiguration;
 import manage.ImageManager;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -34,7 +33,6 @@ public abstract class MainMenu extends Screen {
         profilePicture.setBounds(300, -1, 102, 102);
         profilePicture.setIcon(new ImageIcon(ImageManager.getDefaultPP()));
         add(profilePicture, 2);
-
 
         Button multiplayer = new Button(resourceBundle.getString("multiplayer"));
         multiplayer.setFont(GuiConfiguration.bigFont);

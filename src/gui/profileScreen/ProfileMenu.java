@@ -7,16 +7,9 @@ import content.Screen;
  */
 public abstract class ProfileMenu extends Screen {
 
-
     public ProfileMenu() {
-
-
         ProfileGui gui = new ProfileGui();
         gui.setVisible(true);
         gui.pack();
-
-
     }
-
-
 }

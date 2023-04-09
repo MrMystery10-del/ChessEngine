@@ -1,8 +1,7 @@
-package core;
+package core.constants;
 
 import gui.controllers.BoardGuiController;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Level;
@@ -15,8 +14,7 @@ public class Configuration {
     private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = "";
-    public static Color blackColor = Color.darkGray;
-    public static Color whiteColor = Color.LIGHT_GRAY;
+
 
     /**
      * Processes commandline arguments
@@ -29,6 +27,7 @@ public class Configuration {
         // remove -*/ as initial letter,
         // add a secondary string if non-present
         // split to map
+
         Map<String, String> commands = Arrays.stream(commandLineOptions)
                 .map(a -> a.replaceAll("\\\\", "/"))
                 .map(a -> a.replaceAll("^[/*-]", ""))
@@ -36,15 +35,17 @@ public class Configuration {
                 .map(str -> str.split("="))
                 .collect(toMap(str -> str[0], str -> str[1]));
 
+
         processCommands(commands);
+
     }
 
     /**
      * process the formatted list of arguments
-     *
      * @param commands list of command line arguments
      */
     private static void processCommands(Map<String, String> commands) {
+
         commands.forEach((key, value) -> {
             switch (key) {
                 case "newProfile" -> {
@@ -60,7 +61,10 @@ public class Configuration {
                     System.out.println(error);
                     logger.log(Level.SEVERE, error);
                 }
+
             }
+
         });
+
     }
 }
