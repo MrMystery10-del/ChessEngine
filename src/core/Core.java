@@ -1,10 +1,8 @@
 package core;
 
-import bots.Bot;
 import bots.low_bots_0_500.Bob;
 import content.Frame;
 import content.Screen;
-import core.constants.Configuration;
 import gui.InGameScreen;
 import gui.MainMenu;
 import gui.profileScreen.ProfileMenu;

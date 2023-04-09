@@ -1,7 +1,8 @@
-package core.constants;
+package core;
 
 import gui.controllers.BoardGuiController;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Level;
@@ -14,6 +15,8 @@ public class Configuration {
     private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = "";
+    public static Color blackColor= Color.darkGray;
+    public static Color whiteColor= Color.LIGHT_GRAY;
 
 
     /**

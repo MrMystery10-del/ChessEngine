@@ -2,5 +2,5 @@
 /shelf/
 /workspace.xml
 vcs.xml
-runner.java
 *.class
+src/core/Runner.java
