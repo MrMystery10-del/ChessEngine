@@ -4,8 +4,6 @@ package persistence;
 import persistence.repos.FileRepo;
 
 /** Profile repository
- * @author=Fa285634
- * @version=0.1
  *
  */
 public class ProfileRepo {
@@ -24,6 +22,13 @@ public class ProfileRepo {
             instance = new ProfileRepo();
         }
         return instance;
+    }
+
+    /**
+     * destroy the singleton ( use for testing )
+     */
+    public static void destroy(){
+        instance=null;
     }
 
 
