@@ -7,16 +7,18 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toMap;
 
 public class Configuration {
 
-    private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
+    private static final Logger logger = Logger.getLogger(Configuration.class.getName());
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = "";
-    public static Color blackColor= Color.darkGray;
-    public static Color whiteColor= Color.LIGHT_GRAY;
+    public static Color blackColor = Color.darkGray;
+    public static Color whiteColor = Color.LIGHT_GRAY;
+    public static String profileFileName = "user.profile";
 
 
     /**
@@ -45,6 +47,7 @@ public class Configuration {
 
     /**
      * process the formatted list of arguments
+     *
      * @param commands list of command line arguments
      */
     private static void processCommands(Map<String, String> commands) {
@@ -52,12 +55,24 @@ public class Configuration {
         commands.forEach((key, value) -> {
             switch (key) {
                 case "newProfile" -> {
-                    logger.info("new profile option given on command line");
                     startWithNewProfile = true;
+                    logger.info("new profile option given on command line");
+
                 }
                 case "profileDir" -> {
-                    logger.info("profile directory set on command line -> " + value);
                     userConfigLocation = value;
+                    logger.info("profile directory set on command line -> " + userConfigLocation);
+
+                }
+                case "profileFileName" -> {
+
+                    var checker = "(?<seq>[a-zA-Z0-9_\\-\\(\\):])+(\\.{1,})+([a-zA-Z]{3,})";
+                    if(value.matches(checker)){
+                    profileFileName=value;
+                    logger.info("profile file name set to -> " + value);}
+                    else {
+                        logger.log(Level.SEVERE, "error in profile file name");
+                    }
                 }
                 case "error" -> {
                     String error = "Error in command line switch";

@@ -16,11 +16,12 @@ public class FileRepo implements ProfileInterface {
     private String userConfigLocation;
 
     //private constructor -> do NOT change access
+    //checks the userConfigLocation for overrides and acts accordingly
     private FileRepo() {
         userConfigLocation=System.getProperty("user.home");
         if(!Configuration.userConfigLocation.isEmpty()){
             if(Configuration.userConfigLocation.contains("/")) {
-                userConfigLocation = Configuration.userConfigLocation;
+                userConfigLocation = Configuration.userConfigLocation+Configuration.profileFileName;
                 logger.log(Level.INFO, "user configuration set to -> " + userConfigLocation);
             }
             else
@@ -45,6 +46,11 @@ public class FileRepo implements ProfileInterface {
     public static void destroy(){
         instance=null;
     }
+
+    private void createConfigFile() {
+
+
+    }
     
     
 
@@ -54,7 +60,9 @@ public class FileRepo implements ProfileInterface {
     public Supplier<ProfileDto> readFromProfile() {
         //todo implement
         logger.log(Level.INFO,"Not yet implemented yet -> FileRepo.readFromProfile()");
-        return null;
+        Supplier<ProfileDto> profileDtoSupplier = () -> new ProfileDto();
+
+        return profileDtoSupplier;
     }
 
     @Override
