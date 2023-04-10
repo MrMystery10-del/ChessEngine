@@ -1,6 +1,9 @@
 package bots.insane_bots_2000_9999;
 
 import bots.Bot;
+import bots.util.Move;
+import core.pojo.Board;
+import gui.inGameScreen.BoardGui;
 
 import java.awt.image.BufferedImage;
 
@@ -14,8 +17,8 @@ public class Markus implements Bot {
     private static final BufferedImage image = null;
 
     @Override
-    public byte[][] playNewMove(byte[][] board, boolean turn) {
-        return new byte[0][0];
+    public Move playNewMove(byte[][] board, boolean turn, BoardGui buttonBoard) {
+        return null;
     }
 
     @Override

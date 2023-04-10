@@ -3,9 +3,14 @@ package bots.low_bots_0_500;
 import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
+import core.pojo.Board;
+import gui.constants.PieceInfo;
+import gui.inGameScreen.BoardGui;
 import manage.Bots;
 import manage.ImageManager;
+import manage.Pieces;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,8 +33,7 @@ public class Bob implements Bot {
     private static final String algorithm = "Value Capture Algorithm";
     private static final BufferedImage image = ImageManager.getBotPicture(Bots.BOB);
 
-    @Override
-    public byte[][] playNewMove(byte[][] board, boolean isWhiteTurn) {
+    public Move playNewMove(byte[][] board, boolean isWhiteTurn, BoardGui buttonBoard) {
         // Initialize a list of possible moves
         List<Move> possibleMoves = new ArrayList<>();
 
@@ -46,7 +50,7 @@ public class Bob implements Bot {
 
         // If there are no possible moves, we've either checkmated or stalemated the opponent
         if (possibleMoves.isEmpty())
-            return board;
+            return null;
 
         Collections.shuffle(possibleMoves);
 
@@ -57,7 +61,7 @@ public class Bob implements Bot {
         Move selectedMove = possibleMoves.get(0);
 
         // Apply the selected move to the board and return the resulting state
-        return Util.applyMove(board, selectedMove);
+        return selectedMove;
     }
 
     @Override

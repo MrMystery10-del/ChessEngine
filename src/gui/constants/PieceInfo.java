@@ -37,4 +37,22 @@ public class PieceInfo {
     public void setSelectedButton(Block_Button selectedButton) {
         this.selectedButton = selectedButton;
     }
+    public boolean containsObj(Block_Button check){
+        boolean value=false;
+        try
+        {
+            if(this.highlightedButton.contains(check))
+            {
+                value = true;
+            }
+            else {
+                value = false;
+            }
+        }
+        catch(Exception e)
+        {
+            value = false;
+        }
+        return value;
+    }
 }

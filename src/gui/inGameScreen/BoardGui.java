@@ -1,10 +1,12 @@
 package gui.inGameScreen;
 
+import bots.Bot;
 import content.Label;
 import content.Screen;
 import core.Configuration;
 import core.pojo.Board;
 import gui.components.Block_Button;
+import gui.constants.MoveCounter;
 import gui.constants.PieceInfo;
 import gui.controllers.PieceController;
 import manage.ImageManager;
@@ -21,14 +23,16 @@ import java.awt.*;
  */
 public class BoardGui extends Screen {
 
+    private MoveCounter counter = new MoveCounter();
     private final Board board;
     private final JPanel boardPanel = new JPanel();
     public Block_Button[][] squares = new Block_Button[8][8];
     private PieceInfo info = new PieceInfo();
+    private Bot bot;
 
-    public BoardGui(int x, int y, int width, int height, Board board) {
+    public BoardGui(int x, int y, int width, int height, Board board,Bot bot) {
         this.board = board;
-
+        this.bot=bot;
         setBounds(x, y, width, height);
 
         boardPanel.setLayout(new BorderLayout(10, 10));
@@ -101,7 +105,7 @@ public class BoardGui extends Screen {
 
                 button.setColor(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
                 button.setBackground(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
-                button.addActionListener(new PieceController(button, board, this, info));
+                button.addActionListener(new PieceController(button, board, this, info,counter,bot));
                 button.setSize(80, 80);
 
                 centralSection.add(button);
