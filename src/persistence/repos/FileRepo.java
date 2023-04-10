@@ -58,7 +58,7 @@ public class FileRepo implements ProfileInterface {
 
     @Override
     public Supplier<ProfileDto> readFromProfile() {
-        //todo implement
+        //todo implement  ->  name, profile picture, id, email, elo, win rate, draw rate, achievements
         logger.log(Level.INFO,"Not yet implemented yet -> FileRepo.readFromProfile()");
         Supplier<ProfileDto> profileDtoSupplier = () -> new ProfileDto();
 
