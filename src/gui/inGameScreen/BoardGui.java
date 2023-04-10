@@ -1,12 +1,10 @@
 package gui.inGameScreen;
 
-import bots.util.Move;
 import content.Label;
 import content.Screen;
 import core.Configuration;
 import core.pojo.Board;
 import gui.components.Block_Button;
-
 import gui.constants.PieceInfo;
 import gui.controllers.PieceController;
 import manage.ImageManager;
@@ -23,11 +21,10 @@ import java.awt.*;
  */
 public class BoardGui extends Screen {
 
-    private PieceInfo info = new PieceInfo();
+    private final Board board;
     private final JPanel boardPanel = new JPanel();
     public Block_Button[][] squares = new Block_Button[8][8];
-
-    private final Board board;
+    private PieceInfo info = new PieceInfo();
 
     public BoardGui(int x, int y, int width, int height, Board board) {
         this.board = board;
@@ -41,33 +38,6 @@ public class BoardGui extends Screen {
         designBoard();
 
         add(boardPanel);
-    }
-
-    private Point selected;
-    private Move[] possiblePositions;
-
-    public void setSelected(int row, int col, Move[] moves) {
-        Point clicked = new Point(row, col);
-
-        if (clicked.equals(selected)) {
-            return;
-        } else {
-            if (selected != null)
-                squares[selected.x][selected.y].setBackground(squares[selected.x][selected.y].getColor());
-            if (possiblePositions != null)
-                for (int x = 0; x < possiblePositions.length; x++) {
-                    squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].setBackground(squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].getColor());
-                    if (possiblePositions[x].toRow() == clicked.x && possiblePositions[x].toCol() == clicked.y) {
-                        // TODO apply move and update gui
-                    }
-                }
-            selected = clicked;
-            possiblePositions = moves;
-        }
-
-        squares[selected.x][selected.y].setBackground(Color.RED);
-        for (int x = 0; x < possiblePositions.length; x++)
-            squares[possiblePositions[x].toCol()][possiblePositions[x].toRow()].setBackground(Color.BLUE);
     }
 
     /**
@@ -131,7 +101,7 @@ public class BoardGui extends Screen {
 
                 button.setColor(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
                 button.setBackground(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
-                button.addActionListener(new PieceController(button, board, this,info));
+                button.addActionListener(new PieceController(button, board, this, info));
                 button.setSize(80, 80);
 
                 centralSection.add(button);

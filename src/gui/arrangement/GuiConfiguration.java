@@ -7,15 +7,12 @@ import java.awt.*;
  */
 public class GuiConfiguration {
 
-    //title font
+    // title font
     public static Font bigFont = new Font("Arial", Font.BOLD, 90);
 
-    //sub title font
+    // sub title font
     public static Font regularTitleFont = new Font("Comic Sans MS", Font.BOLD, 40);
 
-    //regular font
+    // regular font
     public static Font regularFont = new Font("Comic Sans MS", Font.BOLD, 20);
-
-
-
 }

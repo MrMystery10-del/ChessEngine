@@ -26,8 +26,6 @@ public class PlayersGUI extends Screen {
         label2.setBounds(640, 0, 800, 200);
         label2.setFont(font);
         add(label2);
-
-
     }
 
     @Override

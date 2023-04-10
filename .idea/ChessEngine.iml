@@ -11,5 +11,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="NimbusUI_v0.0.2-beta" level="project" />
     <orderEntry type="library" exported="" name="JarLibrary" level="project" />
+    <orderEntry type="library" name="apiguardian-api-1.1.2" level="project" />
+    <orderEntry type="library" name="junit-jupiter-api-5.9.2" level="project" />
+    <orderEntry type="library" name="junit-platform-commons-1.9.2" level="project" />
+    <orderEntry type="library" name="opentest4j-1.2.0" level="project" />
   </component>
 </module>

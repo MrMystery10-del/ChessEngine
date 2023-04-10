@@ -20,14 +20,11 @@ public class ProfileGui extends JFrame {
 
     private List<JLabel>labels = List.of(profileLabel,userStats,details);
 
-
     public ProfileGui(){
         add(profilePane);
         setMinimumSize(new Dimension(800,800));
+
         labels.forEach(label->label.setFont(GuiConfiguration.regularFont));
         profileLabel.setFont(GuiConfiguration.regularTitleFont);
-
-
-
     }
 }

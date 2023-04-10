@@ -23,7 +23,6 @@ public class Core {
     private static final Logger logger = Logger.getLogger(Core.class.getName());
     public final static Frame frame = new Frame("ChessEngine");
 
-
     // Application start
     public static void main(String[] args) throws IOException {
         try {

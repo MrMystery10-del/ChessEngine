@@ -1,10 +1,9 @@
 package persistence;
 
-
 import persistence.repos.FileRepo;
 
-/** Profile repository
- *
+/**
+ * Profile repository
  */
 public class ProfileRepo {
 
@@ -12,26 +11,19 @@ public class ProfileRepo {
 
     private FileRepo fileRepo;
 
-
     private ProfileRepo() {
-        fileRepo=FileRepo.getInstance();
+        fileRepo = FileRepo.getInstance();
     }
 
     public static ProfileRepo getInstance() {
-        if (instance == null) {
-            instance = new ProfileRepo();
-        }
+        if (instance == null) instance = new ProfileRepo();
         return instance;
     }
 
     /**
      * destroy the singleton ( use for testing )
      */
-    public static void destroy(){
-        instance=null;
+    public static void destroy() {
+        instance = null;
     }
-
-
-
-
 }

@@ -1,22 +1,18 @@
 package gui.controllers;
 
 import core.pojo.Board;
-import core.pojo.pieces.Bishop;
-import core.pojo.Position;
 import gui.inGameScreen.BoardGui;
 import gui.inGameScreen.GameStateGui;
 import manage.ImageManager;
 import manage.Pieces;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Controls the active gui changes on board
+ */
 public class BoardGuiController {
 
     private final Board board;
@@ -46,7 +42,6 @@ public class BoardGuiController {
             }
     }
 
-
     /**
      * configure the controls on the gameStateDialog
      */
@@ -58,12 +53,13 @@ public class BoardGuiController {
         });
 
         gameStateGui.getLoadButton().setText("Force backend move");
-        gameStateGui.getLoadButton().addActionListener(e-> {
+        gameStateGui.getLoadButton().addActionListener(e -> {
             board.getNpcMove();
             logger.log(Level.INFO, "Asking the backend for a move TODO : REMOVE/ALTER");
         });
     }
 
+    // Converts all byte's on board to piece enums on board, used for getting images via ImageManager
     private Pieces[][] convertToPiece(byte[][] board) {
         Pieces[][] convertedBoard = new Pieces[8][8];
 

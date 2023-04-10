@@ -5,7 +5,6 @@ import bots.util.Move;
 import bots.util.Util;
 import manage.Bots;
 import manage.ImageManager;
-import manage.Pieces;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

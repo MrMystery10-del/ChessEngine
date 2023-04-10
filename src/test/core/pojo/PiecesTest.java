@@ -15,7 +15,6 @@ public class PiecesTest {
     private Piece pawn;
     private Piece queen;
 
-
     @BeforeEach
     void setup() {
         bishop = new Bishop();
@@ -35,7 +34,4 @@ public class PiecesTest {
         assertNotNull(pawn);
         assertNotNull(queen);
     }
-
 }
-
-
