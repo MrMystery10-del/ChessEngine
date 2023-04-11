@@ -30,7 +30,6 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
         if (i > 0) {
             side = true;
         }
-        System.out.println(board.getSide());
         return side;
     }
 
