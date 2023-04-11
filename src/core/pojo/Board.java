@@ -10,6 +10,8 @@ public class Board {
     private Player playerOne;
     private Player playerTwo;
 
+    private boolean side;
+
     public Board() {
         startNewBoard();
     }
@@ -33,6 +35,11 @@ public class Board {
                 {+1, +1, +1, +1, +1, +1, +1, +1},
                 {+4, +2, +3, +5, +6, +3, +2, +4}
         };
+        if(gameBoard[7][0]>0)
+        {
+            side = true;
+        }
+        else side = false;
         convertToPiece();
     }
 
@@ -54,5 +61,9 @@ public class Board {
 
     public void setValue(int row,int col,byte value){
         gameBoard[col][row]=value;
+    }
+
+    public boolean getSide() {
+        return side;
     }
 }

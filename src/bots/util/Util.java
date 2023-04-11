@@ -159,4 +159,17 @@ public class Util {
         }
         return moves;
     }
+
+    private static void checkCheckMate(int sign, byte[][] board) {
+        int rowKing;//row location of king
+        int colKing;//col location of king
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] == 6 * sign) {
+                    rowKing = i;
+                    colKing = j;
+                }
+            }
+        }
+    }
 }
