@@ -45,6 +45,12 @@ public abstract class MainMenu extends Screen {
         ai.setBounds(460, 600, 1000, 200);
         ai.addActionListener(event -> startedAI());
         add(ai, 1);
+        
+        Button settings = new Button(resourceBundle.getString("settings")); // create new button for settings
+        settings.setBounds(0, 120, 300, 100); // set position and size of the button
+        settings.addActionListener(event -> openSettings()); // add action listener for button click
+        add(settings, 1); // add the button to the screen
+        
     }
 
     /**
@@ -61,4 +67,9 @@ public abstract class MainMenu extends Screen {
      * This method gets executed when clicked on against AI button
      */
     public abstract void startedAI();
+    
+    /**
+     * This method gets executed when clicked on settings button
+     */
+    public abstract void openSettings();
 }
