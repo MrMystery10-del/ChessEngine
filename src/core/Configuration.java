@@ -15,7 +15,7 @@ public class Configuration {
 
     private static final Logger logger = Logger.getLogger(Configuration.class.getName());
     public static boolean startWithNewProfile = false;
-    public static String userConfigLocation = "";
+    public static String userConfigLocation = System.getProperty("user.home")+"/chessEngine";
     public static Color blackColor = Color.darkGray;
     public static Color whiteColor = Color.LIGHT_GRAY;
     public static String profileFileName = "user.profile";
