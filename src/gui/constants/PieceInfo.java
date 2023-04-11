@@ -37,20 +37,18 @@ public class PieceInfo {
     public void setSelectedButton(Block_Button selectedButton) {
         this.selectedButton = selectedButton;
     }
-    public boolean containsObj(Block_Button check){
-        boolean value=false;
-        try
-        {
-            if(this.highlightedButton.contains(check))
-            {
+
+    public boolean containsObj(Block_Button check) {
+        //CHECK if the list contains the button
+        //this method is necessary because it runs even when the list is empty
+        boolean value = false;
+        try {
+            if (this.highlightedButton.contains(check)) {
                 value = true;
-            }
-            else {
+            } else {
                 value = false;
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             value = false;
         }
         return value;

@@ -30,9 +30,9 @@ public class BoardGui extends Screen {
     private PieceInfo info = new PieceInfo();
     private Bot bot;
 
-    public BoardGui(int x, int y, int width, int height, Board board,Bot bot) {
+    public BoardGui(int x, int y, int width, int height, Board board, Bot bot) {
         this.board = board;
-        this.bot=bot;
+        this.bot = bot;
         setBounds(x, y, width, height);
 
         boardPanel.setLayout(new BorderLayout(10, 10));
@@ -105,7 +105,7 @@ public class BoardGui extends Screen {
 
                 button.setColor(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
                 button.setBackground(needsBlack ? Configuration.whiteColor : Configuration.blackColor);
-                button.addActionListener(new PieceController(button, board, this, info,counter,bot));
+                button.addActionListener(new PieceController(button, board, this, info, counter, bot));
                 button.setSize(80, 80);
 
                 centralSection.add(button);
