@@ -28,9 +28,9 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
             List<Block_Button> highlightedButtons = new ArrayList<>();
             List<Color> colors = new ArrayList<>();
 
-            for (int i = 0; i < possibleMoves.size(); i++) {
-                int row = possibleMoves.get(i).toRow();
-                int col = possibleMoves.get(i).toCol();
+            for (Move possibleMove : possibleMoves) {
+                int row = possibleMove.toRow();
+                int col = possibleMove.toCol();
                 colors.add(boardGui.getSquares()[col][row].getBackground());
                 highlightedButtons.add(boardGui.getSquares()[col][row]);
                 boardGui.getSquares()[col][row].setBackground(Color.BLUE);

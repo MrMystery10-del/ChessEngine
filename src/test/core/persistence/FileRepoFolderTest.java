@@ -21,7 +21,7 @@ public class FileRepoFolderTest {
         toCompare = "invalid location";
         Configuration.userConfigLocation = toCompare;
         assertEquals(toCompare, Configuration.userConfigLocation);
-        assertThrows(IllegalArgumentException.class, () -> FileRepo.getInstance());
+        assertThrows(IllegalArgumentException.class, FileRepo::getInstance);
         Configuration.userConfigLocation = "";
         FileRepo.getInstance();
     }

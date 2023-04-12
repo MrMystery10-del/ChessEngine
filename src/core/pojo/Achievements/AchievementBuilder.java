@@ -8,6 +8,6 @@ public class AchievementBuilder {
     List<Achievement> achievements;
 
     public AchievementBuilder() {
-        achievements = new ArrayList<Achievement>();
+        achievements = new ArrayList<>();
     }
 }

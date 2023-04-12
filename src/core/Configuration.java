@@ -1,13 +1,10 @@
 package core;
 
-import gui.controllers.BoardGuiController;
-
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toMap;
 
