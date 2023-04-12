@@ -46,7 +46,7 @@ public class FileRepoFolderTest {
         Path location = Path.of(Configuration.userConfigLocation+"/"+Configuration.profileFileName);
         Files.deleteIfExists(location);
         assertFalse(Files.exists(location));
-        repo.writeToProfile(new ProfileDto());
+        assertTrue(repo.writeToProfile(new ProfileDto()));
         assertTrue(Files.exists(location));
 
     }

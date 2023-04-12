@@ -17,4 +17,13 @@ public class AchievementDto {
         this.id = id;
         return this;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public AchievementDto setTitle(String title) {
+        this.title = title;
+        return this;
+    }
 }

@@ -3,7 +3,6 @@ package core.persistence;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-
 import core.TestValues;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,5 +53,8 @@ public class UnmarshallToDtoTest {
             assertEquals(TestValues.INT_ONE,dto.getUserId());
 
     }
+
+
+
 
 }
