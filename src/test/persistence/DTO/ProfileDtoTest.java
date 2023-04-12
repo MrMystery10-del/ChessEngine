@@ -23,7 +23,7 @@ class ProfileDtoTest {
 
     @Test
     void testUserName() {
-        assertEquals(null,toTest.getUserName());
+        assertNull(toTest.getUserName());
         toTest.setUserName(TestValues.STRING_ONE);
         assertEquals(TestValues.STRING_ONE, toTest.getUserName());
     }
