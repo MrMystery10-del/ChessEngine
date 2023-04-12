@@ -1,8 +1,6 @@
 package gui;
 
 import content.*;
-import content.Button;
-import content.Label;
 import gui.arrangement.GuiConfiguration;
 import manage.ImageManager;
 
