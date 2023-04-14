@@ -1,7 +1,5 @@
 package persistence.DTO;
 
-import core.pojo.Achievements.Achievement;
-
 import java.util.HashSet;
 import java.util.Set;
 

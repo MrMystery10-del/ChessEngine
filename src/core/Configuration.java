@@ -11,11 +11,22 @@ import static java.util.stream.Collectors.toMap;
 public class Configuration {
 
     private static final Logger logger = Logger.getLogger(Configuration.class.getName());
+
+    //client configurations
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = System.getProperty("user.home")+"/chessEngine";
+    public static String profileFileName = "user.profile";
+
+    //configuration toggle DB / File / Remote ?
+    public static boolean useFileRepo=true;
+    public static boolean useDataBaseRepo=false;
+
+    //startup piece colors
     public static Color blackColor = Color.darkGray;
     public static Color whiteColor = Color.LIGHT_GRAY;
-    public static String profileFileName = "user.profile";
+
+
+
 
 
     /**
@@ -71,6 +82,19 @@ public class Configuration {
                         logger.log(Level.SEVERE, "error in profile file name");
                     }
                 }
+                case "useDataBaseRepo" -> {
+                    useDataBaseRepo=true;
+                    useFileRepo=false;
+                    logger.info("CLI switch activated to use database repo");
+
+                }
+                case "useFileRepo" -> {
+                    useDataBaseRepo=false;
+                    useFileRepo=true;
+                    logger.info("CLI switch activated to file repo");
+
+                }
+
                 case "error" -> {
                     String error = "Error in command line switch";
                     System.out.println(error);
