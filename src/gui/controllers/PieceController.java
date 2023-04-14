@@ -120,8 +120,6 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
                 info.setSelectedButton(null);
                 resetValues();
             }
-        } else {
-            return;
         }
     }
 }

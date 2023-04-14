@@ -2,7 +2,6 @@ package bots.intermediate_bots_500_1000;
 
 import bots.Bot;
 import bots.util.Move;
-import core.pojo.Board;
 import gui.inGameScreen.BoardGui;
 
 import java.awt.image.BufferedImage;

@@ -3,14 +3,10 @@ package bots.low_bots_0_500;
 import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
-import core.pojo.Board;
-import gui.constants.PieceInfo;
 import gui.inGameScreen.BoardGui;
 import manage.Bots;
 import manage.ImageManager;
-import manage.Pieces;
 
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,10 +54,7 @@ public class Bob implements Bot {
         possibleMoves.sort((m1, m2) -> Integer.compare(Math.abs(m2.capturedPiece()), Math.abs(m1.capturedPiece())));
 
         // Select the move with the highest value capture (if any), or else just the first move in the list
-        Move selectedMove = possibleMoves.get(0);
-
-        // Apply the selected move to the board and return the resulting state
-        return selectedMove;
+        return possibleMoves.get(0);
     }
 
     @Override
