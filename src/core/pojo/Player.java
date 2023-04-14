@@ -16,7 +16,7 @@ public final class Player {
     // Image of the player/bot profile
     private final BufferedImage image;
     // Difficulty of the bot if player is bot
-    private Difficulty difficulty;
+    private final Difficulty difficulty;
     private String description;
     private int eloScore;
     private boolean bot;

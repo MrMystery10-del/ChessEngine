@@ -1,10 +1,14 @@
 package bots;
 
+import bots.util.Move;
+import core.pojo.Board;
+import gui.inGameScreen.BoardGui;
+
 import java.awt.image.BufferedImage;
 
 public interface Bot {
 
-    byte[][] playNewMove(byte[][] board, boolean turn);
+    Move playNewMove(byte[][] board, boolean turn, BoardGui buttonBoard);
 
     /**
      * @return the elo of the bot

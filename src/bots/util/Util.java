@@ -73,7 +73,7 @@ public class Util {
         }
 
         // Check for capturing to the right
-        newCol = col + (1 * sign);
+        newCol = col + (sign);
         newRow = row + (-1 * sign);
         if (isValidPosition(newRow, newCol)) {
             byte target_piece = board[newRow][newCol];
@@ -87,9 +87,9 @@ public class Util {
         List<Move> moves = new ArrayList<>();
 
         int[][] Moves = {{2, -1}, {2, 1}, {1, 2}, {1, -2}, {-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}};
-        for (int i = 0; i < Moves.length; i++) {
-            int newRow = row + (Moves[i][1] * sign);
-            int newCol = col + (Moves[i][0] * sign);
+        for (int[] move : Moves) {
+            int newRow = row + (move[1] * sign);
+            int newCol = col + (move[0] * sign);
 
             if (!isValidPosition(newRow, newCol)) continue;
 
@@ -122,10 +122,10 @@ public class Util {
         List<Move> moves = new ArrayList<>();
 
         int[][] Moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
-        for (int i = 0; i < Moves.length; i++) {
+        for (int[] move : Moves) {
 
-            int newRow = row + Moves[i][0];
-            int newCol = col + Moves[i][1];
+            int newRow = row + move[0];
+            int newCol = col + move[1];
 
             if (isValidPosition(newRow, newCol)) {
                 if (board[newRow][newCol] == 0)
@@ -141,10 +141,10 @@ public class Util {
     private static List<Move> getLongMoves(byte[][] board, int row, int col, int sign, int[][] lines) {
         List<Move> moves = new ArrayList<>();
 
-        for (int i = 0; i < lines.length; i++) {
+        for (int[] line : lines) {
 
-            int newRow = row + (lines[i][1] * sign);
-            int newCol = col + (lines[i][0] * sign);
+            int newRow = row + (line[1] * sign);
+            int newCol = col + (line[0] * sign);
 
             while (isValidPosition(newRow, newCol)) {
                 if (board[newRow][newCol] == 0)
@@ -153,10 +153,23 @@ public class Util {
                     moves.add(new Move(row, col, newRow, newCol, (byte) 1));
                     break;
                 } else break;
-                newRow += (lines[i][1] * sign);
-                newCol += (lines[i][0] * sign);
+                newRow += (line[1] * sign);
+                newCol += (line[0] * sign);
             }
         }
         return moves;
+    }
+
+    private static void checkCheckMate(int sign, byte[][] board) {
+        int rowKing;//row location of king
+        int colKing;//col location of king
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] == 6 * sign) {
+                    rowKing = i;
+                    colKing = j;
+                }
+            }
+        }
     }
 }

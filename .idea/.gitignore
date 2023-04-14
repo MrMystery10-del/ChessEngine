@@ -3,4 +3,5 @@
 /workspace.xml
 vcs.xml
 *.class
-src/core/Runner.java
+/Runner.java
+Runner.java

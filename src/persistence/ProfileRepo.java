@@ -9,7 +9,7 @@ public class ProfileRepo {
 
     private static ProfileRepo instance;
 
-    private FileRepo fileRepo;
+    private final FileRepo fileRepo;
 
     private ProfileRepo() {
         fileRepo = FileRepo.getInstance();
