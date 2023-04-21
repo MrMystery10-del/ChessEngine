@@ -33,10 +33,12 @@ public class BoardGuiController {
      * update the chessboard gui with the details from the Piece board
      */
     public void updateBoard() {
-        for (int j = 0; j < 8; j++)
-            for (int i = 0; i < 8; i++) {
-                var image = convertToPiece(board.getGameBoard())[i][j];
-                var update = gui.getSquares()[i][j];
+        for (int row = 0; row < 8; row++)
+            for (int col = 0; col < 8; col++) {
+
+                var image = convertToPiece(board.getGameBoard())[row][col];
+                var update = gui.getSquares()[col][row]; //this is flipped and I can't figure out why... too bad!
+
                 if (image != null)
                     update.setIcon(new ImageIcon(ImageManager.getPiece(image)));
             }
