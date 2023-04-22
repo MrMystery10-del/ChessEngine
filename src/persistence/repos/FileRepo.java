@@ -80,7 +80,9 @@ public class FileRepo implements ProfileInterface {
          .setDraw(0)
          .setEmailAddress("none@kn.own")
          .setLosses(0)
-         .addAchievement(new AchievementDto().setId(0).setTitle("new player"));
+         .addAchievement(new AchievementDto().setId(0).setTitle("new player"))
+         .setImage("not set yet");
+
          writeToProfile(dto);
 
     }

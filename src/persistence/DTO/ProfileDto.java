@@ -12,7 +12,9 @@ public class ProfileDto {
     private int wins;
     private int losses;
     private int draw;
+    private String image;
     private final Set<AchievementDto> achievements;
+
 
 
     //boilerplate
@@ -92,6 +94,15 @@ public class ProfileDto {
     public ProfileDto addAchievement(AchievementDto achievement) {
         achievements.add(achievement);
         return this;
+    }
+
+    public ProfileDto setImage(String image) {
+        this.image = image;
+        return this;
+    }
+
+    public String getImage() {
+        return image;
     }
 }
 

@@ -5,8 +5,10 @@ import content.Frame;
 import content.Screen;
 import gui.InGameScreen;
 import gui.MainMenu;
+import gui.controllers.ProfileController;
 import gui.profileScreen.ProfileMenu;
 import manage.ImageManager;
+import persistence.Persistence;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -25,14 +27,17 @@ public class Core {
 
     // Application start
     public static void main(String[] args) throws IOException {
+
         try {
             Configuration.parseCommandLine(args);
         } catch (IndexOutOfBoundsException exception) {
             cliError();
         }
 
+
         ImageManager.loadImages();
         selectCurrentScreen(SCREENS.MAIN_MENU);
+
     }
 
     // Select current screen which will be displayed on the frame
@@ -48,7 +53,7 @@ public class Core {
 
             @Override
             public void viewProfile() {
-                selectCurrentScreen(SCREENS.PROFILE_MENU);
+                startProfileMenu();
             }
 
             @Override
@@ -60,9 +65,8 @@ public class Core {
             public void startedAI() {
                 selectCurrentScreen(SCREENS.IN_GAME_SCREEN);
             }
-        }), PROFILE_MENU(() -> new ProfileMenu() {
-
         });
+
 
         final Supplier<Screen> content;
 
@@ -81,5 +85,14 @@ public class Core {
                 JOptionPane.ERROR_MESSAGE);
         logger.log(java.util.logging.Level.SEVERE, "Command line error has happened");
         exit(-1);
+    }
+
+    /**
+     * Starts the profile menu and couples with the persistence layer
+     */
+    private static void startProfileMenu(){
+        Persistence persistence=Persistence.getInstance();
+        ProfileMenu gui = new ProfileMenu();
+        new ProfileController(persistence,gui);
     }
 }

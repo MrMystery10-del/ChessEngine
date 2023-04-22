@@ -19,6 +19,7 @@ public class BoardGuiController {
     private final BoardGui gui;
     private final GameStateGui gameStateGui;
 
+
     private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
 
     public BoardGuiController(Board board, BoardGui gui, GameStateGui gameStateGui) {
@@ -38,6 +39,10 @@ public class BoardGuiController {
 
                 var image = convertToPiece(board.getGameBoard())[row][col];
                 var update = gui.getSquares()[col][row]; //this is flipped and I can't figure out why... too bad!
+
+                // -> its flipped because the insertion point was made in the wrong place
+                // the code to add pieces was inserted in the method that draws the chess board background
+                // it will get fixed at on point ;)
 
                 if (image != null)
                     update.setIcon(new ImageIcon(ImageManager.getPiece(image)));
