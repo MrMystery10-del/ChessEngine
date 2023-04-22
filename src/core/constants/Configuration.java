@@ -13,7 +13,7 @@ public class Configuration {
 
     private static final Logger logger = Logger.getLogger(BoardGuiController.class.getName());
     public static boolean startWithNewProfile = false;
-    public static String userConfigLocation = "";
+    public static String userConfigLocation = System.getProperty("user.home") + "/temp/chessEngine";
 
 
     /**

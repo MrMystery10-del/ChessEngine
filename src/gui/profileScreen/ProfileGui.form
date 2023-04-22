@@ -38,7 +38,9 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <hspacer id="aaf56">
             <constraints>
@@ -54,7 +56,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="bef39" class="javax.swing.JLabel" binding="userImage">
+          <component id="bef39" class="javax.swing.JLabel" binding="userImageLabel">
             <constraints border-constraint="Center"/>
             <properties>
               <horizontalAlignment value="0"/>
@@ -74,7 +76,7 @@
         <children>
           <component id="43ae6" class="javax.swing.JLabel" binding="details">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
               <horizontalAlignment value="2"/>
@@ -87,7 +89,9 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <hspacer id="41642">
             <constraints>
