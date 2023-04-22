@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
+
+    private static boolean whiteQueenCastle = true;
+    private static boolean whiteKingCastle = true;
+    private static boolean blackQueenCastle = true;
+    private static boolean blackKingCastle = true;
+
     private static boolean isValidPosition(int row, int col) {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
@@ -30,6 +36,8 @@ public class Util {
         List<Move> moves = new ArrayList<>();
         byte piece = board[row][col];
         int sign = (piece > 0) ? 1 : -1;
+
+        checkCastlingBools(board);
 
         // Check all possible moves for the piece, based on its type
         switch (Math.abs(piece)) {
@@ -135,6 +143,33 @@ public class Util {
             }
         }
 
+        //Black king and queen side castling check
+        if(sign == -1 && getBlackKingCastle()){
+            if(board[row][5] == 0 && board[row][6] == 0){
+                moves.add(new Move(row, col, row, 6, board[row][6]));
+            }
+        }
+
+        if(sign == -1 && getBlackQueenCastle()){
+            if(board[row][1] == 0 && board[row][2] == 0 && board[row][3] == 0){
+                moves.add(new Move(row, col, row, 2, board[row][2]));
+            }
+        }
+
+        //White king and queen side castling check
+        if(sign == 1 && getWhiteKingCastle()){
+            if(board[row][5] == 0 && board[row][6] == 0){
+                moves.add(new Move(row, col, row, 6, board[row][6]));
+            }
+        }
+
+        if(sign == 1 && getWhiteQueenCastle()){
+            if(board[row][1] == 0 && board[row][2] == 0 && board[row][3] == 0){
+                moves.add(new Move(row, col, row, 2, board[row][2]));
+            }
+        }
+
+
         return moves;
     }
 
@@ -158,6 +193,45 @@ public class Util {
             }
         }
         return moves;
+    }
+
+    public static boolean getWhiteQueenCastle() {return whiteQueenCastle;}
+
+    public static boolean getWhiteKingCastle() {return whiteKingCastle;}
+
+    public static boolean getBlackQueenCastle() {return blackQueenCastle;}
+
+    public static boolean getBlackKingCastle() {return blackKingCastle;}
+
+    public static void setWhiteQueenCastle(boolean value) {whiteQueenCastle = value;}
+
+    public static void setWhiteKingCastle(boolean value) {whiteKingCastle = value;}
+    public static void setBlackQueenCastle(boolean value) {blackQueenCastle = value;}
+
+    public static void setBlackKingCastle(boolean value) {blackKingCastle = value;}
+
+    private static void checkCastlingBools(byte[][] board){
+
+        int blackRow = 0;
+
+        if(board[blackRow][0] != -4){ setBlackQueenCastle(false);}
+        if(board[blackRow][7] != -4){ setBlackKingCastle(false);}
+
+        if(board[blackRow][4] != -6){
+            setBlackQueenCastle(false);
+            setBlackKingCastle(false);
+        }
+
+        int whiteRow = 7;
+
+        if(board[whiteRow][0] !=  4){ setWhiteQueenCastle(false);}
+        if(board[whiteRow][7] !=  4){ setWhiteKingCastle(false);}
+
+        if(board[whiteRow][4] !=  6){
+            setWhiteQueenCastle(false);
+            setWhiteKingCastle(false);
+        }
+
     }
 
     private static void checkCheckMate(int sign, byte[][] board) {

@@ -44,13 +44,40 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
         Move move = bot.playNewMove(board.getGameBoard(), false, boardGui);
 
         //gets icon of from move position
+
         Icon icon2 = boardGui.getSquares()[move.fromCol()][move.fromRow()].getIcon();
+
         board.updateBoard(Util.applyMove(board.getGameBoard(), move));
         //updates move
 
         //sets icon
         boardGui.getSquares()[move.toCol()][move.toRow()].setIcon(icon2);
         boardGui.getSquares()[move.fromCol()][move.fromRow()].setIcon(null);
+
+        // checks to see if the piece moved was a king, and if the move was a "castle"
+        if(board.getGameBoard()[move.toCol()][move.toRow()] == Math.abs(6) &&
+                                                Math.abs(move.fromCol() - move.toCol()) == 2){
+            int sign = -1;
+            // Queen side castle
+            if(move.toCol() == 2){
+                Icon icon1 = boardGui.getSquares()[0][move.fromRow()].getIcon();
+
+                boardGui.getSquares()[3][move.fromRow()].setIcon(icon1);
+                boardGui.getSquares()[0][move.fromRow()].setIcon(null);
+
+                board.setValue(3, move.fromRow(), (byte)(4*sign));
+                board.setValue(0, move.fromRow(), (byte)0);
+            // King side castle
+            } else if (move.toCol() == 6) {
+                Icon icon1 = boardGui.getSquares()[7][move.toRow()].getIcon();
+
+                boardGui.getSquares()[5][move.fromRow()].setIcon(icon1);
+                boardGui.getSquares()[7][move.fromRow()].setIcon(null);
+
+                board.setValue(5, move.fromRow(), (byte)(4*sign));
+                board.setValue(7, move.fromRow(), (byte)0);
+            }
+        }
     }
 
     public void highlightButtons(List<Move> possibleMoves) {
@@ -80,6 +107,32 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
         board.setValue(button.getRow(), button.getCol(), piece);
         //and the from position is set to 0
         board.setValue(info.getSelectedButton().getRow(), info.getSelectedButton().getCol(), (byte) 0);
+        // Checks if the piece being moved is a king and if the move is a "castle"
+        if(piece == 6 && Math.abs(button.getRow() - info.getSelectedButton().getRow()) == 2){
+            Move newMove = new Move(info.getSelectedButton().getCol(), info.getSelectedButton().getRow(),
+                    button.getCol(), button.getRow(), (byte)0);
+            int sign = 1;
+
+            // Queen side castle
+            if(newMove.toCol() == 2){
+                Icon icon1 = boardGui.getSquares()[0][newMove.toRow()].getIcon();
+
+                boardGui.getSquares()[3][newMove.fromRow()].setIcon(icon1);
+                boardGui.getSquares()[0][newMove.fromRow()].setIcon(null);
+
+                board.setValue(3, newMove.fromRow(), (byte)(4*sign));
+                board.setValue(0, newMove.fromRow(), (byte)0);
+                // King side castle
+            } else if (newMove.toCol() == 6) {
+                Icon icon1 = boardGui.getSquares()[7][newMove.fromRow()].getIcon();
+
+                boardGui.getSquares()[5][newMove.fromRow()].setIcon(icon1);
+                boardGui.getSquares()[7][newMove.fromRow()].setIcon(null);
+
+                board.setValue(5, newMove.fromRow(), (byte)(4*sign));
+                board.setValue(7, newMove.fromRow(), (byte)0);
+            }
+        }
         //it sets 'to position' button's icon to the 'from position' button's icon
         button.setIcon(icon);
         //it then sets 'from position' button's which is stored in 'info' icon to null
