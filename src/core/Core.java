@@ -1,5 +1,6 @@
 package core;
 
+import bots.intermediate_bots_500_1000.Ava;
 import bots.low_bots_0_500.Bob;
 import content.Frame;
 import content.Screen;
@@ -47,7 +48,7 @@ public class Core {
 
     // Constants of screens to select a screen
     private enum SCREENS {
-        IN_GAME_SCREEN(() -> new InGameScreen(new Bob()) {
+        IN_GAME_SCREEN(() -> new InGameScreen(new Ava()) {
 
         }), MAIN_MENU(() -> new MainMenu() {
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Bob implements Bot {
 
-    private static final int elo = 50;
+    private static final int elo = 100;
     private static final String name = "Bob";
     private static final String description = """
             Ahoy there, me mateys!
@@ -26,7 +26,7 @@ public class Bob implements Bot {
             for me blunders be just as likely to work in yer favor as they be to sink me ship.
             With a bit of hard work and some grog, I'll be ready to take on any scallywag who dares cross me path!
             """;
-    private static final String algorithm = "Value Capture Algorithm";
+    private static final String algorithm = "Value-capture-algorithm";
     private static final BufferedImage image = ImageManager.getBotPicture(Bots.BOB);
 
     public Move playNewMove(byte[][] board, boolean isWhiteTurn, BoardGui buttonBoard) {
