@@ -1,7 +1,0 @@
-package manage;
-
-public enum Pieces {
-    PAWN, BISHOP, KNIGHT, ROOK, QUEEN, KING,
-    PAWN_BLACK, BISHOP_BLACK, KNIGHT_BLACK, ROOK_BLACK, QUEEN_BLACK, KING_BLACK,
-    EMPTY
-}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="451.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.knightclient.core.controllers.DashBoard">
+   <children>
+      <Button fx:id="BotMatch" layoutX="172.0" layoutY="178.0" mnemonicParsing="false" onAction="#startBotMatch" prefHeight="95.0" prefWidth="322.0" text="PLAY" />
+   </children>
+</AnchorPane>
