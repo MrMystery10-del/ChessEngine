@@ -9,6 +9,12 @@ module com.knightclient.core {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
+    requires java.logging;
+    requires com.fasterxml.jackson.databind;
+    requires org.testng;
+    requires junit;
+    requires org.junit.jupiter.api;
 
     opens com.knightclient.core to javafx.fxml;
     exports com.knightclient.core;

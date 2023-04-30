@@ -14,7 +14,6 @@ public class Utility4Gui {
                 square.setPrefHeight(size);
                 square.setPrefWidth(size);
                 square.setStyle(needsBlack ? "-fx-background-color: white":"-fx-background-color: black");
-                square.
                 chessBoard.add(square,i,j);
                 needsBlack = !needsBlack;
             }
