@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0"
+      prefWidth="609.0" stylesheets="" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="gui.controllers.Start">
+   <effect>
+      <Blend/>
+   </effect>
+   <ImageView fx:id="logo" fitHeight="180.0" fitWidth="192.0" layoutX="-21.0" layoutY="12.0" pickOnBounds="true"
+              preserveRatio="true" x="50.0" y="21.0">
+      <Image url="@/images/Logo.png"/>
+   </ImageView>
+   <Label contentDisplay="CENTER" layoutX="231.0" layoutY="79.0" text="%currentClientName" textAlignment="CENTER">
+      <font>
+         <Font size="64.0"/>
+      </font>
+   </Label>
+</Pane>

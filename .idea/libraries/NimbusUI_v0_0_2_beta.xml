@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="NimbusUI_v0.0.2-beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/NimbusUI_v0.0.2-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,3 +1,7 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+vcs.xml
+*.class
+/Runner.java
+Runner.java

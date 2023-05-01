@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="772.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MatchPlace">
+   <GridPane fx:id="chessBoard" layoutX="52.0" layoutY="66.0" prefHeight="640.0" prefWidth="640.0"
+             AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="666.0"
+             AnchorPane.topAnchor="66.0">
+   </GridPane>
+   <VBox layoutX="919.0" prefHeight="772.0" prefWidth="439.0" AnchorPane.bottomAnchor="0.0"
+         AnchorPane.leftAnchor="919.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+</AnchorPane>
