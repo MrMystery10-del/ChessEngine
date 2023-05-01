@@ -57,7 +57,6 @@ public class Configuration {
 
                 }
                 case "profileFileName" -> {
-                    System.out.println("value=" + value);
                     //check on valid file name
                     var checker = "(?<seq>[a-zA-Z0-9_\\-\\(\\):])+(\\.+)+([a-zA-Z]{3,})";
                     if (value.matches(checker)) {

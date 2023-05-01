@@ -5,6 +5,7 @@ vcs.xml
 *.class
 /Runner.java
 Runner.java
+.class
 
 # Eclipse
 .classpath
