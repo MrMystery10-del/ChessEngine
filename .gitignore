@@ -1,1 +1,26 @@
 out
+# Default ignored files
+/shelf/
+/workspace.xml
+vcs.xml
+*.class
+/Runner.java
+Runner.java
+.class
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
