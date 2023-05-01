@@ -3,10 +3,13 @@ package gui.controllers;
 import core.Configuration;
 import gui.profileScreen.ProfileGui;
 import gui.profileScreen.ProfileMenu;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import persistence.DTO.ProfileDto;
 import persistence.Persistence;
 
 import javax.swing.*;
+import javax.swing.text.html.ImageView;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -17,6 +20,13 @@ public class ProfileController {
     private final Persistence persistence;
     private final ProfileGui gui;
     private ProfileDto dto;
+
+
+    @FXML
+    private TextField profileUserName;
+
+    @FXML
+    private ImageView profileImage;
 
     public ProfileController(Persistence persistence, ProfileMenu menu) {
         this.persistence = persistence;

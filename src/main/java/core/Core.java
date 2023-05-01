@@ -55,41 +55,7 @@ public class Core extends Application {
         primaryStage = stage;
     }
 
-    /*
-        // Constants of screens to select a screen
-        private enum SCREENS {
-            IN_GAME_SCREEN(() -> new InGameScreen(new Ava()) {
 
-            }), MAIN_MENU(() -> new MainMenu() {
-
-                @Override
-                public void viewProfile() {
-                    startProfileMenu();
-                }
-
-                @Override
-                public void startedMultiplayer() {
-                    selectCurrentScreen(SCREENS.IN_GAME_SCREEN);
-                }
-
-                @Override
-                public void startedAI() {
-                    selectCurrentScreen(SCREENS.IN_GAME_SCREEN);
-                }
-            });
-
-
-            final Supplier<Screen> content;
-
-            SCREENS(Supplier<Screen> content) {
-                this.content = content;
-            }
-
-            public Supplier<Screen> getContent() {
-                return content;
-            }
-        }
-    */
     private static void cliError() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("gui.translations.bundle", Locale.getDefault());
         JOptionPane.showMessageDialog(new JFrame(), resourceBundle.getString("cliError"), "Error",
@@ -101,7 +67,7 @@ public class Core extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //Locale locale_en_EN = new Locale("en", "EN");
+
         Locale currentLocale = Locale.getDefault();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("translations/bundle", currentLocale);
         logger.info("Translation bundle loaded");
@@ -113,7 +79,8 @@ public class Core extends Application {
         setPrimaryStage(stage);
         stage.setScene(new Scene(fxmlLoader.load()));
         //PROPERTIES
-        //todo -> true
+        //todo
+        stage.setTitle("Temporary bypass over login screen  from LordShadow");
         stage.setResizable(false);
         //stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();

@@ -1,6 +1,5 @@
 package core;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -20,10 +19,6 @@ public class Configuration {
     public static boolean useFileRepo = true;
     public static boolean useDataBaseRepo = false;
 
-    //startup piece colors
-    public static Color blackColor = Color.darkGray;
-    public static Color whiteColor = Color.LIGHT_GRAY;
-
 
     /**
      * Processes commandline arguments
@@ -34,9 +29,7 @@ public class Configuration {
 
 
         Map<String, String> commands = new HashMap<>();
-        commandLineOptions.forEach((a, b) ->
-
-                commands.put(a.toString(), b.toString()));
+        commandLineOptions.forEach((key, value) -> commands.put(key.toString(), value.toString()));
         processCommands(commands);
 
     }
@@ -49,9 +42,8 @@ public class Configuration {
     private static void processCommands(Map<String, String> commands) {
 
 
-
         commands.forEach((key, value) -> {
-            System.out.println(key+ " /" + value);
+
 
             switch (key) {
                 case "newProfile" -> {
@@ -65,9 +57,9 @@ public class Configuration {
 
                 }
                 case "profileFileName" -> {
-                    System.out.println("value="+value);
-
-                    var checker = "(?<seq>[a-zA-Z0-9_\\-\\(\\):])+(\\.{1,})+([a-zA-Z]{3,})";
+                    System.out.println("value=" + value);
+                    //check on valid file name
+                    var checker = "(?<seq>[a-zA-Z0-9_\\-\\(\\):])+(\\.+)+([a-zA-Z]{3,})";
                     if (value.matches(checker)) {
                         profileFileName = value;
                         logger.info("profile file name set to -> " + value);
@@ -77,7 +69,7 @@ public class Configuration {
 
                 }
                 case "useDataBaseRepo" -> {
-                    if(value.equals("true")) {
+                    if (value.equals("true")) {
                         useDataBaseRepo = true;
                         useFileRepo = false;
                         logger.info("CLI switch activated to use database repo");
@@ -85,7 +77,7 @@ public class Configuration {
 
                 }
                 case "useFileRepo" -> {
-                    if(value.equals("true")) {
+                    if (value.equals("true")) {
                         useDataBaseRepo = false;
                         useFileRepo = true;
                         logger.info("CLI switch activated to file repo");

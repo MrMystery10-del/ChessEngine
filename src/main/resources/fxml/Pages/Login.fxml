@@ -74,7 +74,7 @@
          </effect>
       </Button>
       <Hyperlink fx:id="signup" layoutX="28.0" layoutY="473.0" onAction="#switchToSignup"
-                 text="Don't have an account? Click here to create one! "/>
+                 text="%signUp"/>
    </AnchorPane>
    <AnchorPane prefHeight="503.0" prefWidth="508.0" style="-fx-background-image: Logo.png;"
                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="292.0"

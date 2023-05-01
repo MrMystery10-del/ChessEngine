@@ -14,6 +14,7 @@ public class ProfileDto {
     private int draw;
     private String image;
     private final Set<AchievementDto> achievements;
+    private int version;
 
 
 
@@ -103,6 +104,15 @@ public class ProfileDto {
 
     public String getImage() {
         return image;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public ProfileDto setVersion(int version) {
+        this.version = version;
+        return this;
     }
 }
 

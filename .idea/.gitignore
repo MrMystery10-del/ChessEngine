@@ -5,3 +5,20 @@ vcs.xml
 *.class
 /Runner.java
 Runner.java
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
