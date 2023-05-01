@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.Login">
+   <AnchorPane layoutX="508.0" prefHeight="510.0" prefWidth="292.0"
+               style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #000000 0.0%, #000001 100.0%);"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+      <TextField alignment="CENTER" layoutX="28.0" layoutY="162.0" prefHeight="34.0" prefWidth="244.0"
+                 promptText="%enterEmail" style="-fx-background-color: #ffffff;">
+         <font>
+            <Font name="Courier New" size="15.0"/>
+         </font>
+      </TextField>
+      <Label layoutX="67.0" layoutY="46.0" prefHeight="70.0" prefWidth="164.0" text="Login" textAlignment="CENTER"
+             textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="384.0" AnchorPane.leftAnchor="67.0"
+             AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="46.0">
+         <font>
+            <Font name="Courier New" size="51.0"/>
+         </font>
+      </Label>
+      <PasswordField alignment="CENTER" layoutX="28.0" layoutY="221.0" prefHeight="34.0" prefWidth="244.0"
+                     promptText="%enterPassword" style="-fx-background-color: #ffffff;">
+         <font>
+            <Font name="Courier New" size="15.0"/>
+         </font>
+      </PasswordField>
+      <Button fx:id="login" contentDisplay="CENTER" layoutX="77.0" layoutY="284.0" mnemonicParsing="false"
+              onAction="#onLogin" prefHeight="46.0" prefWidth="146.0"
+              style="-fx-border-color: #514c4c; -fx-background-color: #c3bebe;" text="%loginLabel"
+              textFill="#514c4c">
+         <font>
+            <Font name="Courier New Bold" size="24.0"/>
+         </font>
+         <effect>
+            <Blend/>
+         </effect>
+      </Button>
+      <Button fx:id="chessLogin" contentDisplay="CENTER" layoutX="48.0" layoutY="399.0" mnemonicParsing="false"
+              onAction="#onChessLogin" prefHeight="28.0" prefWidth="204.0"
+              style="-fx-border-color: #514c4c; -fx-background-color: #c3bebe;" text="%chessComLogin"
+              textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Courier New Bold" size="14.0"/>
+         </font>
+         <effect>
+            <Blend/>
+         </effect>
+      </Button>
+      <Button fx:id="googleLogin" contentDisplay="CENTER" layoutX="48.0" layoutY="437.0" mnemonicParsing="false"
+              onAction="#ongoogleLogin" prefHeight="28.0" prefWidth="204.0"
+              style="-fx-border-color: #514c4c; -fx-background-color: #c3bebe;" text="%GoogleLogin"
+              textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Courier New Bold" size="14.0"/>
+         </font>
+         <effect>
+            <Blend/>
+         </effect>
+      </Button>
+      <Button fx:id="lichessLogin" contentDisplay="CENTER" layoutX="48.0" layoutY="363.0" mnemonicParsing="false"
+              onAction="#onLichessLogin" prefHeight="28.0" prefWidth="204.0"
+              style="-fx-border-color: #514c4c; -fx-background-color: #c3bebe;" text="%lichessLogin"
+              textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Courier New Bold" size="14.0"/>
+         </font>
+         <effect>
+            <Blend/>
+         </effect>
+      </Button>
+      <Hyperlink fx:id="signup" layoutX="28.0" layoutY="473.0" onAction="#switchToSignup"
+                 text="Don't have an account? Click here to create one! "/>
+   </AnchorPane>
+   <AnchorPane prefHeight="503.0" prefWidth="508.0" style="-fx-background-image: Logo.png;"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="292.0"
+               AnchorPane.topAnchor="0.0"/>
+</AnchorPane>
