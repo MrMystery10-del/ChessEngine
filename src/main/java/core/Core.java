@@ -26,9 +26,9 @@ public class Core extends Application {
 
     // Application start
     public static void main(String[] args) throws IOException {
+        //pre-gui code execution
         Persistence.getInstance();
         logger.info("-- Main start -- ");
-
         //read application.properties -> cli overwrite or pom default
         java.io.InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties");
         Properties props = new Properties();
@@ -67,15 +67,16 @@ public class Core extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        //Gui starts here
 
-        Locale currentLocale = Locale.getDefault();
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("translations/bundle", currentLocale);
+
+
         logger.info("Translation bundle loaded");
 
 
         /*PS use fxml files only for gui construction*/
         //LOADING FXML FILES
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Pages/DashBoard.fxml"), resourceBundle);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Pages/DashBoard.fxml"), Configuration.resourceBundle);
         setPrimaryStage(stage);
         stage.setScene(new Scene(fxmlLoader.load()));
         //PROPERTIES

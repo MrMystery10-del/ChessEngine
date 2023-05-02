@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ProfileFXController">
    <children>
       <Separator layoutX="389.0" layoutY="399.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Separator layoutX="509.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <BorderPane layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="512.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="0.0">
          <center>
-            <ImageView fx:id="profileImage" fitHeight="336.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="336.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <effect>
                   <Shadow />
                </effect>
@@ -32,7 +21,7 @@
       </BorderPane>
       <TabPane layoutX="509.0" layoutY="41.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="512.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="\\%profileDetailsLabel">
+          <Tab text="%profileDetailsLabel">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -42,13 +31,13 @@
                                  <children>
                                     <VBox layoutX="41.0" layoutY="145.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                        <children>
-                                          <TextField promptText="\\%profileUserName" />
-                                          <TextField text="\%emailAddress">
+                                          <TextField promptText="%profileUserName" />
+                                          <TextField text="%emailAddress">
                                              <VBox.margin>
                                                 <Insets top="15.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <TextField promptText="\%eloRating">
+                                          <TextField promptText="%eloRating">
                                              <VBox.margin>
                                                 <Insets top="15.0" />
                                              </VBox.margin>
@@ -82,7 +71,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="\\%achievementsLabel">
+          <Tab text="%achievementsLabel">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -108,27 +97,27 @@
                         <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <TextField promptText="\%overviewLabel">
+                        <TextField promptText="%overviewLabel">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField promptText="\%totalWins">
+                        <TextField promptText="%totalWins">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField promptText="\%totalLosses">
+                        <TextField promptText="%totalLosses">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField promptText="\%totalDraws">
+                        <TextField promptText="%totalDraws">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField promptText="\%winLossRatio" />
+                        <TextField promptText="%winLossRatio" />
                      </children>
                   </VBox>
                </children>

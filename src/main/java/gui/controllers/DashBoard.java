@@ -1,6 +1,7 @@
 package gui.controllers;
 
 
+import core.Configuration;
 import core.Core;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,22 +18,58 @@ public class DashBoard {
     @FXML
     private Button BotMatch;
 
-    public void switchScenes() throws Exception
+    @FXML
+    private Button profileShortcut;
+    @FXML
+    private Button dashBoardShortcut;
+    @FXML
+    private Button loginShortcut;
+    @FXML
+    private Button signupShortcut;
+
+
+    public void switchScenes(String fxmlName) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Pages/MatchPlace.fxml"));
+        String location = "/fxml/Pages/" + fxmlName;
+        if(!location.endsWith(".fxml")){
+            location+=".fxml";}
+
+
+        Parent root = FXMLLoader.load(getClass().getResource(location), Configuration.resourceBundle);
         Stage window = Core.getStage();
-        window.setScene(new Scene(root,800,500));
+        window.setScene(new Scene(root,1024,800));
         window.hide();
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
         window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
         window.show();
-        window.setMaximized(true);
+        window.setMaximized(false);
     }
 
     @FXML
     void startBotMatch(ActionEvent event) throws Exception{
-        switchScenes();
+        switchScenes("MatchPlace");
     }
 
+    @FXML
+    void swapToProfilePage(ActionEvent event) throws Exception{
+        switchScenes("ProfilePage");
+
+    }
+
+    @FXML
+    public void swapToDashboardPage(ActionEvent actionEvent) throws Exception{
+        switchScenes("Start");
+    }
+
+
+    @FXML
+    public void swapToLoginPage(ActionEvent actionEvent) throws Exception{
+        switchScenes("Login");
+    }
+
+    @FXML
+    public void swapToSignupPage(ActionEvent actionEvent) throws Exception{
+        switchScenes("Signup");
+    }
 }

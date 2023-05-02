@@ -4,6 +4,7 @@ import core.Configuration;
 import gui.profileScreen.ProfileGui;
 import gui.profileScreen.ProfileMenu;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import persistence.DTO.ProfileDto;
 import persistence.Persistence;
@@ -23,10 +24,18 @@ public class ProfileController {
 
 
     @FXML
-    private TextField profileUserName;
-
+    private TextField profileElo;
     @FXML
-    private ImageView profileImage;
+    private TextField totalWins;
+    @FXML
+    private TextField totalLosses;
+    @FXML
+    private TextField totalDraws;
+    @FXML
+    private ProgressBar winLossRatio;
+
+
+    public void init(){}
 
     public ProfileController(Persistence persistence, ProfileMenu menu) {
         this.persistence = persistence;

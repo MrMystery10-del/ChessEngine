@@ -1,8 +1,6 @@
 package core;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +16,9 @@ public class Configuration {
     //configuration toggle DB / File / Remote ?
     public static boolean useFileRepo = true;
     public static boolean useDataBaseRepo = false;
+
+   //global access
+    public final static ResourceBundle resourceBundle = ResourceBundle.getBundle("translations/bundle", Locale.getDefault());
 
 
     /**
