@@ -9,10 +9,10 @@ import java.util.Properties;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
+        // Configuration.startWithNewProfile = true;
+        // Configuration.userConfigLocation = System.getProperty("user.home") + "/temp/chessEngine";
+        // FileRepo repo = FileRepo.getInstance();
 
-        //Configuration.startWithNewProfile = true;
-        //Configuration.userConfigLocation = System.getProperty("user.home") + "/temp/chessEngine";
-        //FileRepo repo = FileRepo.getInstance();
         Path location = Path.of(Configuration.userConfigLocation + "/"+ Configuration.profileFileName);
 
         Properties props = new Properties();
@@ -22,10 +22,5 @@ public class Runner {
 
         FileRepo repo = FileRepo.getInstance();
         System.out.println(repo.readFromProfile().getUserName());
-
-
     }
-
-
-
 }

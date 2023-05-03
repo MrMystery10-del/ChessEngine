@@ -17,11 +17,10 @@ public class DashBoard {
     @FXML
     private Button BotMatch;
 
-    public void switchScenes() throws Exception
-    {
+    public void switchScenes() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Pages/MatchPlace.fxml"));
         Stage window = Core.getStage();
-        window.setScene(new Scene(root,800,500));
+        window.setScene(new Scene(root, 800, 500));
         window.hide();
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
@@ -31,8 +30,7 @@ public class DashBoard {
     }
 
     @FXML
-    void startBotMatch(ActionEvent event) throws Exception{
+    void startBotMatch(ActionEvent event) throws Exception {
         switchScenes();
     }
-
 }

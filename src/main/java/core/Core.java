@@ -40,11 +40,8 @@ public class Core extends Application {
             cliError();
         }
 
-
         //start GUI
         launch();
-
-
     }
 
     public static Stage getStage() {

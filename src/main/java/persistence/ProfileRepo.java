@@ -18,7 +18,6 @@ public class ProfileRepo implements ProfileInterface {
     //private final DatabaseRepo databaseRepo = DatabaseRepo.getInstance();
     private ProfileInterface source;
 
-
     private ProfileRepo() {
         if (Configuration.useDataBaseRepo) {
             //todo -> Database Repo
@@ -33,7 +32,6 @@ public class ProfileRepo implements ProfileInterface {
             logger.finest("Repo source set to file Repo");
             source = fileRepo;
         }
-
     }
 
     public static ProfileRepo getInstance() {
@@ -47,7 +45,6 @@ public class ProfileRepo implements ProfileInterface {
     public static void destroy() {
         instance = null;
     }
-
 
     @Override
     public ProfileDto readFromProfile() {

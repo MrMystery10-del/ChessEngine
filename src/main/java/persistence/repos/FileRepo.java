@@ -20,13 +20,12 @@ public class FileRepo implements ProfileInterface {
     private static FileRepo instance;
     private String userConfigLocation;
 
-
-
-    //private constructor -> do NOT change access
+    // private constructor -> do NOT change access
     private FileRepo() {
-
         userConfigLocation = System.getProperty("user.home");
+
         if (!Configuration.userConfigLocation.isEmpty()) {
+
             //check if ends on forward slash
             if (Configuration.userConfigLocation.contains("/")) {
                 if (!userConfigLocation.endsWith("/")) {
@@ -57,11 +56,15 @@ public class FileRepo implements ProfileInterface {
     @Override
     public ProfileDto readFromProfile() {
         checkForProfileFile();
-        if(Configuration.startWithNewProfile){createNewProfile();}
-        ProfileDto dto=new ProfileDto();
+        if (Configuration.startWithNewProfile) {
+            createNewProfile();
+        }
+
+        ProfileDto dto = new ProfileDto();
         ObjectMapper mapper = new ObjectMapper();
+
         try {
-            dto=mapper.readValue( new File(userConfigLocation), ProfileDto.class);
+            dto = mapper.readValue(new File(userConfigLocation), ProfileDto.class);
         } catch (IOException e) {
             logger.severe("Failure while reading from profile");
             logger.severe(e.getMessage());
@@ -74,17 +77,16 @@ public class FileRepo implements ProfileInterface {
      */
     private void createNewProfile() {
         ProfileDto dto = new ProfileDto();
-         dto.setUserName("new user")
-         .setUserId(0)
-         .setElo(0)
-         .setDraw(0)
-         .setEmailAddress("none@kn.own")
-         .setLosses(0)
-         .addAchievement(new AchievementDto().setId(0).setTitle("new player"))
-         .setImage("not set yet");
+        dto.setUserName("new user")
+                .setUserId(0)
+                .setElo(0)
+                .setDraw(0)
+                .setEmailAddress("none@kn.own")
+                .setLosses(0)
+                .addAchievement(new AchievementDto().setId(0).setTitle("new player"))
+                .setImage("not set yet");
 
-         writeToProfile(dto);
-
+        writeToProfile(dto);
     }
 
     @Override
@@ -111,14 +113,13 @@ public class FileRepo implements ProfileInterface {
     private void checkForProfileFile() {
         Path location = Paths.get(userConfigLocation);
         try {
-
             if (Configuration.startWithNewProfile) {
-
                 logger.info("CLI option activated to erase previous profile");
 
                 if (Files.deleteIfExists(location)) {
                     logger.log(Level.INFO, "Previous profile file erased");
                 }
+
                 logger.info("checking directory of ->" + location.getParent());
                 Files.createDirectories(location.getParent());
                 Files.createFile(location);
@@ -126,6 +127,5 @@ public class FileRepo implements ProfileInterface {
         } catch (IOException e) {
             logger.severe("Error on profile file checking");
         }
-
     }
 }

@@ -15,14 +15,12 @@ public class Configuration {
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = System.getProperty("user.home") + "/temp/chessEngine";
 
-
     /**
      * Processes commandline arguments
      *
      * @param commandLineOptions list of arguments places on commandline
      */
     public static void parseCommandLine(String[] commandLineOptions) throws IndexOutOfBoundsException {
-
         // replace \ with /
         // remove -*/ as initial letter,
         // add a secondary string if non-present
@@ -35,17 +33,15 @@ public class Configuration {
                 .map(str -> str.split("="))
                 .collect(toMap(str -> str[0], str -> str[1]));
 
-
         processCommands(commands);
-
     }
 
     /**
      * process the formatted list of arguments
+     *
      * @param commands list of command line arguments
      */
     private static void processCommands(Map<String, String> commands) {
-
         commands.forEach((key, value) -> {
             switch (key) {
                 case "newProfile" -> {
@@ -61,10 +57,7 @@ public class Configuration {
                     System.out.println(error);
                     logger.log(Level.SEVERE, error);
                 }
-
             }
-
         });
-
     }
 }

@@ -1,12 +1,9 @@
 package gui.profileScreen;
 
-
-
 /**
  * This class represent the profile menu when clicking on profile when in main menu
  */
-public class ProfileMenu  {
-
+public class ProfileMenu {
 
     private final ProfileGui gui;
 

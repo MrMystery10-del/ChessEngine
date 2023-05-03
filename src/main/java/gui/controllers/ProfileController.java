@@ -32,7 +32,6 @@ public class ProfileController {
         logger.finest("reading initial dataset from profile source");
         dto = persistence.readFromProfile();
         checkForProfile();
-
     }
 
     /**
@@ -43,9 +42,7 @@ public class ProfileController {
             logger.info("New user detected, creating profile");
             Configuration.startWithNewProfile = true;
             dto = persistence.readFromProfile();
-
         }
-
     }
 
 
@@ -56,52 +53,41 @@ public class ProfileController {
             gui.getUserImage().setIcon(image);
             gui.getUserImage().updateUI();
         }
-
         updateUserDetails();
         updateUserStats();
-
-
     }
 
     //@formatter:off
     private void updateUserDetails() {
         String details =
-                 resourceBundle.getString("profileUserName") + reformat(dto.getUserName())
-                +resourceBundle.getString("emailAddress") + reformat(dto.getEmailAddress())
-                +resourceBundle.getString("eloRating") + reformat(dto.getElo())
-                +"\n"
-                +resourceBundle.getString("achievements") + reformat("")
-                +
-                "- To be designed -";
+                resourceBundle.getString("profileUserName") + reformat(dto.getUserName())
+                        + resourceBundle.getString("emailAddress") + reformat(dto.getEmailAddress())
+                        + resourceBundle.getString("eloRating") + reformat(dto.getElo())
+                        + "\n"
+                        + resourceBundle.getString("achievements") + reformat("")
+                        +
+                        "- To be designed -";
 
         gui.getDetailTextPane().setText(details);
-
     }
 
     private void updateUserStats() {
         double winLoss;
         try {
-            winLoss = ((double)dto.getWins() / ((dto.getLosses() + (double)dto.getWins()) / 100));
-        }
-        catch (ArithmeticException e){
+            winLoss = ((double) dto.getWins() / ((dto.getLosses() + (double) dto.getWins()) / 100));
+        } catch (ArithmeticException e) {
             //division by zero
             winLoss = 0D;
         }
-
         String details =
-                 resourceBundle.getString("totalWins") + reformat(dto.getWins())
-                +resourceBundle.getString("totalLosses") + reformat(dto.getLosses())
-                +resourceBundle.getString("totalDraws") + reformat(dto.getDraw())
-                +"\n"
-                +resourceBundle.getString("winLossRatio") + " : "+  winLoss + "%"
-                ;
-
+                resourceBundle.getString("totalWins") + reformat(dto.getWins())
+                        + resourceBundle.getString("totalLosses") + reformat(dto.getLosses())
+                        + resourceBundle.getString("totalDraws") + reformat(dto.getDraw())
+                        + "\n"
+                        + resourceBundle.getString("winLossRatio") + " : " + winLoss + "%";
 
         gui.getOverviewTextPane().setText(details);
     }
-
-
-    //@formatter:on
 
     /**
      * prepends the String with " : " and adds a new line to end

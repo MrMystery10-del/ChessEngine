@@ -1,7 +1,6 @@
 package core.pojo;
 
 
-
 import core.constants.Difficulty;
 
 import java.awt.image.BufferedImage;
@@ -24,7 +23,7 @@ public final class Player {
     /**
      * Constructs a new Player (human or bot)
      *
-     * @param name name of the player
+     * @param name  name of the player
      * @param image profile image of the player
      */
     public Player(String name, BufferedImage image) {
@@ -43,17 +42,15 @@ public final class Player {
     /**
      * Returns a new instance of Player representing a bot
      *
-
      * @param eloScore    elo score of the bot
      * @param description description of the bot
      */
-    public void asBot( int eloScore, String description) {
+    public void asBot(int eloScore, String description) {
         // return a new player does not set this instance as bot
         //return new Player(name, image, true, difficulty, eloScore, description);
-        bot=true;
-        this.eloScore=eloScore;
-        this.description=description;
-
+        bot = true;
+        this.eloScore = eloScore;
+        this.description = description;
     }
 
     public String getName() {

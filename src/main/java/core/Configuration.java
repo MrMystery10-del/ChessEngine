@@ -11,12 +11,12 @@ public class Configuration {
 
     private static final Logger logger = Logger.getLogger(Configuration.class.getName());
 
-    //client configurations
+    // client configurations
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = System.getProperty("user.home") + "/chessEngine";
     public static String profileFileName = "user.profile";
 
-    //configuration toggle DB / File / Remote ?
+    // configuration toggle DB / File / Remote ?
     public static boolean useFileRepo = true;
     public static boolean useDataBaseRepo = false;
 
@@ -31,14 +31,10 @@ public class Configuration {
      * @param commandLineOptions list of arguments places on commandline
      */
     public static void parseCommandLine(Properties commandLineOptions) throws IndexOutOfBoundsException {
-
-
         Map<String, String> commands = new HashMap<>();
-        commandLineOptions.forEach((a, b) ->
+        commandLineOptions.forEach((a, b) -> commands.put(a.toString(), b.toString()));
 
-                commands.put(a.toString(), b.toString()));
         processCommands(commands);
-
     }
 
     /**
@@ -47,25 +43,20 @@ public class Configuration {
      * @param commands list of command line arguments
      */
     private static void processCommands(Map<String, String> commands) {
-
-
-
         commands.forEach((key, value) -> {
-            System.out.println(key+ " /" + value);
+            System.out.println(key + " /" + value);
 
             switch (key) {
                 case "newProfile" -> {
                     startWithNewProfile = true;
                     logger.info("new profile option given on command line");
-
                 }
                 case "profileDirectory" -> {
                     userConfigLocation = value;
                     logger.info("profile directory set on command line -> " + userConfigLocation);
-
                 }
                 case "profileFileName" -> {
-                    System.out.println("value="+value);
+                    System.out.println("value=" + value);
 
                     var checker = "(?<seq>[a-zA-Z0-9_\\-\\(\\):])+(\\.{1,})+([a-zA-Z]{3,})";
                     if (value.matches(checker)) {
@@ -77,30 +68,25 @@ public class Configuration {
 
                 }
                 case "useDataBaseRepo" -> {
-                    if(value.equals("true")) {
+                    if (value.equals("true")) {
                         useDataBaseRepo = true;
                         useFileRepo = false;
                         logger.info("CLI switch activated to use database repo");
                     }
-
                 }
                 case "useFileRepo" -> {
-                    if(value.equals("true")) {
+                    if (value.equals("true")) {
                         useDataBaseRepo = false;
                         useFileRepo = true;
                         logger.info("CLI switch activated to file repo");
                     }
                 }
-
                 case "error" -> {
                     String error = "Error in command line switch";
                     System.out.println(error);
                     logger.log(Level.SEVERE, error);
                 }
-
             }
-
         });
-
     }
 }

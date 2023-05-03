@@ -8,9 +8,9 @@ import javafx.scene.layout.GridPane;
 public class MatchPlace {
     @FXML
     GridPane chessBoard;
-    public void initialize()
-    {
+
+    public void initialize() {
         Utility4Gui util = new Utility4Gui();
-        util.makeBoard(chessBoard,80);
+        util.makeBoard(chessBoard, 80);
     }
 }

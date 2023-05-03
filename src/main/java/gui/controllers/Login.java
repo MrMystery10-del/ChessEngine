@@ -46,5 +46,4 @@ public class Login {
     void switchToSignup(ActionEvent event) {
 
     }
-
 }
