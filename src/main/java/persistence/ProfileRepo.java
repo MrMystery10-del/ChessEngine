@@ -14,7 +14,7 @@ public class ProfileRepo implements ProfileInterface {
 
     private static final Logger logger = Logger.getLogger(FileRepo.class.getName());
     private static ProfileRepo instance;
-    private ProfileInterface source;
+    private ProfileInterface source = FileRepo.getInstance();
 
 
     private ProfileRepo() {

@@ -18,28 +18,10 @@ public class FileRepo implements ProfileInterface {
 
     private static final Logger logger = Logger.getLogger(FileRepo.class.getName());
     private static FileRepo instance;
-    private String userConfigLocation;
 
 
-
-    //private constructor -> do NOT change access
+    // private constructor -> do NOT change access
     private FileRepo() {
-
-        userConfigLocation = System.getProperty("user.home");
-        if (!Configuration.userConfigLocation.isEmpty()) {
-            //check if ends on forward slash
-            if (Configuration.userConfigLocation.contains("/")) {
-                if (!userConfigLocation.endsWith("/")) {
-                    Configuration.userConfigLocation = Configuration.userConfigLocation + "/";
-                }
-                userConfigLocation = Configuration.userConfigLocation + Configuration.profileFileName;
-                logger.info("user configuration set to -> " + userConfigLocation);
-                checkForProfileFile();
-            } else {
-                logger.severe("Invalid file path set");
-                throw new IllegalArgumentException("User configuration path is not valid");
-            }
-        }
     }
 
     public static FileRepo getInstance() {
@@ -56,12 +38,17 @@ public class FileRepo implements ProfileInterface {
 
     @Override
     public ProfileDto readFromProfile() {
+
         checkForProfileFile();
-        if(Configuration.startWithNewProfile){createNewProfile();}
-        ProfileDto dto=new ProfileDto();
+        if (Configuration.startWithNewProfile) {
+            createNewProfile();
+        }
+
+        ProfileDto dto = new ProfileDto();
         ObjectMapper mapper = new ObjectMapper();
+
         try {
-            dto=mapper.readValue( new File(userConfigLocation), ProfileDto.class);
+            dto = mapper.readValue(new File(Configuration.userConfigLocation + Configuration.profileFileName), ProfileDto.class);
         } catch (IOException e) {
             logger.severe("Failure while reading from profile");
             logger.severe(e.getMessage());
@@ -74,27 +61,28 @@ public class FileRepo implements ProfileInterface {
      */
     private void createNewProfile() {
         ProfileDto dto = new ProfileDto();
-         dto.setUserName("new user")
-         .setUserId(0)
-         .setElo(0)
-         .setDraw(0)
-         .setEmailAddress("none@kn.own")
-         .setLosses(0)
-         .addAchievement(new AchievementDto().setId(0).setTitle("new player"))
-         .setImage("not set yet");
+        dto.setUserName("new user")
+                .setUserId(0)
+                .setElo(0)
+                .setDraw(0)
+                .setEmailAddress("none@kn.own")
+                .setLosses(0)
+                .addAchievement(new AchievementDto().setId(0).setTitle("new player"))
+                .setImage("not set yet")
+                .setVersion(0);
 
-         writeToProfile(dto);
 
+        writeToProfile(dto);
     }
 
     @Override
     public boolean writeToProfile(ProfileDto dto) {
         checkForProfileFile();
-
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            objectMapper.writeValue(new File(userConfigLocation), dto);
+
+            objectMapper.writeValue(new File(Configuration.userConfigLocation + Configuration.profileFileName), dto);
         } catch (IOException e) {
             logger.severe("Failure to write to profile file");
             logger.severe(e.getMessage());
@@ -109,23 +97,26 @@ public class FileRepo implements ProfileInterface {
      * Detection and creation of the profile file
      */
     private void checkForProfileFile() {
-        Path location = Paths.get(userConfigLocation);
+
+        Path location = Paths.get(Configuration.userConfigLocation + "/" + Configuration.profileFileName);
         try {
-
             if (Configuration.startWithNewProfile) {
-
                 logger.info("CLI option activated to erase previous profile");
 
                 if (Files.deleteIfExists(location)) {
                     logger.log(Level.INFO, "Previous profile file erased");
                 }
+
                 logger.info("checking directory of ->" + location.getParent());
                 Files.createDirectories(location.getParent());
                 Files.createFile(location);
             }
+            if (!Files.exists(Path.of(Configuration.userConfigLocation + Configuration.profileFileName))) {
+                logger.info("No configuration file found -> creating");
+                createNewProfile();
+            }
         } catch (IOException e) {
             logger.severe("Error on profile file checking");
         }
-
     }
 }

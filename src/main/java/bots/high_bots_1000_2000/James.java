@@ -3,6 +3,7 @@ package bots.high_bots_1000_2000;
 import bots.Bot;
 import bots.util.Move;
 import gui.inGameScreen.BoardGui;
+import javafx.scene.image.Image;
 
 import java.awt.image.BufferedImage;
 
@@ -41,7 +42,7 @@ public class James implements Bot {
     }
 
     @Override
-    public BufferedImage getPicture() {
+    public Image getPicture() {
         return null;
     }
 }

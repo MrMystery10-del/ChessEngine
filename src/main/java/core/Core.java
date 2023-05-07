@@ -1,6 +1,8 @@
 package core;
 
 
+import core.pojo.ChessEngine;
+import core.pojo.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -8,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import persistence.Persistence;
+import utils.Bots;
+import utils.ImageManager;
+import utils.Pieces;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -26,6 +31,8 @@ public class Core extends Application {
 
     // Application start
     public static void main(String[] args) throws IOException {
+
+
         //pre-gui code execution
         Persistence.getInstance();
         logger.info("-- Main start -- ");
@@ -39,7 +46,6 @@ public class Core extends Application {
         } catch (IndexOutOfBoundsException exception) {
             cliError();
         }
-
 
         //start GUI
         launch();
@@ -67,11 +73,14 @@ public class Core extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        //todo alter when more running code is added -- shortcuts
+        //start of the client
+        ChessEngine engine = ChessEngine.getInstance();
+        engine.playerOne = new Player("Ditto", ImageManager.getBotPicture(Bots.BOB));
+        engine.playerTwo = new Player("Ditto", ImageManager.getPieceFX(Pieces.PAWN));
+
         //Gui starts here
-
-
-
-        logger.info("Translation bundle loaded");
+        logger.info("Chess engine loaded");
 
 
         /*PS use fxml files only for gui construction*/

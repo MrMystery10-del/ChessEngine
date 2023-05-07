@@ -2,8 +2,7 @@ package bots;
 
 import bots.util.Move;
 import gui.inGameScreen.BoardGui;
-
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 
 public interface Bot {
 
@@ -32,5 +31,5 @@ public interface Bot {
     /**
      * @return name of the picture of the bot
      */
-    BufferedImage getPicture();
+    Image getPicture();
 }

@@ -8,16 +8,16 @@ public class Configuration {
 
     private static final Logger logger = Logger.getLogger(Configuration.class.getName());
 
-    //client configurations
+    // client configurations
     public static boolean startWithNewProfile = false;
     public static String userConfigLocation = System.getProperty("user.home") + "/chessEngine";
     public static String profileFileName = "user.profile";
 
-    //configuration toggle DB / File / Remote ?
+    // configuration toggle DB / File / Remote ?
     public static boolean useFileRepo = true;
     public static boolean useDataBaseRepo = false;
 
-   //global access
+    // global access
     public final static ResourceBundle resourceBundle = ResourceBundle.getBundle("translations/bundle", Locale.getDefault());
 
 
@@ -32,6 +32,9 @@ public class Configuration {
         Map<String, String> commands = new HashMap<>();
         commandLineOptions.forEach((key, value) -> commands.put(key.toString(), value.toString()));
         processCommands(commands);
+        if (!Configuration.userConfigLocation.endsWith("/")) {
+            Configuration.userConfigLocation += "/";
+        }
 
     }
 
@@ -47,7 +50,7 @@ public class Configuration {
 
 
             switch (key) {
-                case "newProfile" -> {
+                case "startWithNewProfile" -> {
                     startWithNewProfile = true;
                     logger.info("new profile option given on command line");
 

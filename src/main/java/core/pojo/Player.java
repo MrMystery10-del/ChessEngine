@@ -1,10 +1,8 @@
 package core.pojo;
 
 
-
 import core.constants.Difficulty;
-
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 
 /**
  * This class represents a player/bot
@@ -14,7 +12,7 @@ public final class Player {
     // Name of the player
     private final String name;
     // Image of the player/bot profile
-    private final BufferedImage image;
+    private final Image image;
     // Difficulty of the bot if player is bot
     private final Difficulty difficulty;
     private String description;
@@ -24,14 +22,14 @@ public final class Player {
     /**
      * Constructs a new Player (human or bot)
      *
-     * @param name name of the player
+     * @param name  name of the player
      * @param image profile image of the player
      */
-    public Player(String name, BufferedImage image) {
+    public Player(String name, Image image) {
         this(name, image, false, null, 0, null);
     }
 
-    private Player(String name, BufferedImage image, boolean bot, Difficulty difficulty, int eloScore, String description) {
+    private Player(String name, Image image, boolean bot, Difficulty difficulty, int eloScore, String description) {
         this.name = name;
         this.image = image;
         this.bot = bot;
@@ -43,16 +41,15 @@ public final class Player {
     /**
      * Returns a new instance of Player representing a bot
      *
-
      * @param eloScore    elo score of the bot
      * @param description description of the bot
      */
-    public void asBot( int eloScore, String description) {
+    public void asBot(int eloScore, String description) {
         // return a new player does not set this instance as bot
         //return new Player(name, image, true, difficulty, eloScore, description);
-        bot=true;
-        this.eloScore=eloScore;
-        this.description=description;
+        bot = true;
+        this.eloScore = eloScore;
+        this.description = description;
 
     }
 
@@ -68,7 +65,7 @@ public final class Player {
         return difficulty;
     }
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 

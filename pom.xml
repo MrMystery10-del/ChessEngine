@@ -18,10 +18,8 @@
         <profileFileName>user.profile</profileFileName>
         <useFileRepo>true</useFileRepo>
         <DataBaseRepo>false</DataBaseRepo>
+        <startWithNewProfile>false</startWithNewProfile>
     </properties>
-
-
-
 
 
     <dependencies>
@@ -120,17 +118,17 @@
             <artifactId>bootstrapfx-core</artifactId>
             <version>0.4.0</version>
         </dependency>
-        <!--    <dependency>-->
-        <!--        <groupId>eu.hansolo</groupId>-->
-        <!--        <artifactId>tilesfx</artifactId>-->
-        <!--        <version>17.1.15</version>-->
-        <!--        <exclusions>-->
-        <!--            <exclusion>-->
-        <!--                <groupId>org.openjfx</groupId>-->
-        <!--                <artifactId>*</artifactId>-->
-        <!--            </exclusion>-->
-        <!--        </exclusions>-->
-        <!--    </dependency>-->
+        <dependency>
+            <groupId>eu.hansolo</groupId>
+            <artifactId>tilesfx</artifactId>
+            <version>17.1.15</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>com.github.almasb</groupId>
             <artifactId>fxgl</artifactId>

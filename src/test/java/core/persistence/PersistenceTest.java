@@ -26,8 +26,8 @@ public class PersistenceTest {
         assertNotNull(fileRepo);
         ProfileRepo.destroy();
         FileRepo.destroy();
-        assertNotEquals(profileRepo,ProfileRepo.getInstance());
-        assertNotEquals(fileRepo,FileRepo.getInstance());
+        assertNotEquals(profileRepo, ProfileRepo.getInstance());
+        assertNotEquals(fileRepo, FileRepo.getInstance());
 
 
     }
@@ -35,13 +35,12 @@ public class PersistenceTest {
     @Test
     void canProcessFolder() {
         String toCompare = System.getProperty("user.home");
-        assertEquals("", Configuration.userConfigLocation);
         assertNotEquals(toCompare, Configuration.userConfigLocation);
     }
 
     @Test
-    void shouldBeSingletonsUnlessSomeOneMessesWithTheCode(){
-        assertEquals(ProfileRepo.getInstance(),profileRepo);
+    void shouldBeSingletonsUnlessSomeOneMessesWithTheCode() {
+        assertEquals(ProfileRepo.getInstance(), profileRepo);
         assertEquals(FileRepo.getInstance(), fileRepo);
     }
 }
