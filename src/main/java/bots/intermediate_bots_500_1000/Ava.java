@@ -4,8 +4,8 @@ import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
 import gui.inGameScreen.BoardGui;
+import javafx.scene.image.Image;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,7 @@ public class Ava implements Bot {
             and let's play a game or two. It'll be fun!
             """;
     private static final String algorithm = "Center-priority-algorithm";
-    private static final BufferedImage image = null;
+    private static final Image image = null;
 
     @Override
     public Move playNewMove(byte[][] board, boolean isWhiteTurn, BoardGui buttonBoard) {
@@ -95,7 +95,7 @@ public class Ava implements Bot {
     }
 
     @Override
-    public BufferedImage getPicture() {
+    public Image getPicture() {
         return image;
     }
 }

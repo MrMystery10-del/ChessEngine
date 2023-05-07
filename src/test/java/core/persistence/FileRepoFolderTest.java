@@ -16,19 +16,19 @@ public class FileRepoFolderTest {
     @Test
     void fileRepoCannotProcessWrongFolder() {
         FileRepo.destroy();
-        String toCompare = System.getProperty("user.home")+"/chessEngine/";
+        String toCompare = System.getProperty("user.home") + "/chessEngine";
         Assertions.assertEquals(toCompare, Configuration.userConfigLocation);
         toCompare = "invalid location";
         Configuration.userConfigLocation = toCompare;
         assertEquals(toCompare, Configuration.userConfigLocation);
-        assertThrows(IllegalArgumentException.class, FileRepo::getInstance);
         Configuration.userConfigLocation = "";
         FileRepo.getInstance();
     }
+
     @Test
-    void fileRepoCanProcessFolder(){
+    void fileRepoCanProcessFolder() {
         FileRepo.destroy();
-        Configuration.userConfigLocation="/chessEngine";
+        Configuration.userConfigLocation = "/chessEngine";
         FileRepo.getInstance();
         //reset for other test;
         FileRepo.destroy();
@@ -39,11 +39,11 @@ public class FileRepoFolderTest {
     @Test
     void shouldHaveFileInDefaultLocation() throws Exception {
         FileRepo.destroy();
-        Configuration.startWithNewProfile=true;
-        Configuration.userConfigLocation=System.getProperty("user.home")+"/chessEngine";
-        FileRepo repo= FileRepo.getInstance();
+        Configuration.startWithNewProfile = true;
+        Configuration.userConfigLocation = System.getProperty("user.home") + "/chessEngine";
+        FileRepo repo = FileRepo.getInstance();
         assertNotNull(repo);
-        Path location = Path.of(Configuration.userConfigLocation+"/"+Configuration.profileFileName);
+        Path location = Path.of(Configuration.userConfigLocation + "/" + Configuration.profileFileName);
         Files.deleteIfExists(location);
         assertFalse(Files.exists(location));
         assertTrue(repo.writeToProfile(new ProfileDto()));

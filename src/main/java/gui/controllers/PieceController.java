@@ -3,8 +3,8 @@ package gui.controllers;
 /**
  * Controls piece on board, getting selected piece and moves
  */
-public record PieceController(int test) {
-}
+
+public record PieceController(int test){}
 /*
 public record PieceController(Block_Button button, Board board, BoardGui boardGui,
                               PieceInfo info, MoveCounter counter, Bot bot) implements ActionListener {

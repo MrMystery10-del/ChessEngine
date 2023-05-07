@@ -20,7 +20,8 @@ public class Start {
     @FXML
     ImageView logo;
 
-    public Start() {
+    public Start()
+    {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -34,16 +35,18 @@ public class Start {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 1000);
+        timer.schedule(task,1000);
     }
 
-    public void switchScenes() throws Exception {
+    public void switchScenes() throws Exception
+    {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Pages/Login.fxml"));
         Stage window = Core.getStage();
 
-        window.setScene(new Scene(root, 800, 500));
+        window.setScene(new Scene(root,800,500));
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
         window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
     }
+
 }

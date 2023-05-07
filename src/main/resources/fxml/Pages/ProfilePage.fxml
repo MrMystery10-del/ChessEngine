@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ProfileFXController">
+    <Separator layoutX="389.0" layoutY="399.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+    <Separator layoutX="509.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <BorderPane layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="512.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="0.0">
+        <center>
+            <ImageView fx:id="userImage" fitHeight="336.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+        </center>
+    </BorderPane>
+    <TabPane layoutX="509.0" layoutY="41.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="512.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Tab text="%profileDetailsLabel">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <SplitPane dividerPositions="0.39215686274509803" layoutX="75.0" layoutY="125.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <VBox layoutX="41.0" layoutY="145.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                            <TextField editable="false" text="%profileUserName" />
+                            <TextField editable="false" text="%emailAddress">
+                                <VBox.margin>
+                                    <Insets top="15.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <TextField editable="false" text="%eloRating">
+                                <VBox.margin>
+                                    <Insets top="15.0" />
+                                </VBox.margin>
+                            </TextField>
+                        </VBox>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <VBox layoutX="40.0" layoutY="108.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                            <TextField fx:id="profileUserName" text="profileUserName" />
+                            <TextField fx:id="profileEmail" text="profileEmail">
+                                <VBox.margin>
+                                    <Insets top="15.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <TextField fx:id="profileElo" text="eloRating">
+                                <VBox.margin>
+                                    <Insets top="15.0" />
+                                </VBox.margin>
+                            </TextField>
+                        </VBox>
+                    </AnchorPane>
+                </SplitPane>
+            </AnchorPane>
+        </Tab>
+        <Tab text="%achievementsLabel">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <ListView layoutX="26.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <TextField layoutX="52.0" layoutY="310.0" rotate="-43.0" text="Under Construction">
+                    <font>
+                        <Font size="33.0" />
+                    </font>
+                </TextField>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+    <Button layoutX="943.0" layoutY="749.0" mnemonicParsing="false" text="Button" />
+    <SplitPane dividerPositions="0.5" layoutX="156.0" layoutY="487.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="400.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <VBox layoutX="76.0" layoutY="83.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <padding>
+                    <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                </padding>
+                <TextField text="%overviewLabel">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField text="%totalWins">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField text="%totalLosses">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField text="%totalDraws">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField text="%winLossRatio" />
+            </VBox>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <VBox layoutX="76.0" layoutY="87.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                <TextField fx:id="totalWins">
+                    <VBox.margin>
+                        <Insets bottom="20.0" top="45.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField fx:id="totalLosses">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField fx:id="totalDraws">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <ProgressBar fx:id="winLossRatio" prefHeight="28.0" prefWidth="230.0" progress="0.0" />
+            </VBox>
+        </AnchorPane>
+    </SplitPane>
+</AnchorPane>

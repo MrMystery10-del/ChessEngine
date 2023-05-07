@@ -1,4 +1,4 @@
-package manage;
+package utils;
 
 public enum Pieces {
     PAWN, BISHOP, KNIGHT, ROOK, QUEEN, KING,

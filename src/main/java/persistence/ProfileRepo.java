@@ -14,24 +14,25 @@ public class ProfileRepo implements ProfileInterface {
 
     private static final Logger logger = Logger.getLogger(FileRepo.class.getName());
     private static ProfileRepo instance;
-    private final FileRepo fileRepo = FileRepo.getInstance();
-    //private final DatabaseRepo databaseRepo = DatabaseRepo.getInstance();
-    private ProfileInterface source;
+    private ProfileInterface source = FileRepo.getInstance();
+
 
     private ProfileRepo() {
+
         if (Configuration.useDataBaseRepo) {
             //todo -> Database Repo
             //FileRepo.destroy();
             logger.severe("Not yet implemented");
-            //source=dataBaseRepo;
+            //source=DatabaseRepo.getInstance();
             logger.finest("Repo source set to database Repo");
 
         }
         if (Configuration.useFileRepo) {
             //DataBaseRepo.destroy();
             logger.finest("Repo source set to file Repo");
-            source = fileRepo;
+            source = FileRepo.getInstance();
         }
+
     }
 
     public static ProfileRepo getInstance() {
@@ -45,6 +46,7 @@ public class ProfileRepo implements ProfileInterface {
     public static void destroy() {
         instance = null;
     }
+
 
     @Override
     public ProfileDto readFromProfile() {

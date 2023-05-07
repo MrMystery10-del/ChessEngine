@@ -1,5 +1,6 @@
 package persistence;
 
+import core.pojo.Board;
 import persistence.DTO.ProfileDto;
 import persistence.interfaces.ProfileInterface;
 
@@ -12,8 +13,29 @@ public class Persistence implements ProfileInterface {
     private static Persistence instance;
     private final ProfileRepo profileRepo = ProfileRepo.getInstance();
 
+    private Board board;
+
+
     //private constructor
     private Persistence() {
+    }
+
+    /**
+     * @return the gameboard
+     */
+    public Board getBoard() {
+        if (board == null) {
+            newBoard();
+        }
+        return this.board;
+    }
+
+    /**
+     * start a new board
+     */
+
+    public void newBoard() {
+        this.board = new Board();
     }
 
     public static Persistence getInstance() {
@@ -32,4 +54,6 @@ public class Persistence implements ProfileInterface {
         logger.finest("writing to profile from " + this.getClass().getSimpleName());
         return profileRepo.writeToProfile(dto);
     }
+
+
 }

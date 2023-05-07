@@ -3,8 +3,7 @@ package bots.insane_bots_2000_9999;
 import bots.Bot;
 import bots.util.Move;
 import gui.inGameScreen.BoardGui;
-
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 
 @SuppressWarnings("unused")
 public class Markus implements Bot {
@@ -13,7 +12,7 @@ public class Markus implements Bot {
     private static final String name = "Markus";
     private static final String description = "No description currently";
     private static final String algorithm = null;
-    private static final BufferedImage image = null;
+    private static final Image image = null;
 
     @Override
     public Move playNewMove(byte[][] board, boolean turn, BoardGui buttonBoard) {
@@ -41,7 +40,7 @@ public class Markus implements Bot {
     }
 
     @Override
-    public BufferedImage getPicture() {
+    public Image getPicture() {
         return image;
     }
 }

@@ -4,9 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 //todo implement
+
 public class ProfileDto {
+
     private String userName;
     private int userId;
+
     private String emailAddress;
     private int elo;
     private int wins;
@@ -14,14 +17,14 @@ public class ProfileDto {
     private int draw;
     private String image;
     private final Set<AchievementDto> achievements;
-
+    private int version;
 
 
     //boilerplate
 
 
     public ProfileDto() {
-        achievements=new HashSet<>();
+        achievements = new HashSet<>();
     }
 
     public String getUserName() {
@@ -103,6 +106,15 @@ public class ProfileDto {
 
     public String getImage() {
         return image;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public ProfileDto setVersion(int version) {
+        this.version = version;
+        return this;
     }
 }
 

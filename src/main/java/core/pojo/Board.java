@@ -35,9 +35,7 @@ public class Board {
                 {+1, +1, +1, +1, +1, +1, +1, +1},
                 {+4, +2, +3, +5, +6, +3, +2, +4}
         };
-        if (gameBoard[7][0] > 0) {
-            side = true;
-        } else side = false;
+        side = gameBoard[7][0] > 0;
         convertToPiece();
     }
 

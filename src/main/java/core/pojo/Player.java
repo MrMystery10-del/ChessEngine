@@ -2,8 +2,7 @@ package core.pojo;
 
 
 import core.constants.Difficulty;
-
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 
 /**
  * This class represents a player/bot
@@ -13,7 +12,7 @@ public final class Player {
     // Name of the player
     private final String name;
     // Image of the player/bot profile
-    private final BufferedImage image;
+    private final Image image;
     // Difficulty of the bot if player is bot
     private final Difficulty difficulty;
     private String description;
@@ -26,11 +25,11 @@ public final class Player {
      * @param name  name of the player
      * @param image profile image of the player
      */
-    public Player(String name, BufferedImage image) {
+    public Player(String name, Image image) {
         this(name, image, false, null, 0, null);
     }
 
-    private Player(String name, BufferedImage image, boolean bot, Difficulty difficulty, int eloScore, String description) {
+    private Player(String name, Image image, boolean bot, Difficulty difficulty, int eloScore, String description) {
         this.name = name;
         this.image = image;
         this.bot = bot;
@@ -51,6 +50,7 @@ public final class Player {
         bot = true;
         this.eloScore = eloScore;
         this.description = description;
+
     }
 
     public String getName() {
@@ -65,7 +65,7 @@ public final class Player {
         return difficulty;
     }
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 

@@ -1,8 +1,11 @@
 package core.pojo;
 
+import core.pojo.interfaces.Piece;
 import core.pojo.pieces.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -17,7 +20,7 @@ public class PiecesTest {
 
     @BeforeEach
     void setup() {
-        bishop = new Bishop();
+        bishop = new Bishop(new Position(0, 0), Color.BLACK);
         rook = new Rook();
         king = new King();
         knight = new Knight();

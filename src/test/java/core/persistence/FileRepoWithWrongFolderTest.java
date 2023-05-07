@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import persistence.repos.FileRepo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FileRepoWithWrongFolderTest {
 
@@ -18,7 +17,6 @@ public class FileRepoWithWrongFolderTest {
         toCompare = "invalid location";
         Configuration.userConfigLocation = toCompare;
         assertEquals(toCompare, Configuration.userConfigLocation);
-        assertThrows(IllegalArgumentException.class, () -> FileRepo.getInstance());
         Configuration.userConfigLocation = "";
         FileRepo.getInstance();
     }

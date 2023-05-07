@@ -4,10 +4,10 @@ import bots.Bot;
 import bots.util.Move;
 import bots.util.Util;
 import gui.inGameScreen.BoardGui;
-import manage.Bots;
-import manage.ImageManager;
+import javafx.scene.image.Image;
+import utils.Bots;
+import utils.ImageManager;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Bob implements Bot {
             With a bit of hard work and some grog, I'll be ready to take on any scallywag who dares cross me path!
             """;
     private static final String algorithm = "Value-capture-algorithm";
-    private static final BufferedImage image = ImageManager.getBotPicture(Bots.BOB);
+    private static final Image image = ImageManager.getBotPicture(Bots.BOB);
 
     public Move playNewMove(byte[][] board, boolean isWhiteTurn, BoardGui buttonBoard) {
         // Initialize a list of possible moves
@@ -78,7 +78,7 @@ public class Bob implements Bot {
     }
 
     @Override
-    public BufferedImage getPicture() {
+    public Image getPicture() {
         return image;
     }
 }

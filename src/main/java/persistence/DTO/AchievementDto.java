@@ -1,11 +1,11 @@
 package persistence.DTO;
 
 public class AchievementDto {
-    private int id;
-    private String title;
-    private String description;
-    private String icon;
-    private boolean hasMetCondition = false;
+    int id;
+    String title;
+    String description;
+    String icon;
+    boolean hasMetCondition=false;
 
 //boilerplate
 

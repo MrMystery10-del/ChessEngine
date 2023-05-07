@@ -47,6 +47,11 @@
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-javafx:12.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-core:12.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0" level="project" />
+    <orderEntry type="library" name="Maven: eu.hansolo:tilesfx:17.1.15" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: eu.hansolo:toolbox:17.0.26" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: eu.hansolo:toolboxfx:17.0.29" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: eu.hansolo.fx:heatmap:17.0.12" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: eu.hansolo.fx:countries:17.0.23" level="project" />
     <orderEntry type="library" name="Maven: com.github.almasb:fxgl:17.2" level="project" />
     <orderEntry type="library" name="Maven: com.github.almasb:fxgl-core:17.2" level="project" />
     <orderEntry type="library" name="Maven: com.gluonhq.attach:audio:4.0.13" level="project" />

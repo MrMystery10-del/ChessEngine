@@ -1,12 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="772.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MatchPlace">
-   <GridPane fx:id="chessBoard" layoutX="52.0" layoutY="66.0" prefHeight="640.0" prefWidth="640.0"
-             AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="666.0"
-             AnchorPane.topAnchor="66.0">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MatchPlace">
+   <VBox layoutX="919.0" prefHeight="772.0" prefWidth="439.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="919.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <SplitPane dividerPositions="0.75" layoutX="679.0" layoutY="174.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+     <items>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+               <HBox layoutX="-75.0" layoutY="455.0" prefHeight="70.0" prefWidth="560.0" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="25.0">
+                  <children>
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="a" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="b" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="c" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="d" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="e" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="f" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="g" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="h" />
+                  </children></HBox>
+               <GridPane fx:id="chessBoard" layoutX="9.0" prefHeight="560.0" prefWidth="560.0" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="95.0">
    </GridPane>
-   <VBox layoutX="919.0" prefHeight="772.0" prefWidth="439.0" AnchorPane.bottomAnchor="0.0"
-         AnchorPane.leftAnchor="919.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+               <VBox layoutX="14.0" layoutY="311.0" prefHeight="560.0" prefWidth="70.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="95.0">
+                  <children>
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="8" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="7" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="6" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="5" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="4" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="3" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="2" />
+                     <Label alignment="CENTER" prefHeight="70.0" prefWidth="70.0" text="1" />
+                  </children></VBox>
+            </children>
+         </AnchorPane>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+               <SplitPane dividerPositions="0.24874371859296482" layoutX="46.0" layoutY="187.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <items>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <children>
+                           <SplitPane dividerPositions="0.5" layoutX="45.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                             <items>
+                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                       <HBox layoutX="24.0" layoutY="-3.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <children>
+                                             <ImageView fx:id="playerOneIcon" fitHeight="60.0" fitWidth="60.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                                                <HBox.margin>
+                                                   <Insets left="20.0" top="15.0" />
+                                                </HBox.margin>
+                                             </ImageView>
+                                             <Label fx:id="playerOneName" prefHeight="60.0" prefWidth="145.0" text="Label">
+                                                <HBox.margin>
+                                                   <Insets left="5.0" top="15.0" />
+                                                </HBox.margin>
+                                             </Label>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </AnchorPane>
+                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                       <HBox layoutX="24.0" layoutY="-3.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <children>
+                                             <ImageView fx:id="playerTwoIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                                <HBox.margin>
+                                                   <Insets left="20.0" top="15.0" />
+                                                </HBox.margin>
+                                             </ImageView>
+                                             <Label fx:id="playerTwoName" prefHeight="60.0" prefWidth="145.0" text="Label">
+                                                <HBox.margin>
+                                                   <Insets left="5.0" top="15.0" />
+                                                </HBox.margin>
+                                             </Label>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </AnchorPane>
+                             </items>
+                           </SplitPane>
+                        </children>
+                     </AnchorPane>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                 </items>
+               </SplitPane>
+            </children></AnchorPane>
+     </items>
+   </SplitPane>
 </AnchorPane>

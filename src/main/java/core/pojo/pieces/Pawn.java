@@ -1,7 +1,13 @@
 package core.pojo.pieces;
 
-import core.pojo.Piece;
+import core.pojo.interfaces.Piece;
+import javafx.scene.image.Image;
 
 public class Pawn implements Piece {
+
+    @Override
+    public Image getImage() {
+        return null;
+    }
 
 }
