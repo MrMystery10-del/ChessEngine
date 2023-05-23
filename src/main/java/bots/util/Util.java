@@ -5,11 +5,13 @@ import java.util.List;
 
 public class Util {
 
+    // Castling checks
     private static boolean whiteQueenCastle = true;
     private static boolean whiteKingCastle = true;
     private static boolean blackQueenCastle = true;
     private static boolean blackKingCastle = true;
-
+    
+    // Method that checks to see if the position is valid on the chessboard
     private static boolean isValidPosition(int row, int col) {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
     }
@@ -21,6 +23,7 @@ public class Util {
         return newBoard;
     }
 
+    // Applies move to board and reutrns the updated board
     public static byte[][] applyMove(byte[][] board, Move move) {
         byte[][] newBoard = Util.deepCopy(board);
         int startRow = move.fromRow();
@@ -32,6 +35,7 @@ public class Util {
         return newBoard;
     }
 
+    // Returns a list of all possible moves for each given chess peice
     public static List<Move> getPossibleMoves(byte[][] board, int row, int col) {
         List<Move> moves = new ArrayList<>();
         byte piece = board[row][col];
@@ -44,13 +48,14 @@ public class Util {
             case 1 -> moves.addAll(getPawnMoves(board, row, col, sign));
             case 2 -> moves.addAll(getKnightMoves(board, row, col, sign));
             case 3 -> moves.addAll(getBishopMoves(board, row, col, sign));
-            case 4 -> moves.addAll(getRockMoves(board, row, col, sign));
+            case 4 -> moves.addAll(getRookMoves(board, row, col, sign));
             case 5 -> moves.addAll(getQueenMoves(board, row, col, sign));
             case 6 -> moves.addAll(getKingMoves(board, row, col, sign));
         }
         return moves;
     }
-
+    
+    // Reutrns ppossible moves for a pawn
     private static List<Move> getPawnMoves(byte[][] board, int row, int col, int sign) {
         List<Move> moves = new ArrayList<>();
 
@@ -91,6 +96,7 @@ public class Util {
         return moves;
     }
 
+    // Returns a possible list of moves for a knight
     private static List<Move> getKnightMoves(byte[][] board, int row, int col, int sign) {
         List<Move> moves = new ArrayList<>();
 
@@ -108,24 +114,28 @@ public class Util {
         return moves;
     }
 
+    // Returns a possible list of moves for a bishop
     private static List<Move> getBishopMoves(byte[][] board, int row, int col, int sign) {
         int[][] moves = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
 
         return getLongMoves(board, row, col, sign, moves);
     }
 
-    private static List<Move> getRockMoves(byte[][] board, int row, int col, int sign) {
+    //// Returns a possible list of moves for a rook
+    private static List<Move> getRookMoves(byte[][] board, int row, int col, int sign) {
         int[][] moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
         return getLongMoves(board, row, col, sign, moves);
     }
 
+    // Returns a possible list of moves for a queen
     private static List<Move> getQueenMoves(byte[][] board, int row, int col, int sign) {
         int[][] moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
 
         return getLongMoves(board, row, col, sign, moves);
     }
 
+    // Returns a possible list of moves for a king
     private static List<Move> getKingMoves(byte[][] board, int row, int col, int sign) {
         List<Move> moves = new ArrayList<>();
 
@@ -173,6 +183,7 @@ public class Util {
         return moves;
     }
 
+    // Returns a list of movess along a line until an obstacle is encountered
     private static List<Move> getLongMoves(byte[][] board, int row, int col, int sign, int[][] lines) {
         List<Move> moves = new ArrayList<>();
 
@@ -195,6 +206,7 @@ public class Util {
         return moves;
     }
 
+    // Reutrns checkss for caslting
     public static boolean getWhiteQueenCastle() {return whiteQueenCastle;}
 
     public static boolean getWhiteKingCastle() {return whiteKingCastle;}
@@ -210,6 +222,8 @@ public class Util {
 
     public static void setBlackKingCastle(boolean value) {blackKingCastle = value;}
 
+
+    //Updates the caslting checks based on currernt position
     private static void checkCastlingBools(byte[][] board){
 
         int blackRow = 0;
@@ -234,6 +248,7 @@ public class Util {
 
     }
 
+    //checks if player is in checkmate
     private static void checkCheckMate(int sign, byte[][] board) {
         int rowKing;//row location of king
         int colKing;//col location of king
