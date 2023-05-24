@@ -26,8 +26,7 @@ public class MatchPlace {
     private Label playerTwoName;
 
     public void initialize() {
-        Utility4Gui util = new Utility4Gui();
-        util.makeBoard(chessBoard, 80);
+        Utility4Gui.makeBoard(chessBoard, 80);
 
 
         playerOneIcon = new ImageView(new Image(String.valueOf(ImageManager.class.getResource("/images/bots/bob_picture.png"))));
