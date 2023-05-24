@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Bishop extends ChessPiece implements Piece {
 
-
+    // Constructor for bishop object, with the color and specific position
     public Bishop(Position position, Color color) {
         super(position, Pieces.BISHOP);
 
@@ -23,6 +23,7 @@ public class Bishop extends ChessPiece implements Piece {
         }
     }
 
+    // Sets the correct image based on the pieces color
     @Override
     public Image getImage() {
 
@@ -32,6 +33,7 @@ public class Bishop extends ChessPiece implements Piece {
         return ImageManager.getPiece(Pieces.BISHOP);
     }
 
+    // Returns a list of valid moves
     @Override
     public List<Position> getValidMoves() {
 
