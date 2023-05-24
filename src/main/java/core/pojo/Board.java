@@ -56,7 +56,7 @@ public class Board {
     }
 
     public void setValue(int row, int col, byte value) {
-        gameBoard[col][row] = value;
+        gameBoard[row][col] = value;
     }
 
     public boolean getSide() {

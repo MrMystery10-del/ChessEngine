@@ -53,8 +53,8 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
                 boardGui.getSquares()[3][move.fromRow()].setIcon(icon1);
                 boardGui.getSquares()[0][move.fromRow()].setIcon(null);
 
-                board.setValue(3, move.fromRow(), (byte)(4*sign));
-                board.setValue(0, move.fromRow(), (byte)0);
+                board.setValue(move.fromRow(), 3, (byte)(4*sign));
+                board.setValue(move.fromRow(), 0, (byte)0);
             // King side castle
             } else if (move.toCol() == 6) {
                 Icon icon1 = boardGui.getSquares()[7][move.toRow()].getIcon();
@@ -62,8 +62,8 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
                 boardGui.getSquares()[5][move.fromRow()].setIcon(icon1);
                 boardGui.getSquares()[7][move.fromRow()].setIcon(null);
 
-                board.setValue(5, move.fromRow(), (byte)(4*sign));
-                board.setValue(7, move.fromRow(), (byte)0);
+                board.setValue(move.fromRow(), 5, (byte)(4*sign));
+                board.setValue(move.fromRow(), 7, (byte)0);
             }
         }
     }
@@ -110,8 +110,8 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
                 boardGui.getSquares()[3][newMove.fromRow()].setIcon(icon1);
                 boardGui.getSquares()[0][newMove.fromRow()].setIcon(null);
 
-                board.setValue(3, newMove.fromRow(), (byte)(4*sign));
-                board.setValue(0, newMove.fromRow(), (byte)0);
+                board.setValue(newMove.fromRow(), 3, (byte)(4*sign));
+                board.setValue(newMove.fromRow(), 0, (byte)0);
                 // King side castle
             } else if (newMove.toCol() == 6) {
                 Icon icon1 = boardGui.getSquares()[7][newMove.fromRow()].getIcon();
@@ -119,8 +119,8 @@ public record PieceController(Block_Button button, Board board, BoardGui boardGu
                 boardGui.getSquares()[5][newMove.fromRow()].setIcon(icon1);
                 boardGui.getSquares()[7][newMove.fromRow()].setIcon(null);
 
-                board.setValue(5, newMove.fromRow(), (byte)(4*sign));
-                board.setValue(7, newMove.fromRow(), (byte)0);
+                board.setValue(newMove.fromRow(), 5, (byte)(4*sign));
+                board.setValue(newMove.fromRow(), 7, (byte)0);
             }
         }
         //it sets 'to position' button's icon to the 'from position' button's icon
