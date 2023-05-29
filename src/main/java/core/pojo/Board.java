@@ -12,10 +12,12 @@ public class Board {
 
     private boolean side;
 
+    // Constructor for board
     public Board() {
         startNewBoard();
     }
 
+    // Sets the players
     public void setPlayers(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
@@ -24,6 +26,7 @@ public class Board {
             logger.log(Level.INFO, "Player 2 set as bot");
     }
 
+    // Inititalizes the board with starting posistions for all the peices
     public void startNewBoard() {
         this.gameBoard = new byte[][]{
                 {-4, -2, -3, -5, -6, -3, -2, -4},
@@ -39,26 +42,32 @@ public class Board {
         convertToPiece();
     }
 
+    // Determines if it is the non-players move
     public boolean getNpcMove() {
         return false;
     }
 
+    // Returns the game board
     public byte[][] getGameBoard() {
         return gameBoard;
     }
 
+    // Converts the byte representations of the board to the piece objects
     public void convertToPiece() {
 
     }
 
+    // Updates the board
     public void updateBoard(byte[][] newBoard) {
         gameBoard = newBoard;
     }
 
+    // Sets the value of the sepecific position
     public void setValue(int row, int col, byte value) {
-        gameBoard[col][row] = value;
+        gameBoard[row][col] = value;
     }
 
+    // Returns the side color of the player
     public boolean getSide() {
         return side;
     }
