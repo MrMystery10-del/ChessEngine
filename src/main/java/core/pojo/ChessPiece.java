@@ -1,7 +1,5 @@
 package core.pojo;
 
-import utils.Pieces;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,50 +9,51 @@ public abstract class ChessPiece {
 
     protected Color color;
     protected Pieces pieceType;
-    protected Position position;
-    protected List<Position> validMoves;
+    protected ChessPosition position;
+    protected List<ChessPosition> validMoves; // 使用 ChessPosition
+    private Scanner scanner;
 
-    public ChessPiece(Position position, Pieces piece) {
+    public ChessPiece(ChessPosition position, Pieces piece) {
         this.position = position;
-        validMoves = new ArrayList<>();
-        pieceType = piece;
+        this.validMoves = new ArrayList<>();
+        this.pieceType = piece;
+        this.scanner = new Scanner(System.in);
     }
-    
+
     /**
      * Eliminates the out-of-bounds pieces that have been calculated on location of the piece
      *
      * @param possibleMoves List of possible moves
      */
-
-    protected void processMoves(List<Position> possibleMoves) {
-        for (Position move : possibleMoves) {
+    protected void processMoves(List<ChessPosition> possibleMoves) {
+        for (ChessPosition move : possibleMoves) {
             if (move.x() >= 0 && move.x() < 8 && move.y() >= 0 && move.y() < 8) {
                 validMoves.add(move);
             }
         }
     }
 
-    public List<Position> getValidMoves() {
-        List<Position> possibleMoves = new ArrayList<>();
+    public List<ChessPosition> getValidMoves() {
+        List<ChessPosition> possibleMoves = new ArrayList<>();
 
         if (pieceType == Pieces.PAWN) {
             int forwardDirection = (color == Color.WHITE) ? -1 : 1;
             int startingRank = (color == Color.WHITE) ? 6 : 1;
             int currentRank = position.y();
 
-            // Check one square forward
-            Position forwardPosition = new Position(position.x(), currentRank + forwardDirection);
+            // 使用 ChessPosition
+            ChessPosition forwardPosition = new ChessPosition(position.x(), currentRank + forwardDirection);
             possibleMoves.add(forwardPosition);
 
-            // Check two squares forward from the starting rank
+            // 使用 ChessPosition
             if (currentRank == startingRank) {
-                Position twoSquaresForwardPosition = new Position(position.x(), currentRank + 2 * forwardDirection);
+                ChessPosition twoSquaresForwardPosition = new ChessPosition(position.x(), currentRank + 2 * forwardDirection);
                 possibleMoves.add(twoSquaresForwardPosition);
             }
 
-            // Check diagonal captures
-            Position capturePosition1 = new Position(position.x() - 1, currentRank + forwardDirection);
-            Position capturePosition2 = new Position(position.x() + 1, currentRank + forwardDirection);
+            // 使用 ChessPosition
+            ChessPosition capturePosition1 = new ChessPosition(position.x() - 1, currentRank + forwardDirection);
+            ChessPosition capturePosition2 = new ChessPosition(position.x() + 1, currentRank + forwardDirection);
             possibleMoves.add(capturePosition1);
             possibleMoves.add(capturePosition2);
         }
@@ -83,7 +82,6 @@ public abstract class ChessPiece {
         System.out.println("3. Bishop");
         System.out.println("4. Knight");
 
-        Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
         switch (choice) {
@@ -99,6 +97,12 @@ public abstract class ChessPiece {
                 return null;
         }
     }
+
+    public void closeScanner() {
+        if (scanner != null) {
+            scanner.close();
+        }
+    }
 }
 
 enum Pieces {
@@ -109,11 +113,11 @@ enum Pieces {
     KNIGHT
 }
 
-class Position {
+class ChessPosition {
     private int x;
     private int y;
 
-    public Position(int x, int y) {
+    public ChessPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
