@@ -63,7 +63,7 @@ public class Board {
     }
 
     // Sets the value of the specific position using column and row
-    public void setValue(int col, int row, byte value) { // 反转了col和row的位置
+    public void setValue(int col, int row, byte value) {
         gameBoard[row][col] = value;
     }
 
