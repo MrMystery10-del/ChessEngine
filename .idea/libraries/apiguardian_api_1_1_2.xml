@@ -2,8 +2,16 @@
   <library name="apiguardian-api-1.1.2">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar!/" />
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1/lib" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1" recursive="false" type="SOURCES" />
   </library>
 </component>

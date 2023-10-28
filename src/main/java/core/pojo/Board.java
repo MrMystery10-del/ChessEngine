@@ -26,7 +26,7 @@ public class Board {
             logger.log(Level.INFO, "Player 2 set as bot");
     }
 
-    // Inititalizes the board with starting posistions for all the peices
+    // Initializes the board with starting positions for all the pieces
     public void startNewBoard() {
         this.gameBoard = new byte[][]{
                 {-4, -2, -3, -5, -6, -3, -2, -4},
@@ -42,7 +42,7 @@ public class Board {
         convertToPiece();
     }
 
-    // Determines if it is the non-players move
+    // Determines if it is the non-player's move
     public boolean getNpcMove() {
         return false;
     }
@@ -54,7 +54,7 @@ public class Board {
 
     // Converts the byte representations of the board to the piece objects
     public void convertToPiece() {
-
+        // Implementation here
     }
 
     // Updates the board
@@ -62,8 +62,8 @@ public class Board {
         gameBoard = newBoard;
     }
 
-    // Sets the value of the sepecific position
-    public void setValue(int row, int col, byte value) {
+    // Sets the value of the specific position using column and row
+    public void setValue(int col, int row, byte value) {
         gameBoard[row][col] = value;
     }
 
